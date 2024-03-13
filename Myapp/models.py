@@ -32,6 +32,7 @@ class Policestation(models.Model):
     post = models.CharField(max_length=100)
     district = models.CharField(max_length=100)
     state = models.CharField(max_length=100)
+    siname  = models.CharField(max_length=100)
 
 class Scrapdeaer(models.Model):
     name = models.CharField(max_length=100)

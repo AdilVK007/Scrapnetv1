@@ -6,7 +6,7 @@
 </head>
 
 <body>
-<form id="form1" name="form1" method="post" action="/Myapp/policestation_post/">
+<form id="form1" name="form1" method="post" action="/Myapp/policestation_post/" enctype="multipart/form-data">
     {% csrf_token %}
  <table width="200" border="1">
   <tr>
@@ -29,7 +29,11 @@
     <td>Place</td>
     <td><input type="text" name="textfield4" id="textfield4" /></td>
   </tr>
-  <tr>
+     <tr>
+    <td>Pin</td>
+    <td><input type="text" name="textfield9" id="textfield9" /></td>
+  </tr>
+     <tr>
     <td>Post</td>
     <td><input type="text" name="textfield5" id="textfield5" /></td>
   </tr>

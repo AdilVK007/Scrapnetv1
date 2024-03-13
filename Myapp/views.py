@@ -57,17 +57,18 @@ def rto_management_post(request):
     post = request.POST['textfield8']
     state = request.POST['textfield9']
 
+    # changes after submit
     l = Login()
     l.username = email
     l.password = phone
-    l.type = 'rto'
+    l.type = 'RTO'
     l.save()
     r = Rto()
     r.username = username
     r.email = email
     r.phone = phone
     fs = FileSystemStorage()
-    date = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")+".jpg"
+    date = datetime.datetime.now().strftime("%Y%M%D-%H%M%S")+".jpg"
     fs.save(date,photo)
     path = fs.url(date)
     r.photo = path
@@ -78,22 +79,74 @@ def rto_management_post(request):
     r.state = state
     r.LOGIN = l
     r.save()
-
     return HttpResponse('''<script>alert("Successfully Registered");window.location='/Myapp/rto_management/'</script>''')
 
 def rto_view(request):
-    return render(request,"Admin/rtoview.html")
+    r = Rto.objects.all()
+    return render(request,"Admin/rtoview.html",{'data':r})
 
 def rtoview_post(request):
     search = request.POST['textfield']
-    return HttpResponse('''rtoview.html''')
+    r = Rto.objects.filter(username__icontains=search)
+    return render(request, "Admin/rtoview.html", {'data': r})
+
+def deleterto(request,id):
+    r = Rto.objects.get(id=id)
+    r.delete()
+    return HttpResponse('''<script>alert("Successfully Deleted");window.location='/Myapp/rto_view/'</script>''')
+
+def editrto(request,id):
+    r = Rto.objects.get(id=id)
+    return render(request,"Admin/editrto.html",{'data':r})
+
+def editro_post(request):
+    username = request.POST['textfield']
+    email = request.POST['textfield3']
+    phone = request.POST['textfield4']
+    place = request.POST['textfield5']
+    district = request.POST['textfield6']
+    pin = request.POST['textfield7']
+    post = request.POST['textfield8']
+    state = request.POST['textfield9']
+    id = request.POST['id']
+
+    # changes after submit
+    # l = Login()
+    # l.username = email
+    # l.password = phone
+    # l.type = 'rto'
+    # l.save()
+
+    r = Rto.objects.get(id=id)
+    if 'textfield2' in request.FILES:
+        photo = request.FILES['textfield2']
+        fs = FileSystemStorage()
+        date = datetime.datetime.now().strftime("%Y%M%D-%H%M%S") + ".jpg"
+        fs.save(date, photo)
+        path = fs.url(date)
+        r.photo = path
+        r.save()
+
+    r.username = username
+    r.email = email
+    r.phone = phone
+
+    r.place = place
+    r.post = post
+    r.pin = pin
+    r.district = district
+    r.state = state
+
+    # r.LOGIN = l
+    r.save()
+    return HttpResponse('''<script>alert("RTO user sucessfully updated");window.location='/Myapp/rto_view/'</script>''')
 
 def police_station(request):
     return render(request,"Admin/policestationmanagement.html")
 
 def policestation_post(request):
     username = request.POST['textfield']
-    photo = request.POST['textfield1']
+    photo = request.FILES['textfield1']
     email = request.POST['textfield2']
     phone = request.POST['textfield3']
     place = request.POST['textfield4']
@@ -101,10 +154,38 @@ def policestation_post(request):
     district = request.POST['textfield6']
     state = request.POST['textfield7']
     siname = request.POST['textfield8']
-    return HttpResponse('''<script>alert("Police station has Successfuly Added");window.location='/Myapp/policestationmanagement/'</script>''')
+    pin = request.POST['textfield9']
+
+    l = Login()
+    l.username = email
+    l.password = phone
+    l.type = 'Police Station'
+    l.save()
+
+    fs = FileSystemStorage()
+    date = datetime.datetime.now().strftime("%Y%M%D-%H%M%S") + ".jpg"
+    fs.save(date, photo)
+    path = fs.url(date)
+
+    pd = Policestation()
+    pd.username = username
+    pd.photo = path
+    pd.email = email
+    pd.phone = phone
+    pd.place = place
+    pd.pin = pin
+    pd.post = post
+    pd.district = district
+    pd.state = state
+    pd.siname = siname
+    pd.LOGIN = l
+    pd.save()
+
+    return HttpResponse('''<script>alert("Police station has Successfuly Added");window.location='/Myapp/police_station/'</script>''')
 
 def police_station_view(request):
-    return render(request,"Admin/pdstationmanagementview.html")
+    obj = Policestation.objects.all()
+    return render(request,"Admin/pdstationmanagementview.html",{'data':obj})
 
 def policestationview_post(request):
     search = request.POST['textfield']
