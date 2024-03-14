@@ -11,6 +11,7 @@ The car scrapping process in India lacks organization compared to the sale of us
 ![Bitbucket open issues ](https://img.shields.io/bitbucket/issues/AdilVK007/Scrapnetv1)
 ![GitHub commits since latest release](https://img.shields.io/github/commits-since/AdilVK007/Scrapnetv1/latest)
 ![GitHub Watchers](https://img.shields.io/github/watchers/AdilVK007/Scrapnetv1)
+https://img.shields.io/badge/Python-3776AB?logo=Python&logoColor=white
 
 
 
