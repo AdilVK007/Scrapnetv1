@@ -28,19 +28,21 @@
      <td>&nbsp;</td>
      <td>&nbsp;</td>
    </tr>
+     {% for i in data %}
    <tr>
-     <td>&nbsp;</td>
-     <td>&nbsp;</td>
-     <td>&nbsp;</td>
-     <td>&nbsp;</td>
-     <td>&nbsp;</td>
-     <td>&nbsp;</td>
-     <td>&nbsp;</td>
-     <td>&nbsp;</td>
-     <td>&nbsp;</td>
-     <td><a href="#">Edit</a></td>
+     <td>{{ forloop.counter }}&nbsp;</td>
+     <td>{{ i.username  }}&nbsp;</td>
+     <td><img src="{{ i.photo }}" alt="" height="50px" width="50px"/>&nbsp;</td>
+     <td>{{ i.email }}&nbsp;</td>
+     <td>{{ i.phone }}&nbsp;</td>
+     <td>{{ i.place }}&nbsp;</td>
+     <td>{{ i.pin }}&nbsp;</td>
+     <td>{{ i.district }}&nbsp;</td>
+     <td>{{ i.siname }}&nbsp;</td>
+     <td><a href="/Myapp/editpolicestation/{{ i.id }}">Edit</a></td>
      <td><a href="#">Delete</a></td>
    </tr>
+     {% endfor %}
  </table>
 
 

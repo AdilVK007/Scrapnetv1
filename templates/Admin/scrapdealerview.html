@@ -32,21 +32,23 @@
     <td>&nbsp;</td>
     <td>&nbsp;</td>
   </tr>
+    {% for i in data %}
   <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td><a href="#">Approve</a></td>
-    <td><a href="#">Reject</a></td>
+    <td>{{ forloop.counter }}&nbsp;</td>
+    <td>{{ i.name }}&nbsp;</td>
+    <td><img src="{{ i.photo }}" alt="" width="50px" height="50px"/> &nbsp;</td>
+    <td>{{ i.email }}&nbsp;</td>
+    <td>{{ i.phone }}&nbsp;</td>
+    <td>{{ i.place }}&nbsp;</td>
+    <td>{{ i.post }}&nbsp;</td>
+    <td>{{ i.pin }}&nbsp;</td>
+    <td>{{ i.district }}&nbsp;</td>
+    <td>{{ i.license_no }}&nbsp;</td>
+    <td>{{ i.status }}&nbsp;</td>
+    <td><a href="/Myapp/scrapdealer/{{ i.id }}">Approve</a></td>
+    <td><a href="/Myapp/rejectscrapdealer/{{ i.id }}">Reject</a></td>
   </tr>
+    {% endfor %}
 </table>
 </body>
 </html>

@@ -189,14 +189,59 @@ def police_station_view(request):
 
 def policestationview_post(request):
     search = request.POST['textfield']
-    return render(request,"Admin/pdstationmanagementview.html")
+    obj = Policestation.objects.filter(username__icontains=search)
+    return render(request,"Admin/pdstationmanagementview.html",{'data':obj})
 
+def editpolicestation(request):
+    p = Policestation.objects.get(id=id)
+    return render(request,"Admin/editpolicestation.html")
+def editpolicestation_post(request):
+    username = request.POST['textfield']
+    photo = request.FILES['textfield1']
+    email = request.POST['textfield2']
+    phone = request.POST['textfield3']
+    place = request.POST['textfield4']
+    post = request.POST['textfield5']
+    district = request.POST['textfield6']
+    state = request.POST['textfield7']
+    siname = request.POST['textfield8']
+    pin = request.POST['textfield9']
+
+
+    if request.FILES in 'textfield1':
+        fs = FileSystemStorage()
+        date = datetime.datetime.now().strftime("%Y%M%D-%H%M%S") + ".jpg"
+        fs.save(date, photo)
+        path = fs.url(date)
+        Policestation.objects.filter(id=id).update(photo=path)
+        return HttpResponse('''<script>alert("Police station has Successfuly updated");window.location='/Myapp/police_station/'</script>''')
+    Policestation.objects.filter(id=id).update(username=username,email=email,phone=phone,place=place,post=post,district=district,state=state,siname=siname,pin=pin)
+
+    return HttpResponse('''<script>alert("Police station has Successfuly updated");window.location='/Myapp/police_station/'</script>''')
+
+# def deletepolicestation()
+
+#scrap dealer view
 def scrap_dealer_approve(request):
+    # Scrapdealer.objects.filter(id=id).update(status='approved')
     return render(request, "Admin/scrapdealerapprove.html")
+    # return HttpResponse('''<script>alert("Scrap Dealer has Successfuly Approved");window.location='/Myapp/scrap_dealer_approve/<>'</script>''')
+
+#Scrap dealer approve
+def scrapdealer(request,id):
+    Scrapdealer.objects.filter(id=id).update(status='Approved')
+    # return  render(request,"Admin/scrap_dealer_approve")
+    return HttpResponse('''<script>alert("Scrap Dealer has Successfuly Approved");window.location='/Myapp/scrap_dealer_approve/'</script>''')
+
 
 def scrap_dealer_approve_post(request):
     search = request.POST['textfield']
-    return HttpResponse('''<script>alert("Scrap Dealer has Successfuly Added");window.location='/Myapp/scrapdealerapprove/'</script>''')
+    return HttpResponse('''<script>alert("Scrap Dealer has Successfuly Added");window.location='/Myapp/scrap_dealer_approve/'</script>''')
+
+def rejectscrapdealer(request,id):
+    Scrapdealer.objects.filter(id=id).update(status='Rejected')
+    # return render(request, "Admin/scrapdealerapprove.html")
+    return HttpResponse('''<script>alert("Scrap Dealer has Successfuly Rejected");window.location='/Myapp/scrap_dealer_view/'</script>''')
 
 def viewapprovedscrapdealer(request):
     return render(request, "Admin/viewapprovedscrapdealer.html")
@@ -206,7 +251,8 @@ def viewapprovedscrapdealer_post(request):
     return render(request,"Admin/scrapdealerview.html")
 
 def scrap_dealer_view(request):
-    return render(request,"Admin/scrapdealerview.html")
+    res=Scrapdealer.objects.filter(status='Pending')
+    return render(request,"Admin/scrapdealerview.html",{'data':res})
 
 def scrap_dealer_view_post(request):
     search = request.POST['textfield']

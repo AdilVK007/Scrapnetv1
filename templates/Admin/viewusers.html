@@ -24,15 +24,17 @@
       <td>Address</td>
       <td>Adhar number</td>
     </tr>
+        {% for i in data %}
     <tr>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td>{{ forloop.counter }}&nbsp;</td>
+      <td>{{ i.username }}&nbsp;</td>
+      <td>{{ i.email }}&nbsp;</td>
+      <td>{{ i.phone }}&nbsp;</td>
+      <td>{{ i.gender }}&nbsp;</td>
+      <td>{{ i.place }},<br>{{ i.post }},<br>{{ i.pin }},<br>{{ i.district }},<br>{{ i.state }}&nbsp;</td>
+      <td>{{ i.aadhar_no }}&nbsp;</td>
     </tr>
+        {% endfor %}
   </table>
 </form>
 </body>

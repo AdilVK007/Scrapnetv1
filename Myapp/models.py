@@ -33,8 +33,10 @@ class Policestation(models.Model):
     district = models.CharField(max_length=100)
     state = models.CharField(max_length=100)
     siname  = models.CharField(max_length=100)
+    LOGIN = models.ForeignKey(Login,on_delete=models.CASCADE)
 
-class Scrapdeaer(models.Model):
+
+class Scrapdealer(models.Model):
     name = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
     phone = models.CharField(max_length=100)
@@ -45,6 +47,7 @@ class Scrapdeaer(models.Model):
     district = models.CharField(max_length=100)
     license_no = models.CharField(max_length=100)
     status = models.CharField(max_length=100)
+    LOGIN = models.ForeignKey(Login,on_delete=models.CASCADE)
 
 
 class User(models.Model):
@@ -57,7 +60,10 @@ class User(models.Model):
     place = models.CharField(max_length=100)
     post = models.CharField(max_length=100)
     pin = models.CharField(max_length=100)
+    state = models.CharField(max_length=100)
     aadhar_no = models.CharField(max_length=100)
+    LOGIN = models.ForeignKey(Login,on_delete=models.CASCADE)
+
 
 class Vehicle(models.Model):
     USER = models.ForeignKey(User,on_delete=models.CASCADE)
@@ -71,7 +77,7 @@ class Vehicle(models.Model):
     contact = models.CharField(max_length=100)
     photo = models.CharField(max_length=100)
     engine_number = models.CharField(max_length=100)
-    Chase_number = models.CharField(max_length=100)
+    chase_number = models.CharField(max_length=100)
     year_of_manufacturing = models.CharField(max_length=100)
     month_of_manufacturing = models.CharField(max_length=100)
     status = models.CharField(max_length=100)
@@ -83,6 +89,6 @@ class Activity(models.Model):
     activity = models.CharField(max_length=100)
 
 
-class request(models.Model):
+class Request(models.Model):
     requestid = models.CharField(max_length=100)
     status = models.CharField(max_length=100)

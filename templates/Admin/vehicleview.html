@@ -29,22 +29,27 @@
       <td>Chase number</td>
       <td>year of manufacturing</td>
       <td>month of manufacturing</td>
+        <td>status</td>
     </tr>
+      {% for i in data %}
     <tr>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td>{{ forloop.counter }}&nbsp;</td>
+      <td>{{ i.vehicle_name }}&nbsp;</td>
+      <td>&nbsp{{ i.reg_number }} </td>
+      <td>{{ i.owner_name }}&nbsp;</td>
+      <td>{{ i.reg_date }}&nbsp;</td>
+      <td>{{ i.reg_place }} </td>
+      <td>{{ i.vehicle_type }}&nbsp;</td>
+      <td>{{ i.contact }}&nbsp;</td>
+      <td><img src="{{ i.photo }}" alt=""/> &nbsp;</td>
+      <td>{{ i.engine_number }}&nbsp;</td>
+      <td>{{ i.chase_number }}&nbsp;</td>
+      <td>{{ i.year_of_manufacturing }}&nbsp;</td>
+      <td>{{ i.month_of_manufacturing }}&nbsp;</td>
+        <td>{{ i.status }}&nbsp;</td>
+
     </tr>
+      {% endfor %}
   </table>
 </form>
 </body>

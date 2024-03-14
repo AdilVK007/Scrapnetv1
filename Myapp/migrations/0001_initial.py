@@ -34,6 +34,7 @@ class Migration(migrations.Migration):
                 ('post', models.CharField(max_length=100)),
                 ('district', models.CharField(max_length=100)),
                 ('state', models.CharField(max_length=100)),
+                ('LOGIN', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='Myapp.login')),
             ],
         ),
         migrations.CreateModel(
@@ -45,7 +46,7 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='Scrapdeaer',
+            name='Scrapdealer',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=100)),
@@ -58,6 +59,7 @@ class Migration(migrations.Migration):
                 ('district', models.CharField(max_length=100)),
                 ('license_no', models.CharField(max_length=100)),
                 ('status', models.CharField(max_length=100)),
+                ('LOGIN', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='Myapp.login')),
             ],
         ),
         migrations.CreateModel(
@@ -74,6 +76,7 @@ class Migration(migrations.Migration):
                 ('post', models.CharField(max_length=100)),
                 ('pin', models.CharField(max_length=100)),
                 ('aadhar_no', models.CharField(max_length=100)),
+                ('LOGIN', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='Myapp.login')),
             ],
         ),
         migrations.CreateModel(

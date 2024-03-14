@@ -21,7 +21,7 @@
       <td>profile picture</td>
       <td>email</td>
       <td>phone</td>
-      <td>palce</td>
+      <td>place</td>
       <td>post</td>
       <td>pin</td>
       <td>district</td>
@@ -29,20 +29,22 @@
       <td>status</td>
       <td>&nbsp;</td>
     </tr>
+        {% for i in data %}
     <tr>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td>{{ forloop.counter }}&nbsp;</td>
+      <td>{{ i.name }}&nbsp;</td>
+      <td><img src="{{ i.photo }}" alt=""/>&nbsp;</td>
+      <td>{{ i.email }}&nbsp;</td>
+      <td>{{ i.phone }}&nbsp;</td>
+      <td>{{ i.place }}&nbsp;</td>
+      <td>{{ i.post }}&nbsp;</td>
+      <td>{{ i.pin }}&nbsp;</td>
+      <td>{{ i.district }}&nbsp;</td>
+      <td>{{ i.license_no }}&nbsp;</td>
+      <td>{{ i.status }}&nbsp;</td>
       <td><a href="#">Approve</a></td>
     </tr>
+        {% endfor %}
   </table>
 </form>
 </body>
