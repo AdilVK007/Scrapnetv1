@@ -21,6 +21,12 @@ The car scrapping process in India lacks organization compared to the sale of us
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/muhammed-adil-7671a3231/)
 [![twitter](https://img.shields.io/badge/twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/a4techmalayalam/)
 
+## Usage
+
+```After updating models you can use this to update data
+python manage.py makemigrations
+```
+
 
 ## Features
 
