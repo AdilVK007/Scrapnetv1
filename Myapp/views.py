@@ -192,12 +192,12 @@ def policestationview_post(request):
     obj = Policestation.objects.filter(username__icontains=search)
     return render(request,"Admin/pdstationmanagementview.html",{'data':obj})
 
-def editpolicestation(request):
+def editpolicestation(request,id):
     p = Policestation.objects.get(id=id)
-    return render(request,"Admin/editpolicestation.html")
+    return render(request,"Admin/editpolicestation.html",{'data':p})
 def editpolicestation_post(request):
+    id = request.POST['id']
     username = request.POST['textfield']
-    photo = request.FILES['textfield1']
     email = request.POST['textfield2']
     phone = request.POST['textfield3']
     place = request.POST['textfield4']
@@ -208,48 +208,59 @@ def editpolicestation_post(request):
     pin = request.POST['textfield9']
 
 
-    if request.FILES in 'textfield1':
+    if 'textfield1' in request.FILES:
+        photo = request.FILES['textfield1']
         fs = FileSystemStorage()
         date = datetime.datetime.now().strftime("%Y%M%D-%H%M%S") + ".jpg"
         fs.save(date, photo)
         path = fs.url(date)
         Policestation.objects.filter(id=id).update(photo=path)
-        return HttpResponse('''<script>alert("Police station has Successfuly updated");window.location='/Myapp/police_station/'</script>''')
+        # return HttpResponse('''<script>alert("Police station has Successfuly updated");window.location='/Myapp/police_station/'</script>''')
+
     Policestation.objects.filter(id=id).update(username=username,email=email,phone=phone,place=place,post=post,district=district,state=state,siname=siname,pin=pin)
 
-    return HttpResponse('''<script>alert("Police station has Successfuly updated");window.location='/Myapp/police_station/'</script>''')
+    return HttpResponse('''<script>alert("Police station has Successfuly updated");window.location='/Myapp/police_station_view/'</script>''')
 
-# def deletepolicestation()
+def deletepolicestation(request,id):
+    pd = Policestation.objects.get(id=id)
+    pd.delete()
+    #Policestation.objects.get(id=id).delete(username=username,email=email,phone=phone,place=place,post=post,district=district,state=state,siname=siname,pin=pin)
+    return HttpResponse('''<script>alert("Successfully Deleted");window.location='/Myapp/police_station_view/'</script>''')
 
 #scrap dealer view
 def scrap_dealer_approve(request):
-    # Scrapdealer.objects.filter(id=id).update(status='approved')
-    return render(request, "Admin/scrapdealerapprove.html")
+    s = Scrapdealer.objects.filter(status='Approved')
+    # s.status = 'Approved'
+    return render(request, "Admin/scrapdealerapprove.html",{'data':s})
     # return HttpResponse('''<script>alert("Scrap Dealer has Successfuly Approved");window.location='/Myapp/scrap_dealer_approve/<>'</script>''')
 
-#Scrap dealer approve
+#approved scrap dealer status on database
 def scrapdealer(request,id):
     Scrapdealer.objects.filter(id=id).update(status='Approved')
     # return  render(request,"Admin/scrap_dealer_approve")
     return HttpResponse('''<script>alert("Scrap Dealer has Successfuly Approved");window.location='/Myapp/scrap_dealer_approve/'</script>''')
 
-
+# scrap dealer approve post
 def scrap_dealer_approve_post(request):
     search = request.POST['textfield']
     return HttpResponse('''<script>alert("Scrap Dealer has Successfuly Added");window.location='/Myapp/scrap_dealer_approve/'</script>''')
 
+#rejected scrapdealer(update in database)
 def rejectscrapdealer(request,id):
     Scrapdealer.objects.filter(id=id).update(status='Rejected')
     # return render(request, "Admin/scrapdealerapprove.html")
     return HttpResponse('''<script>alert("Scrap Dealer has Successfuly Rejected");window.location='/Myapp/scrap_dealer_view/'</script>''')
 
+# view approved scrap dealers
 def viewapprovedscrapdealer(request):
+
     return render(request, "Admin/viewapprovedscrapdealer.html")
 
 def viewapprovedscrapdealer_post(request):
     search = request.POST['textfield']
     return render(request,"Admin/scrapdealerview.html")
 
+# logined scrap dealers
 def scrap_dealer_view(request):
     res=Scrapdealer.objects.filter(status='Pending')
     return render(request,"Admin/scrapdealerview.html",{'data':res})
@@ -259,12 +270,15 @@ def scrap_dealer_view_post(request):
     return render(request,"Admin/scrapdealerview.html")
 
 def view_rejected_scrap_dealer(request):
-    return render(request,"Admin/viewrejectedscrapdealer.html")
+    r = Scrapdealer.objects.filter(status='Rejected')
+    return render(request,"Admin/viewrejectedscrapdealer.html",{'data':r})
 
+#displaying rejected scrapdealers
 def view_rejected_scrap_dealer_post(request):
     search = request.POST['textfield']
     return render(request,"Admin/viewrejectedscrapdealer.html")
 
+# rto funtion
 def add_vehicle(request):
     return render(request,"Admin/vehiclemangementadd.html")
 
@@ -284,11 +298,12 @@ def addvehicle_post(request):
     return HttpResponse('''<script>alert("Vehicle succesfully added");window.location='/Myapp/vehiclemangementadd/'</script>''')
 
 def scrapped_vehicle_view(request):
-    return render(request,"Admin/vehicleview.html")
+    sv = Vehicle.objects.all()
+    return render(request,"Admin/scrappedvehicleview.html",{'data':sv})
 
 def scrapped_vehicle_view_post(request):
     search = request.POST['textfield']
-    return render(request, "Admin/vehicleview.html")
+    return render(request, "Admin/scrappedvehicleview.html")
 
 def editvehicle(request):
     return render(request,"Admin/editdelvehicle.html")
