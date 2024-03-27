@@ -60,9 +60,10 @@ class User(models.Model):
     place = models.CharField(max_length=100)
     post = models.CharField(max_length=100)
     pin = models.CharField(max_length=100)
-    state = models.CharField(max_length=100)
+    District = models.CharField(max_length=100,default="")
+    state = models.CharField(max_length=100,default="")
     aadhar_no = models.CharField(max_length=100)
-    LOGIN = models.ForeignKey(Login,on_delete=models.CASCADE)
+    LOGIN = models.ForeignKey(Login,on_delete=models.CASCADE,default="")
 
 
 class Vehicle(models.Model):

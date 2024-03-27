@@ -19,6 +19,11 @@ def login_post(request):
         request.session['lid']=l.id
         if l.type == 'admin':
             return HttpResponse('''<script>alert("Login Successfully");window.location='/Myapp/admin_home/'</script>''')
+        elif l.type == 'police':
+            return HttpResponse('''<script>alert("Login Successfully");window.location='/Myapp/police_home'</script>''')
+        elif l.type == 'RTO':
+            return HttpResponse('''<script>alert("Login Successfully");window.location='/Myapp/rto_home'</script>''')
+
         else:
             return HttpResponse('''<script>alert("Invalid User..");window.location='/Myapp/login/'</script>''')
     else:
@@ -243,7 +248,8 @@ def scrapdealer(request,id):
 # scrap dealer approve post
 def scrap_dealer_approve_post(request):
     search = request.POST['textfield']
-    return HttpResponse('''<script>alert("Scrap Dealer has Successfuly Added");window.location='/Myapp/scrap_dealer_approve/'</script>''')
+    s = Scrapdealer.objects.filter(name__icontains=search)
+    return render(request, "Admin/scrapdealerapprove.html",{'data':s})
 
 #rejected scrapdealer(update in database)
 def rejectscrapdealer(request,id):
@@ -253,12 +259,12 @@ def rejectscrapdealer(request,id):
 
 # view approved scrap dealers
 def viewapprovedscrapdealer(request):
-
     return render(request, "Admin/viewapprovedscrapdealer.html")
 
 def viewapprovedscrapdealer_post(request):
     search = request.POST['textfield']
-    return render(request,"Admin/scrapdealerview.html")
+    s = Scrapdealer.objects.filter(name__icontains=search)
+    return render(request,"Admin/scrapdealerview.html",{'data':s})
 
 # logined scrap dealers
 def scrap_dealer_view(request):
@@ -267,7 +273,8 @@ def scrap_dealer_view(request):
 
 def scrap_dealer_view_post(request):
     search = request.POST['textfield']
-    return render(request,"Admin/scrapdealerview.html")
+    s = Scrapdealer.objects.filter(name__icontains=search)
+    return render(request,"Admin/scrapdealerview.html",{'data':s})
 
 def view_rejected_scrap_dealer(request):
     r = Scrapdealer.objects.filter(status='Rejected')
@@ -276,26 +283,27 @@ def view_rejected_scrap_dealer(request):
 #displaying rejected scrapdealers
 def view_rejected_scrap_dealer_post(request):
     search = request.POST['textfield']
-    return render(request,"Admin/viewrejectedscrapdealer.html")
+    s = Scrapdealer.objects.filter(name__icontains=search)
+    return render(request,"Admin/viewrejectedscrapdealer.html",{'data':s})
 
 # rto funtion
-def add_vehicle(request):
-    return render(request,"Admin/vehiclemangementadd.html")
-
-def addvehicle_post(request):
-    vehiclename = request.POST['textfield']
-    regnum = request.POST['textfield2']
-    ownername = request.POST['textfield3']
-    regdate = request.POST['textfield4']
-    vehicletype = request.POST['textfield5']
-    contact = request.POST['textfield6']
-    photo = request.POST['fileField']
-    enginenumber = request.POST['textfield7']
-    chasenum = request.POST['textfield8']
-    monthofmanufacture = request.POST['textfield9']
-    yearofmanufacture = request.POST['textfield10']
-    placereg = request.POST['textfield11']
-    return HttpResponse('''<script>alert("Vehicle succesfully added");window.location='/Myapp/vehiclemangementadd/'</script>''')
+# def add_vehicle(request):
+#     return render(request,"Admin/vehiclemangementadd.html")
+#
+# def addvehicle_post(request):
+#     vehiclename = request.POST['textfield']
+#     regnum = request.POST['textfield2']
+#     ownername = request.POST['textfield3']
+#     regdate = request.POST['textfield4']
+#     vehicletype = request.POST['textfield5']
+#     contact = request.POST['textfield6']
+#     photo = request.POST['fileField']
+#     enginenumber = request.POST['textfield7']
+#     chasenum = request.POST['textfield8']
+#     monthofmanufacture = request.POST['textfield9']
+#     yearofmanufacture = request.POST['textfield10']
+#     placereg = request.POST['textfield11']
+#     return HttpResponse('''<script>alert("Vehicle succesfully added");window.location='/Myapp/vehiclemangementadd/'</script>''')
 
 def scrapped_vehicle_view(request):
     sv = Vehicle.objects.all()
@@ -303,17 +311,164 @@ def scrapped_vehicle_view(request):
 
 def scrapped_vehicle_view_post(request):
     search = request.POST['textfield']
-    return render(request, "Admin/scrappedvehicleview.html")
+    s = Vehicle.objects.filter(vehicle_name__icontains=search)
+    return render(request, "Admin/scrappedvehicleview.html",{'data':s})
 
-def editvehicle(request):
-    return render(request,"Admin/editdelvehicle.html")
+# def editvehicle(request):
+#     return render(request,"Admin/editdelvehicle.html")
 
 def view_users(request):
-    return render(request,"Admin/viewusers.html")
+    users = User.objects.all()
+    return render(request,"Admin/viewusers.html",{'data':users})
 
 def view_users_post(request):
     search = request.POST['textfield']
-    return render(request,"Admin/viewusers.html")
+    s = User.objects.filter(username__icontains=search)
+    return render(request,"Admin/viewusers.html",{"data":s})
 
 def admin_home(request):
     return render(request,"Admin/home.html")
+
+
+
+
+
+#police station
+
+def changepass(request):
+    return render(request,"police station/changepass.html")
+
+def changepass_post(request):
+    currentpassword = request.POST['textfield']
+    newpassword = request.POST['textfield2']
+    confirmpassword = request.POST['textfield3']
+    l = Login.objects.get(id=request.session['lid'])
+    if l.password == currentpassword:
+        if newpassword == confirmpassword:
+            l.password = newpassword
+            l.save()
+            return HttpResponse(
+                '''<script>alert("New password has updated..");window.location='/Myapp/login/'</script>''')
+        else:
+            return HttpResponse(
+                '''<script>alert("Passwords are not matching");window.location='/Myapp/change_password/'</script>''')
+    else:
+        return HttpResponse('''<script>alert("New password has updated..");window.location='/Myapp/login/'</script>''')
+
+def addsuspeciousactvity(request):
+    res = Vehicle.objects.all()
+    return render(request,"police station/addsuspeciousactvity.html",{'data':res})
+
+def addsuspeciousactvity_post(request):
+    vehicle = request.POST['vehicle']
+    activity = request.POST['textfield2']
+    datee = request.POST['textfield3']
+    obj = Activity()
+    obj.VEHICLE=Vehicle.objects.get(id=vehicle)
+    obj.POLICE= Policestation.objects.get(LOGIN_id=request.session['lid'])
+    obj.activity=activity
+    obj.date=datee
+    obj.save()
+    return HttpResponse('''<script>alert("New Suspecious Activity Added..");window.location='/Myapp/addsuspeciousactvity/'</script>''')
+
+def viewsusactivity(request):
+    viewactivty = Activity.objects.all()
+    return render(request,"police station/viewsusactivity.html",{'data':viewactivty})
+
+def editsusactivity(request,id):
+    susactivy = Activity.objects.get(id=id)
+    ve=Vehicle.objects.all()
+    return render(request, "police station/editsuspeciousactvity.html", {'data': susactivy,'data1':ve})
+
+def editsusactivity_post(request):
+    vehicle = request.POST['vehicle']
+    V = Vehicle.objects.get(id=vehicle)
+    activity = request.POST['textfield2']
+    date = request.POST['textfield3']
+    id = request.POST['id1']
+    obj = Activity.objects.get(id=id)
+    obj.VEHICLE = V
+    obj.activity = activity
+    obj.date = date
+    obj.save()
+
+    return HttpResponse('''<script>alert("Actvity Successfully Updated..");window.location='/Myapp/viewsusactivity/'</script>''')
+
+def deletesusactity(request,id):
+    susactivity = Activity.objects.get(id=id)
+    susactivity.delete()
+    return HttpResponse('''<script>alert("Actvity Successfully Removed..");window.location='/Myapp/viewsusactivity/'</script>''')
+
+def viewsusactivity_post(request):
+    date = request.POST['textfield']
+    todate = request.POST['textfield2']
+    a = Activity.objects.filter(date__range=[date,todate])
+    return render(request,"police station/viewsusactivity.html",{'data':a})
+
+def viewscrappedvehicle(request):
+    viewscrapedveh = Vehicle.objects.filter(status='Vehicle Scrapped')
+    return render(request,"police station/viewscrappedvehicle.html",{'data':viewscrapedveh})
+
+def viewscrappedvehicle_post(request):
+    search = request.POST['textfield']
+    w = Vehicle.objects.filter(vehicle_name__icontains=search,status='Vehicle Scrapped')
+    return render(request,"police station/viewscrappedvehicle.html",{'data':w})
+
+def police_home(request):
+    return render(request,"police station/home.html")
+
+
+
+# RTO MODULE
+def changepass(request):
+    return render(request,"RTO/changepass.html")
+
+def changepass_post(request):
+    currentpassword = request.POST['textfield']
+    newpassword = request.POST['textfield2']
+    confirmpassword = request.POST['textfield3']
+    l = Login.objects.get(id=request.session['lid'])
+    if l.password == currentpassword:
+        if newpassword == confirmpassword:
+            l.password = newpassword
+            l.save()
+            return HttpResponse(
+                '''<script>alert("New password has updated..");window.location='/Myapp/login/'</script>''')
+        else:
+            return HttpResponse(
+                '''<script>alert("Passwords are not matching");window.location='/Myapp/change_password/'</script>''')
+    else:
+        return HttpResponse('''<script>alert("New password has updated..");window.location='/Myapp/login/'</script>''')
+
+def viewprofile(request):
+    return render(request,"RTO/viewprofile.html")
+
+def viewprofile_post(request):
+    return render(request,"RTO/viewprofile.html")
+
+def vehicleadd(request):
+    return render(request,"RTO/viewprofile.html")
+
+def vehicleadd_post(request):
+    return render(request,"RTO/viewprofile.html")
+
+def editveh(request):
+    return render(request,"RTO/editdelvehicle.html")
+
+def editveh_post(request):
+    return render(request,"RTO/editdelvehicle.html")
+
+def viewusers(request):
+    return render(request,"RTO/viewusers.html")
+
+def viewusers_post(request):
+    return render(request,"RTO/viewusers.html")
+
+def viewscrapedveh(request):
+    return render(request,"RTO/viewscrappedvehicle.html")
+
+def viewscrapedveh_post(request):
+    return render(request,"RTO/viewscrappedvehicle.html")
+
+def rto_home(request):
+    return render(request,"RTO/home.html")

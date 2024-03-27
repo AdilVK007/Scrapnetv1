@@ -7,6 +7,7 @@
 
 <body>
 <form id="form1" name="form1" method="post" action="">
+    {% csrf_token %}
   <table width="200" border="1">
     <tr>
       <td>&nbsp;</td>
@@ -14,20 +15,24 @@
     </tr>
     <tr>
       <td>Name</td>
-      <td>&nbsp;</td>
     </tr>
     <tr>
       <td>phone</td>
-      <td>&nbsp;</td>
     </tr>
     <tr>
       <td>email</td>
-      <td>&nbsp;</td>
     </tr>
     <tr>
       <td>Adress</td>
-      <td>&nbsp;</td>
     </tr>
+      {% for i in data %}
+      <tr>
+          <td>{{ i.username }}&nbsp;</td>
+          <td>{{ i.phone }}&nbsp;</td>
+          <td>{{ i.email }}&nbsp;</td>
+          <td>{{ i.place }},<br>{{ i.post }},<br>{{ i.pin }},<br>{{ i.district }},<br>{{ i.state }}</td>
+      </tr>
+      {% endfor %}
   </table>
 </form>
 </body>
