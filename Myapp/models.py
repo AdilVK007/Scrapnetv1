@@ -67,7 +67,7 @@ class User(models.Model):
 
 
 class Vehicle(models.Model):
-    USER = models.ForeignKey(User,on_delete=models.CASCADE)
+    # USER = models.ForeignKey(User,on_delete=models.CASCADE)
     RTO = models.ForeignKey(Rto,on_delete=models.CASCADE)
     vehicle_name = models.CharField(max_length=100)
     reg_number = models.CharField(max_length=100)
@@ -81,6 +81,7 @@ class Vehicle(models.Model):
     chase_number = models.CharField(max_length=100)
     year_of_manufacturing = models.CharField(max_length=100)
     month_of_manufacturing = models.CharField(max_length=100)
+    aadhar_no = models.CharField(max_length=100,default='')
     status = models.CharField(max_length=100)
 
 class Activity(models.Model):

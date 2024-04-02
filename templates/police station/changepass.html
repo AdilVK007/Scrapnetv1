@@ -2,26 +2,31 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Login</title>
+<title>Untitled Document</title>
 </head>
 
 <body>
-<form action="/Myapp/login_post/" method="post">
+<form action="/Myapp/change_pass_post/" method="post"><table width="200" border="1">
     {% csrf_token %}
-    <table width="200" border="1">
+<table width="200" border="1">
   <tr>
-    <td>USERNAME</td>
+    <td>CURRENT PASSWORD</td>
     <td><input type="text" name="textfield" id="textfield" /></td>
   </tr>
   <tr>
-    <td>PASSWORD</td>
+    <td>NEW PASSWORD</td>
     <td><input type="text" name="textfield2" id="textfield2" /></td>
   </tr>
   <tr>
-    <td><input type="submit" name="button" id="button" value="Login" /></td>
-    <td><a href="/Myapp/signup_dealer/">New scrapdealer? Signup here</a> &nbsp;</td>
+    <td>CONFIRM PASSWORD</td>
+    <td><input type="text" name="textfield3" id="textfield3" /></td>
+  </tr>
+  <tr>
+    <td><input type="submit" name="button" id="button" value="Submit" /></td>
+    <td>&nbsp;</td>
   </tr>
 </table>
+
 </form>
 </body>
 </html>

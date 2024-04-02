@@ -23,6 +23,8 @@ def login_post(request):
             return HttpResponse('''<script>alert("Login Successfully");window.location='/Myapp/police_home'</script>''')
         elif l.type == 'RTO':
             return HttpResponse('''<script>alert("Login Successfully");window.location='/Myapp/rto_home'</script>''')
+        elif l.type == 'ScrapDealer':
+            return HttpResponse('''<script>alert("Login Successfully");window.location='/Myapp/scrapdealer_home'</script>''')
 
         else:
             return HttpResponse('''<script>alert("Invalid User..");window.location='/Myapp/login/'</script>''')
@@ -241,7 +243,8 @@ def scrap_dealer_approve(request):
 
 #approved scrap dealer status on database
 def scrapdealer(request,id):
-    Scrapdealer.objects.filter(id=id).update(status='Approved')
+    Scrapdealer.objects.filter(LOGIN_id=id).update(status='Approved')
+    Login.objects.filter(id=id).update(type='ScrapDealer')
     # return  render(request,"Admin/scrap_dealer_approve")
     return HttpResponse('''<script>alert("Scrap Dealer has Successfuly Approved");window.location='/Myapp/scrap_dealer_approve/'</script>''')
 
@@ -315,7 +318,7 @@ def scrapped_vehicle_view_post(request):
     return render(request, "Admin/scrappedvehicleview.html",{'data':s})
 
 # def editvehicle(request):
-#     return render(request,"Admin/editdelvehicle.html")
+#     return render(request,"Admin/viewvehicle.html")
 
 def view_users(request):
     users = User.objects.all()
@@ -441,34 +444,255 @@ def changepass_post(request):
         return HttpResponse('''<script>alert("New password has updated..");window.location='/Myapp/login/'</script>''')
 
 def viewprofile(request):
-    return render(request,"RTO/viewprofile.html")
+    r = Rto.objects.get(LOGIN=request.session['lid'])
+    return render(request,"RTO/viewprofile.html",{"data":r})
 
-def viewprofile_post(request):
-    return render(request,"RTO/viewprofile.html")
+# def viewprofile_post(request):
+#     return render(request,"RTO/viewprofile.html")
 
 def vehicleadd(request):
-    return render(request,"RTO/viewprofile.html")
+    return render(request,"RTO/vehicleadd.html")
 
 def vehicleadd_post(request):
-    return render(request,"RTO/viewprofile.html")
+    vehiclename = request.POST['textfield']
+    regnum = request.POST['textfield2']
+    ownername = request.POST['textfield3']
+    regdate = request.POST['textfield4']
+    vehicletype = request.POST['textfield5']
+    contact = request.POST['textfield6']
+    photo = request.FILES['fileField']
+    enginenumber = request.POST['textfield7']
+    chasenum = request.POST['textfield8']
+    monthofmanufacture = request.POST['textfield9']
+    yearofmanufacture = request.POST['textfield10']
+    regplace = request.POST['textfield11']
+    adhar = request.POST['textfield12']
 
-def editveh(request):
-    return render(request,"RTO/editdelvehicle.html")
+    fs = FileSystemStorage()
+    date = datetime.datetime.now().strftime("%Y%M%D-%H%M%S") + ".jpg"
+    fs.save(date, photo)
+    path = fs.url(date)
+
+    obj = Vehicle()
+    obj.vehicle_name=vehiclename
+    obj.reg_number=regnum
+    obj.owner_name=ownername
+    obj.reg_date=regdate
+    obj.reg_place=regplace
+    obj.Vehicle_type=vehicletype
+    obj.contact=contact
+    obj.photo=path
+    obj.engine_number=enginenumber
+    obj.chase_number=chasenum
+    obj.year_of_manufacturing=yearofmanufacture
+    obj.month_of_manufacturing=monthofmanufacture
+    obj.aadhar_no=adhar
+    obj.RTO=Rto.objects.get(LOGIN=request.session['lid'])
+    obj.save()
+
+    return HttpResponse('''<script>alert("Vehicle succesfully added");window.location='/Myapp/vehicleadd/'</script>''')
+
+def viewveh(request):
+    ev = Vehicle.objects.all()
+    return render(request, "RTO/viewvehicle.html", {'data':ev})
+
+def viewveh_post(request):
+    search = request.POST['textfield']
+    w = Vehicle.objects.filter(vehicle_name__icontains=search)
+    return render(request, "RTO/viewvehicle.html", {'data': w})
+
+def editveh(request,id):
+    ev = Vehicle.objects.get(id=id)
+    return render(request, "RTO/editvehicle.html", {'data':ev})
 
 def editveh_post(request):
-    return render(request,"RTO/editdelvehicle.html")
+    vehiclename = request.POST['textfield']
+    regnum = request.POST['textfield2']
+    ownername = request.POST['textfield3']
+    regdate = request.POST['textfield4']
+    vehicletype = request.POST['textfield5']
+    contact = request.POST['textfield6']
+    enginenumber = request.POST['textfield7']
+    chasenum = request.POST['textfield8']
+    monthofmanufacture = request.POST['textfield9']
+    yearofmanufacture = request.POST['textfield10']
+    regplace = request.POST['textfield11']
+    adhar = request.POST['textfield12']
+    id = request.POST['id']
+    obj = Vehicle.objects.get(id=id)
+
+    if 'fileField' in request.FILES:
+        photo = request.FILES['fileField']
+
+        fs = FileSystemStorage()
+        date = datetime.datetime.now().strftime("%Y%M%D-%H%M%S") + ".jpg"
+        fs.save(date, photo)
+        path = fs.url(date)
+        obj.photo = path
+        obj.save()
+    obj.vehicle_name = vehiclename
+    obj.reg_number = regnum
+    obj.owner_name = ownername
+    obj.reg_date = regdate
+    obj.reg_place = regplace
+    obj.Vehicle_type = vehicletype
+    obj.contact = contact
+    obj.engine_number = enginenumber
+    obj.chase_number = chasenum
+    obj.year_of_manufacturing = yearofmanufacture
+    obj.month_of_manufacturing = monthofmanufacture
+    obj.aadhar_no = adhar
+    obj.save()
+    return HttpResponse('''<script>alert("Vehicle succesfully Updated");window.location='/Myapp/viewveh/'</script>''')
+
+def deleteveh(request,id):
+    delveh = Vehicle.objects.get(id=id)
+    delveh.delete()
+    return HttpResponse('''<script>alert("Actvity Successfully Removed..");window.location='/Myapp/viewveh/'</script>''')
+
 
 def viewusers(request):
-    return render(request,"RTO/viewusers.html")
+    users = User.objects.all()
+    return render(request,"RTO/viewusers.html",{'data':users})
 
 def viewusers_post(request):
-    return render(request,"RTO/viewusers.html")
+    search = request.POST['textfield']
+    s = User.objects.filter(username__icontains=search)
+    return render(request, "RTO/viewusers.html", {"data": s})
 
 def viewscrapedveh(request):
-    return render(request,"RTO/viewscrappedvehicle.html")
+    sv = Vehicle.objects.filter(status='Vehicle Scrapped')
+    return render(request, "RTO/viewscrappedvehicle.html", {'data': sv})
 
 def viewscrapedveh_post(request):
-    return render(request,"RTO/viewscrappedvehicle.html")
+    search = request.POST['textfield']
+    s = Vehicle.objects.filter(vehicle_name__icontains=search)
+    return render(request, "RTO/viewscrappedvehicle.html", {'data': s})
 
 def rto_home(request):
     return render(request,"RTO/home.html")
+
+def signup_dealer(request):
+    return render(request,"scrap dealer/signup.html")
+
+def signup_dealer_post(request):
+    name = request.POST['textfield']
+    photo = request.FILES['fileField']
+    email = request.POST['textfield3']
+    phone = request.POST['textfield4']
+    place = request.POST['textfield5']
+    post = request.POST['textfield6']
+    pin = request.POST['textfield7']
+    district = request.POST['textfield8']
+    # state = request.POST['textfield10']
+    lic_no = request.POST['textfield9']
+    passwd = request.POST['textfield11']
+    confirmpass = request.POST['textfield12']
+    if passwd == confirmpass:
+
+        l = Login()
+        l.username=email
+        l.password=passwd
+        l.type='pending'
+        l.save()
+        fs = FileSystemStorage()
+        date = datetime.datetime.now().strftime("%Y%M%D-%H%M%S") + ".jpg"
+        fs.save(date, photo)
+        path = fs.url(date)
+
+        obj = Scrapdealer()
+        obj.name = name
+        obj.email=email
+        obj.phone=phone
+        obj.photo = path
+        obj.place = place
+        obj.post = post
+        obj.pin = pin
+        obj.district=district
+        # obj.state = state
+        obj.license_no=lic_no
+        obj.status='Pending'
+        obj.LOGIN=l
+        obj.save()
+
+        return HttpResponse('''<script>alert("Account is successfully created..");window.location='/Myapp/signup_dealer/'</script>''')
+    else:
+        return HttpResponse('''<script>alert("Password doesn't Matching..");window.location='/Myapp/signup_dealer/'</script>''')
+
+def dealer_viewprofile(request):
+    d = Scrapdealer.objects.get(LOGIN=request.session['lid'])
+    return render(request,"scrap dealer/viewprofile.html",{'data':d})
+
+
+def updateprofile(request):
+    d = Scrapdealer.objects.get(LOGIN=request.session['lid'])
+    return render(request,"scrap dealer/updateprofile.html",{'data':d})
+
+def updateprofile_post(request):
+    name = request.POST['textfield']
+    email = request.POST['textfield3']
+    phone = request.POST['textfield4']
+    place = request.POST['textfield5']
+    post = request.POST['textfield6']
+    pin = request.POST['textfield7']
+    district = request.POST['textfield8']
+    # state = request.POST['textfield10']
+    lic_no = request.POST['textfield9']
+    # id = request.POST['id']
+
+    l = Login.objects.get(id=request.session['lid'])
+    l.username = email
+    l.save()
+
+    obj = Scrapdealer.objects.get(LOGIN_id=request.session['lid'])
+    if 'fileField' in request.FILES:
+        photo = request.POST['fileField']
+        if photo != "":
+            fs = FileSystemStorage()
+            date = datetime.datetime.now().strftime("%Y%M%D-%H%M%S") + ".jpg"
+            fs.save(date, photo)
+            path = fs.url(date)
+            obj.photo = path
+
+    obj.name = name
+    obj.email = email
+    obj.phone=phone
+    obj.place = place
+    obj.post = post
+    obj.pin = pin
+    obj.district = district
+    # obj.state = state
+    obj.license_no=lic_no
+    obj.save()
+
+    return HttpResponse('''<script>alert("Account is successfully updated..");window.location='/Myapp/dealer_viewprofile/'</script>''')
+
+def viewrequest(request):
+    return render(request,"scrap dealer/viewrequest.html")
+
+def viewrequest_post(request):
+    search = request.POST['textfield']
+    w = Vehicle.objects.filter(vehicle_name__icontains=search, status='Vehicle Scrapped')
+    return render(request, "scrap dealer/viewrequest.html", {'data': w})
+    # return HttpResponse('''<script>alert("..");window.location='/Myapp/dealer_viewprofile/'</script>''')
+
+def viewsusAct(request):
+    return render(request,"scrap dealer/updateprofile.html")
+
+def viewsusAct_post(request):
+    return render(request,"scrap dealer/updateprofile.html")
+
+def viewverifystats(request):
+    return render(request,"scrap dealer/updateprofile.html")
+
+def viewverifystats_post(request):
+    return render(request,"scrap dealer/updateprofile.html")
+
+def scrapstationup(request):
+    return render(request,"scrap dealer/updateprofile.html")
+
+def scrapstationup_post(request):
+    return render(request,"scrap dealer/updateprofile.html")
+
+def scrapdealer_home(request):
+    return render(request,"scrap dealer/home.html")

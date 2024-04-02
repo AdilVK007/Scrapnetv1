@@ -5,7 +5,9 @@
 <title>Untitled Document</title>
 </head>
 
-<body><form action="" method="get" enctype="multipart/form-data"><table width="200" border="1">
+<body><form action="/Myapp/signup_dealer_post/" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table width="200" border="1">
   <tr>
     <td>Name</td>
     <td><input type="text" name="textfield" id="textfield" /></td>
@@ -14,10 +16,10 @@
     <td>Profile Picture</td>
     <td><input type="file" name="fileField" id="fileField" /></td>
   </tr>
-  <tr>
-    <td>Date of Birth</td>
-    <td><input type="text" name="textfield2" id="textfield2" /></td>
-  </tr>
+{#  <tr>#}
+{#    <td>Date of Birth</td>#}
+{#    <td><input type="text" name="textfield2" id="textfield2" /></td>#}
+{#  </tr>#}
   <tr>
     <td>Email</td>
     <td><input type="text" name="textfield3" id="textfield3" /></td>
@@ -44,12 +46,20 @@
   </tr>
   <tr>
     <td>State</td>
-    <td><select name="select" id="select">
+       <td><input type="text" name="textfield10" id="textfield10" /></td>
     </select></td>
   </tr>
   <tr>
     <td>License Number</td>
     <td><input type="text" name="textfield9" id="textfield9" /></td>
+  </tr>
+    <tr>
+    <td>Password</td>
+    <td><input type="text" name="textfield11" id="textfield9" /></td>
+  </tr>
+    <tr>
+    <td>Confirm Password</td>
+    <td><input type="text" name="textfield12" id="textfield12" /></td>
   </tr>
   <tr>
     <td><input type="submit" name="signup" id="signup" value="Signup" /></td>
