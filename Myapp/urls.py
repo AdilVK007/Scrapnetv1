@@ -98,10 +98,21 @@ urlpatterns = [
     path('viewsusAct_post/', views.viewsusAct_post),
     path('viewverifystats/', views.viewverifystats),
     path('viewverifystats_post/', views.viewverifystats_post),
-    path('viewverifystats/', views.viewverifystats),
-    path('viewverifystats_post/', views.viewverifystats_post),
     path('scrapstationup/', views.scrapstationup),
     path('scrapstationup_post/', views.scrapstationup_post),
-    path('scrapdealer_home/', views.scrapdealer_home)
+    path('scrapdealer_home/', views.scrapdealer_home),
 
+# user
+
+    path('usersignup/', views.usersignup),
+    path('usersignup_post/', views.usersignup_post),
+    path('changepasswd/', views.changepasswd),
+    path('changepasswd_post/', views.changepasswd_post),
+    path('userviewprofile/', views.userviewprofile),
+    path('userviewprofile_post/', views.userviewprofile_post),
+    path('viewvehicle/', views.viewvehicle),
+    path('viewvehicle_post/', views.viewvehicle_post),
+    path('addscraprequest/', views.addscraprequest),
+    path('addscraprequest_post/', views.addscraprequest_post),
+    path('user_home/', views.user_home)
 ]

@@ -90,7 +90,7 @@ class Activity(models.Model):
     date = models.DateField()
     activity = models.CharField(max_length=100)
 
-
 class Request(models.Model):
     requestid = models.CharField(max_length=100)
     status = models.CharField(max_length=100)
+

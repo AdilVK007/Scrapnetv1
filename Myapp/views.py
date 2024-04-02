@@ -668,25 +668,31 @@ def updateprofile_post(request):
     return HttpResponse('''<script>alert("Account is successfully updated..");window.location='/Myapp/dealer_viewprofile/'</script>''')
 
 def viewrequest(request):
-    return render(request,"scrap dealer/viewrequest.html")
+    vr = Request.objects.all()
+    return render(request,"scrap dealer/viewrequest.html",{'data':vr})
 
 def viewrequest_post(request):
     search = request.POST['textfield']
-    w = Vehicle.objects.filter(vehicle_name__icontains=search, status='Vehicle Scrapped')
-    return render(request, "scrap dealer/viewrequest.html", {'data': w})
-    # return HttpResponse('''<script>alert("..");window.location='/Myapp/dealer_viewprofile/'</script>''')
+    w = Request.objects.filter(requestid_icontains=search)
+    return render(request, "scrap dealer/viewrequest.html",{'data': w})
 
 def viewsusAct(request):
-    return render(request,"scrap dealer/updateprofile.html")
+    viewactivty = Activity.objects.all()
+    return render(request,"scrap dealer/viewsuspeciousactivity.html",{'data':viewactivty})
 
 def viewsusAct_post(request):
-    return render(request,"scrap dealer/updateprofile.html")
+    date = request.POST['textfield']
+    todate = request.POST['textfield2']
+    act = Activity.objects.filter(date__range=[date, todate])
+    return render(request, "scrap dealer/viewsuspeciousactivity.html", {'data': act})
 
 def viewverifystats(request):
-    return render(request,"scrap dealer/updateprofile.html")
+    return render(request,"scrap dealer/viewverifystats.html")
 
 def viewverifystats_post(request):
-    return render(request,"scrap dealer/updateprofile.html")
+    # search = request.POST['textfield']
+    # v = Request.objects.filter(requestid_icontains=search)
+    return render(request,"scrap dealer/viewverifystats.html")
 
 def scrapstationup(request):
     return render(request,"scrap dealer/updateprofile.html")
@@ -696,3 +702,45 @@ def scrapstationup_post(request):
 
 def scrapdealer_home(request):
     return render(request,"scrap dealer/home.html")
+
+
+
+
+def usersignup(request):
+    return render(request,"user/signup.html")
+
+def usersignup_post(request):
+    return render(request,"user/signup.html")
+
+def changepasswd(request):
+    return render(request,"user/signup.html")
+
+def changepasswd_post(request):
+    return render(request,"user/signup.html")
+
+def userviewprofile(request):
+    return render(request,"user/viewprofile.html")
+
+def userviewprofile_post(request):
+    return render(request,"user/viewprofile.html")
+
+def viewvehicle(request):
+    return render(request,"user/viewvhicle.html")
+
+def viewvehicle_post(request):
+    return render(request,"user/viewvhicle.html")
+
+def addscraprequest(request):
+    return render(request,"user/Addrequest.html")
+
+def addscraprequest_post(request):
+    return render(request,"user/Addrequest.html")
+
+def viewrequeststation(request):
+    return render(request,"user/Addrequest.html")
+
+def getcertify(request):
+    return render(request,"user/Addrequest.html")
+
+def user_home(request):
+    return render(request,"user/home.html")
