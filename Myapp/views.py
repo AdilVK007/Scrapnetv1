@@ -25,7 +25,8 @@ def login_post(request):
             return HttpResponse('''<script>alert("Login Successfully");window.location='/Myapp/rto_home'</script>''')
         elif l.type == 'ScrapDealer':
             return HttpResponse('''<script>alert("Login Successfully");window.location='/Myapp/scrapdealer_home'</script>''')
-
+        elif l.type == 'User':
+            return HttpResponse('''<script>alert("Login Successfully");window.location='/Myapp/user_home'</script>''')
         else:
             return HttpResponse('''<script>alert("Invalid User..");window.location='/Myapp/login/'</script>''')
     else:
@@ -710,25 +711,122 @@ def usersignup(request):
     return render(request,"user/signup.html")
 
 def usersignup_post(request):
-    return render(request,"user/signup.html")
+    username = request.POST['textfield']
+    email = request.POST['textfield2']
+    phone = request.POST['textfield3']
+    gender = request.POST['RadioGroup1']
+    dob = request.POST['textfield5']
+    place = request.POST['textfield6']
+    post = request.POST['textfield7']
+    pin = request.POST['textfield8']
+    district = request.POST['textfield9']
+    Aadharno = request.POST['textfield10']
+    state = request.POST['textfield11']
+    pic = request.FILES['textfield12']
+    passwd = request.POST['textfield13']
+    confirmpass = request.POST['textfield14']
 
+    fs = FileSystemStorage()
+    date = datetime.datetime.now().strftime("%Y%m%d-%H%%M%S")+".jpg"
+    fn = fs.save(date,pic)
+    lobj = Login()
+    lobj.username=email
+    lobj.password=confirmpass
+    lobj.type='User'
+    lobj.save()
+
+    u = User()
+    u.username = username
+    u.email = email
+    u.phone=phone
+    u.photo=fs.url(date)
+    u.gender=gender
+    u.dob=dob
+    u.place=place
+    u.post=post
+    u.pin=pin
+    u.District=district
+    u.state=state
+    u.aadhar_no = Aadharno
+    u.LOGIN = lobj
+    u.save()
+
+    return HttpResponse('''<script>alert("Account is successfully created..");window.location='/Myapp/login/'</script>''')
 def changepasswd(request):
-    return render(request,"user/signup.html")
+    return render(request,"user/changepasswd.html")
 
 def changepasswd_post(request):
-    return render(request,"user/signup.html")
+    currentpass = request.POST['textfield']
+    newpass = request.POST['textfield2']
+    confirmpass = request.POST['textfield3']
+    l = Login.objects.get(id=request.session['lid'])
+    if l.password == currentpass:
+        if newpass == confirmpass:
+            l.password = newpass
+            l.save()
+            return HttpResponse(
+                '''<script>alert("New password has updated..");window.location='/Myapp/login/'</script>''')
+        else:
+            return HttpResponse(
+                '''<script>alert("Passwords are not matching");window.location='/Myapp/changepasswd/'</script>''')
+    else:
+        return HttpResponse('''<script>alert("New password has updated..");window.location='/Myapp/login/'</script>''')
 
 def userviewprofile(request):
-    return render(request,"user/viewprofile.html")
+    u = User.objects.get(LOGIN_id=request.session['lid'])
+    return render(request,"user/viewprofile.html",{'data':u})
 
-def userviewprofile_post(request):
-    return render(request,"user/viewprofile.html")
+def edituserprofile(request):
+    eu = User.objects.get(LOGIN_id=request.session['lid'])
+    return render(request,"user/editprofile.html",{'data':eu})
+
+def edituserprofile_post(request):
+    username = request.POST['textfield']
+    email = request.POST['textfield2']
+    phone = request.POST['textfield3']
+    gender = request.POST['RadioGroup1']
+    dob = request.POST['textfield5']
+    place = request.POST['textfield6']
+    post = request.POST['textfield7']
+    pin = request.POST['textfield8']
+    district = request.POST['textfield9']
+    Aadharno = request.POST['textfield10']
+    state = request.POST['textfield11']
+
+    u = User.objects.get(LOGIN_id = request.session['lid'])
+    if 'textfield12' in request.FILES:
+        pic = request.FILES['textfield12']
+        if pic != '':
+            fs = FileSystemStorage()
+            date = datetime.datetime.now().strftime("%Y%m%d-%H%%M%S") + ".jpg"
+            fn = fs.save(date, pic)
+            u = User.objects.filter(LOGIN_id = request.session['lid'])
+            u.photo = fs.url(date)
+            u.save()
+
+    u.username = username
+    u.email = email
+    u.phone = phone
+    u.gender = gender
+    u.dob = dob
+    u.place = place
+    u.post = post
+    u.pin = pin
+    u.District = district
+    u.state = state
+    u.aadhar_no = Aadharno
+    u.save()
+
+    return HttpResponse('''<script>alert("Profile has been updated..");window.location='/Myapp/userviewprofile/'</script>''')
 
 def viewvehicle(request):
-    return render(request,"user/viewvhicle.html")
+    vv = Vehicle.objects.all()
+    return render(request,"user/viewvhicle.html",{'data':vv})
 
 def viewvehicle_post(request):
-    return render(request,"user/viewvhicle.html")
+    search = request.POST['textfield']
+    vehv = Vehicle.objects.filter(vehicle_name__icontains=search)
+    return render(request,"user/viewvhicle.html",{'data':vehv})
 
 def addscraprequest(request):
     return render(request,"user/Addrequest.html")

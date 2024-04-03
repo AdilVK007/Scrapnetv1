@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="/Myapp/edituserprofile_post/"enctype="multipart/form-data">
+    {% csrf_token %}
+  <table width="200" border="1">
+    <tr>
+      <td>username</td>
+      <td><input type="text" value="{{ data.username }}" name="textfield" id="textfield" /></td>
+    </tr>
+    <tr>
+      <td>email</td>
+      <td><input type="text" value="{{ data.email }}" name="textfield2" id="textfield2" /></td>
+    </tr>
+    <tr>
+      <td>phone</td>
+      <td><input type="text" value="{{ data.phone }}" name="textfield3" id="textfield3" /></td>
+    </tr>
+    <tr>
+      <tr>
+      <td>Photo</td>
+      <td>
+          <img src="{{ data.photo }}" width="50px" height="50px" alt=""/>
+          <input type="file" name="textfield12" id="textfield12" /></td>
+    <tr>
+      <td>Gender </td>
+      <td><p>
+        <label>
+          <input type="radio" va name="RadioGroup1" value="Male" id="RadioGroup1_0" {% if data.gender == 'Male' %}checked {% endif %} />
+          Male</label>
+        <br />
+        <label>
+          <input type="radio" name="RadioGroup1" value="Female" id="RadioGroup1_1" {% if data.gender == 'Female' %}checked {% endif %} />
+          Female</label>
+        <br />
+      </p></td>
+    </tr>
+
+    <tr>
+      <td>dob</td>
+      <td><input type="date" value="{{ data.dob|date:'Y-m-d' }}" name="textfield5" id="textfield5" /></td>
+    </tr>
+    <tr>
+      <td>place</td>
+      <td><input type="text" value="{{ data.place }}" name="textfield6" id="textfield6" /></td>
+    </tr>
+    <tr>
+      <td>post</td>
+      <td><input type="text" value="{{ data.post }}" name="textfield7" id="textfield7" /></td>
+    </tr>
+    <tr>
+      <td>pin</td>
+      <td><input type="text" value="{{ data.pin }}" name="textfield8" id="textfield8" /></td>
+    </tr>
+    <tr>
+      <td>District</td>
+      <td><input type="text" value="{{ data.District }}" name="textfield9" id="textfield9" /></td>
+    </tr>
+    <tr>
+      <td>State</td>
+      <td><input type="text" value="{{ data.state }}" name="textfield11" id="textfield11">
+    </tr>
+    <tr>
+      <td>Aadhar Number</td>
+      <td><input type="text" value="{{ data.aadhar_no }}" name="textfield10" id="textfield10" /></td>
+    </tr>
+      <td><input type="submit" name="signup" id="signup" value="Update" /></td>
+      <td>&nbsp;</td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>
