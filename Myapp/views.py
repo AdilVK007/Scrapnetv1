@@ -87,7 +87,7 @@ def rto_management_post(request):
     r.state = state
     r.LOGIN = l
     r.save()
-    return HttpResponse('''<script>alert("Successfully Registered");window.location='/Myapp/rto_management/'</script>''')
+    return HttpResponse('''<script>alert("Successfully Added RTO");window.location='/Myapp/admin_home/'</script>''')
 
 def rto_view(request):
     r = Rto.objects.all()
@@ -189,7 +189,7 @@ def policestation_post(request):
     pd.LOGIN = l
     pd.save()
 
-    return HttpResponse('''<script>alert("Police station has Successfuly Added");window.location='/Myapp/police_station/'</script>''')
+    return HttpResponse('''<script>alert("Police station has Successfuly Added");window.location='/Myapp/admin_home/'</script>''')
 
 def police_station_view(request):
     obj = Policestation.objects.all()
@@ -310,7 +310,7 @@ def view_rejected_scrap_dealer_post(request):
 #     return HttpResponse('''<script>alert("Vehicle succesfully added");window.location='/Myapp/vehiclemangementadd/'</script>''')
 
 def scrapped_vehicle_view(request):
-    sv = Vehicle.objects.all()
+    sv = Vehicle.objects.filter(status='scrapping')
     return render(request,"Admin/scrappedvehicleview.html",{'data':sv})
 
 def scrapped_vehicle_view_post(request):
@@ -464,8 +464,8 @@ def vehicleadd_post(request):
     photo = request.FILES['fileField']
     enginenumber = request.POST['textfield7']
     chasenum = request.POST['textfield8']
-    monthofmanufacture = request.POST['textfield9']
-    yearofmanufacture = request.POST['textfield10']
+    monthofmanufacture = request.POST['textfield10']
+    yearofmanufacture = request.POST['textfield9']
     regplace = request.POST['textfield11']
     adhar = request.POST['textfield12']
 
@@ -485,8 +485,8 @@ def vehicleadd_post(request):
     obj.photo=path
     obj.engine_number=enginenumber
     obj.chase_number=chasenum
+    obj.month_of_manufacturing = monthofmanufacture
     obj.year_of_manufacturing=yearofmanufacture
-    obj.month_of_manufacturing=monthofmanufacture
     obj.aadhar_no=adhar
     obj.RTO=Rto.objects.get(LOGIN=request.session['lid'])
     obj.save()
@@ -820,7 +820,8 @@ def edituserprofile_post(request):
     return HttpResponse('''<script>alert("Profile has been updated..");window.location='/Myapp/userviewprofile/'</script>''')
 
 def viewvehicle(request):
-    vv = Vehicle.objects.all()
+    a=User.objects.get(LOGIN_id=request.session['lid']).aadhar_no
+    vv = Vehicle.objects.filter(aadhar_no=a)
     return render(request,"user/viewvhicle.html",{'data':vv})
 
 def viewvehicle_post(request):
@@ -829,16 +830,16 @@ def viewvehicle_post(request):
     return render(request,"user/viewvhicle.html",{'data':vehv})
 
 def addscraprequest(request):
-    return render(request,"user/Addrequest.html")
+    return render(request, "user/Addscraprequest.html")
 
 def addscraprequest_post(request):
-    return render(request,"user/Addrequest.html")
+    return HttpResponse('''<script>alert("Scrapping Requested to all Scrapping Dealers..");window.location='/Myapp/user_home/'</script>''')
 
 def viewrequeststation(request):
-    return render(request,"user/Addrequest.html")
+    return render(request, "user/Addscraprequest.html")
 
 def getcertify(request):
-    return render(request,"user/Addrequest.html")
+    return render(request, "user/Addscraprequest.html")
 
 def user_home(request):
     return render(request,"user/home.html")
