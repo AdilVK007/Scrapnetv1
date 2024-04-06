@@ -48,10 +48,11 @@ Author URL: http://w3layouts.com
 							</div>
 						</div>
 						<div class="bottom-content">
-							<form action="#" method="post">
-								<input type="email" name="email" class="input-form" placeholder="Your Email"
+							<form action="/Myapp/login_post/" method="post">
+                                {% csrf_token %}
+								<input type="email" name="textfield" class="input-form" placeholder="Your Email"
 										required="required" />
-								<input type="password" name="password" class="input-form"
+								<input type="password" name="textfield2" class="input-form"
 										placeholder="Your Password" required="required" />
 								<button type="submit" class="loginhny-btn btn">Login</button>
 							</form>

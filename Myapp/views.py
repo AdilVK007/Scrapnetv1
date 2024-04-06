@@ -8,7 +8,7 @@ from Myapp.models import *
 
 
 def login(request):
-    return render(request,"Admin/login.html")
+    return render(request,"indexlogin.html")
 
 def login_post(request):
     uname=request.POST['textfield']
@@ -18,19 +18,19 @@ def login_post(request):
         l = Login.objects.get(username=uname,password=password)
         request.session['lid']=l.id
         if l.type == 'admin':
-            return HttpResponse('''<script>alert("Login Successfully");window.location='/Myapp/admin_home/'</script>''')
+            return HttpResponse('''<script>alert("Welcome! You have successfully logged in.");window.location='/Myapp/admin_home/'</script>''')
         elif l.type == 'police':
-            return HttpResponse('''<script>alert("Login Successfully");window.location='/Myapp/police_home'</script>''')
+            return HttpResponse('''<script>alert("Welcome! You have successfully logged in.");window.location='/Myapp/police_home'</script>''')
         elif l.type == 'RTO':
-            return HttpResponse('''<script>alert("Login Successfully");window.location='/Myapp/rto_home'</script>''')
+            return HttpResponse('''<script>alert("Welcome! You have successfully logged in.");window.location='/Myapp/rto_home'</script>''')
         elif l.type == 'ScrapDealer':
-            return HttpResponse('''<script>alert("Login Successfully");window.location='/Myapp/scrapdealer_home'</script>''')
+            return HttpResponse('''<script>alert("Welcome! You have successfully logged in.");window.location='/Myapp/scrapdealer_home'</script>''')
         elif l.type == 'User':
-            return HttpResponse('''<script>alert("Login Successfully");window.location='/Myapp/user_home'</script>''')
+            return HttpResponse('''<script>alert("Welcome! You have successfully logged in.");window.location='/Myapp/user_home'</script>''')
         else:
-            return HttpResponse('''<script>alert("Invalid User..");window.location='/Myapp/login/'</script>''')
+            return HttpResponse('''<script>alert("Welcome! You have successfully logged in.");window.location='/Myapp/login/'</script>''')
     else:
-        return HttpResponse('''<script>alert("User not found..");window.location='/Myapp/login/'</script>''')
+        return HttpResponse('''<script>alert("Sorry, we couldn't find that user. Please check your credentials and try again.");window.location='/Myapp/login/'</script>''')
 
 def change_password(request):
     return render(request,"Admin/changepassword.html")
@@ -44,11 +44,11 @@ def change_pass_post(request):
         if newpass == confirmpass:
             l.password = newpass
             l.save()
-            return HttpResponse('''<script>alert("New password has updated..");window.location='/Myapp/login/'</script>''')
+            return HttpResponse('''<script>alert("Your password has been updated successfully...");window.location='/Myapp/login/'</script>''')
         else:
-            return HttpResponse('''<script>alert("Passwords are not matching");window.location='/Myapp/change_password/'</script>''')
+            return HttpResponse('''<script>alert("Oops! The passwords you entered do not match. Please try again.");window.location='/Myapp/change_password/'</script>''')
     else:
-        return HttpResponse('''<script>alert("New password has updated..");window.location='/Myapp/login/'</script>''')
+        return HttpResponse('''<script>alert("Your password has been successfully changed...");window.location='/Myapp/login/'</script>''')
 
 
 def rto_management(request):
@@ -87,7 +87,7 @@ def rto_management_post(request):
     r.state = state
     r.LOGIN = l
     r.save()
-    return HttpResponse('''<script>alert("Successfully Added RTO");window.location='/Myapp/admin_home/'</script>''')
+    return HttpResponse('''<script>alert("RTO has been successfully added.");window.location='/Myapp/admin_home/'</script>''')
 
 def rto_view(request):
     r = Rto.objects.all()
@@ -101,7 +101,7 @@ def rtoview_post(request):
 def deleterto(request,id):
     r = Rto.objects.get(id=id)
     r.delete()
-    return HttpResponse('''<script>alert("Successfully Deleted");window.location='/Myapp/rto_view/'</script>''')
+    return HttpResponse('''<script>alert("RTO successfully deleted.");window.location='/Myapp/rto_view/'</script>''')
 
 def editrto(request,id):
     r = Rto.objects.get(id=id)
@@ -147,7 +147,7 @@ def editro_post(request):
 
     # r.LOGIN = l
     r.save()
-    return HttpResponse('''<script>alert("RTO user sucessfully updated");window.location='/Myapp/rto_view/'</script>''')
+    return HttpResponse('''<script>alert("RTO user updated successfully.");window.location='/Myapp/rto_view/'</script>''')
 
 def police_station(request):
     return render(request,"Admin/policestationmanagement.html")
@@ -189,7 +189,7 @@ def policestation_post(request):
     pd.LOGIN = l
     pd.save()
 
-    return HttpResponse('''<script>alert("Police station has Successfuly Added");window.location='/Myapp/admin_home/'</script>''')
+    return HttpResponse('''<script>alert("Police station successfully added.");window.location='/Myapp/admin_home/'</script>''')
 
 def police_station_view(request):
     obj = Policestation.objects.all()
@@ -227,13 +227,13 @@ def editpolicestation_post(request):
 
     Policestation.objects.filter(id=id).update(username=username,email=email,phone=phone,place=place,post=post,district=district,state=state,siname=siname,pin=pin)
 
-    return HttpResponse('''<script>alert("Police station has Successfuly updated");window.location='/Myapp/police_station_view/'</script>''')
+    return HttpResponse('''<script>alert("Police station updated successfully.");window.location='/Myapp/police_station_view/'</script>''')
 
 def deletepolicestation(request,id):
     pd = Policestation.objects.get(id=id)
     pd.delete()
     #Policestation.objects.get(id=id).delete(username=username,email=email,phone=phone,place=place,post=post,district=district,state=state,siname=siname,pin=pin)
-    return HttpResponse('''<script>alert("Successfully Deleted");window.location='/Myapp/police_station_view/'</script>''')
+    return HttpResponse('''<script>alert("Police station successfully deleted.");window.location='/Myapp/police_station_view/'</script>''')
 
 #scrap dealer view
 def scrap_dealer_approve(request):
@@ -247,7 +247,7 @@ def scrapdealer(request,id):
     Scrapdealer.objects.filter(LOGIN_id=id).update(status='Approved')
     Login.objects.filter(id=id).update(type='ScrapDealer')
     # return  render(request,"Admin/scrap_dealer_approve")
-    return HttpResponse('''<script>alert("Scrap Dealer has Successfuly Approved");window.location='/Myapp/scrap_dealer_approve/'</script>''')
+    return HttpResponse('''<script>alert("Scrap dealer successfully approved.");window.location='/Myapp/scrap_dealer_approve/'</script>''')
 
 # scrap dealer approve post
 def scrap_dealer_approve_post(request):
@@ -259,7 +259,7 @@ def scrap_dealer_approve_post(request):
 def rejectscrapdealer(request,id):
     Scrapdealer.objects.filter(id=id).update(status='Rejected')
     # return render(request, "Admin/scrapdealerapprove.html")
-    return HttpResponse('''<script>alert("Scrap Dealer has Successfuly Rejected");window.location='/Myapp/scrap_dealer_view/'</script>''')
+    return HttpResponse('''<script>alert("Scrap Dealer Successfuly Rejected");window.location='/Myapp/scrap_dealer_view/'</script>''')
 
 # view approved scrap dealers
 def viewapprovedscrapdealer(request):
@@ -331,7 +331,7 @@ def view_users_post(request):
     return render(request,"Admin/viewusers.html",{"data":s})
 
 def admin_home(request):
-    return render(request,"Admin/home.html")
+    return render(request,"Admin/adminindex.html")
 
 
 
@@ -352,12 +352,12 @@ def changepass_post(request):
             l.password = newpassword
             l.save()
             return HttpResponse(
-                '''<script>alert("New password has updated..");window.location='/Myapp/login/'</script>''')
+                '''<script>alert("Your new password has been updated...");window.location='/Myapp/login/'</script>''')
         else:
             return HttpResponse(
-                '''<script>alert("Passwords are not matching");window.location='/Myapp/change_password/'</script>''')
+                '''<script>alert("Oops! The passwords you entered do not match. Please try again.");window.location='/Myapp/change_password/'</script>''')
     else:
-        return HttpResponse('''<script>alert("New password has updated..");window.location='/Myapp/login/'</script>''')
+        return HttpResponse('''<script>alert("Your password has been changed successfully...");window.location='/Myapp/login/'</script>''')
 
 def addsuspeciousactvity(request):
     res = Vehicle.objects.all()
@@ -373,7 +373,7 @@ def addsuspeciousactvity_post(request):
     obj.activity=activity
     obj.date=datee
     obj.save()
-    return HttpResponse('''<script>alert("New Suspecious Activity Added..");window.location='/Myapp/addsuspeciousactvity/'</script>''')
+    return HttpResponse('''<script>alert("New suspicious activity detected and added...");window.location='/Myapp/addsuspeciousactvity/'</script>''')
 
 def viewsusactivity(request):
     viewactivty = Activity.objects.all()
@@ -396,7 +396,7 @@ def editsusactivity_post(request):
     obj.date = date
     obj.save()
 
-    return HttpResponse('''<script>alert("Actvity Successfully Updated..");window.location='/Myapp/viewsusactivity/'</script>''')
+    return HttpResponse('''<script>alert("Activity successfully updated..");window.location='/Myapp/viewsusactivity/'</script>''')
 
 def deletesusactity(request,id):
     susactivity = Activity.objects.get(id=id)
