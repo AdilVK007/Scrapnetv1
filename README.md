@@ -31,6 +31,16 @@ python manage.py makemigrations
 ```
 
 ## __Documentation__
+html table responsive
+
+
+
+#  <table class="table table-bordered">
+@       <tr>
+            <td><input type="text" name="textfield" class="form-control"/></td>
+            <td><input type="submit" value="search" class="btn btn-info"/></td>
+        </tr>
+    </table>
 
 
 ## Features
