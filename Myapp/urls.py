@@ -54,7 +54,7 @@ urlpatterns = [
     path('view_users_post/', views.view_users_post),
 
     #policestation
-    path('changepass/', views.changepass),
+    path('changepasspolice/', views.changepasspolice),
     path('changepass_post/', views.changepass_post),
     path('addsuspeciousactvity/', views.addsuspeciousactvity),
     path('addsuspeciousactvity_post/', views.addsuspeciousactvity_post),
@@ -114,6 +114,8 @@ urlpatterns = [
     # path('userviewprofile_post/', views.userviewprofile_post),
     path('viewvehicle/', views.viewvehicle),
     path('viewvehicle_post/', views.viewvehicle_post),
+    path('userviewscrapdealer/<id>', views.userviewscrapdealer),
+    path('userviewscrapdealer_post/', views.userviewscrapdealer_post),
     path('addscraprequest/', views.addscraprequest),
     path('addscraprequest_post/', views.addscraprequest_post),
     path('user_home/', views.user_home)

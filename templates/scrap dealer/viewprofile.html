@@ -1,16 +1,11 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Untitled Document</title>
-</head>
-
-<body><form action="" method="post">
+{% extends "scrap dealer/scrapdealerindex.html" %}
+{% block body %}
+<form action="" method="post">
     {% csrf_token %}
-    <table width="200" border="1">
+    <table class="table table-bordered">
   <tr>
     <td>&nbsp;</td>
-    <td><img src="{{ data.photo }}" alt=""/></td>
+    <td><img src="{{ data.photo }}" height="80px" width="80px" alt=""/></td>
   </tr>
   <tr>
     <td>username</td>
@@ -41,10 +36,9 @@
     <td>{{ data.license_no }}&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="/Myapp/updateprofile/">Edit</a></td>
+    <td colspan="2" align="center"><a href="/Myapp/updateprofile/">Edit</a></td>
     <td>&nbsp;</td>
   </tr>
 </table>
 </form>
-</body>
-</html>
+{% endblock %}

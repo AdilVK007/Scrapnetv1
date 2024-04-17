@@ -313,6 +313,8 @@ def scrapped_vehicle_view(request):
     sv = Vehicle.objects.filter(status='scrapping')
     return render(request,"Admin/scrappedvehicleview.html",{'data':sv})
 
+
+
 def scrapped_vehicle_view_post(request):
     search = request.POST['textfield']
     s = Vehicle.objects.filter(vehicle_name__icontains=search)
@@ -339,7 +341,7 @@ def admin_home(request):
 
 #police station
 
-def changepass(request):
+def changepasspolice(request):
     return render(request,"police station/changepass.html")
 
 def changepass_post(request):
@@ -419,7 +421,7 @@ def viewscrappedvehicle_post(request):
     return render(request,"police station/viewscrappedvehicle.html",{'data':w})
 
 def police_home(request):
-    return render(request,"police station/home.html")
+    return render(request,"police station/policeindex.html")
 
 
 
@@ -571,10 +573,13 @@ def viewscrapedveh_post(request):
     return render(request, "RTO/viewscrappedvehicle.html", {'data': s})
 
 def rto_home(request):
-    return render(request,"RTO/home.html")
+    return render(request,"RTO/rtoindex.html")
+
+
+# scrap dealer module
 
 def signup_dealer(request):
-    return render(request,"scrap dealer/signup.html")
+    return render(request, "scrap dealer/scrapdealersignupindex.html")
 
 def signup_dealer_post(request):
     name = request.POST['textfield']
@@ -616,7 +621,7 @@ def signup_dealer_post(request):
         obj.LOGIN=l
         obj.save()
 
-        return HttpResponse('''<script>alert("Account is successfully created..");window.location='/Myapp/signup_dealer/'</script>''')
+        return HttpResponse('''<script>alert("Account is successfully created..");window.location='/Myapp/login/'</script>''')
     else:
         return HttpResponse('''<script>alert("Password doesn't Matching..");window.location='/Myapp/signup_dealer/'</script>''')
 
@@ -702,13 +707,13 @@ def scrapstationup_post(request):
     return render(request,"scrap dealer/updateprofile.html")
 
 def scrapdealer_home(request):
-    return render(request,"scrap dealer/home.html")
+    return render(request,"scrap dealer/scrapdealerindex.html")
 
 
-
+# user module
 
 def usersignup(request):
-    return render(request,"user/signup.html")
+    return render(request, "user/usersignupindex.html")
 
 def usersignup_post(request):
     username = request.POST['textfield']
@@ -829,8 +834,30 @@ def viewvehicle_post(request):
     vehv = Vehicle.objects.filter(vehicle_name__icontains=search)
     return render(request,"user/viewvhicle.html",{'data':vehv})
 
+def userviewscrapdealer(request,id):
+    vs = Scrapdealer.objects.filter(status='Approved')
+    return render(request, "user/scrapdealerview.html",{'data':vs,'vid':id})
+
+def userviewscrapdealer_post(request):
+    search = request.POST['textfield']
+    vs = Scrapdealer.objects.filter(name__icontains=search)
+    return render(request, "user/scrapdealerview.html",{'data':vs})
+
 def addscraprequest(request):
-    return render(request, "user/Addscraprequest.html")
+    vehid = request.POST['textarea']
+    scrapdealerid = request.POST['textfield']
+
+    with open("C:\\Users\\Administrator\\PycharmProjects\\scrap\\Myapp\\static\\BC\\contracts") as file:
+        contract_json = json.load(file)  # load contract info as JSON
+        contract_abi = contract_json['abi']  # fetch contract's abi - necessary to call its functions
+        print(contract_abi)
+    contract = web3.eth.contract(address=deployed_contract_addressa, abi=contract_abi)
+    blocknumber = web3.eth.get_block_number()
+    u=User.update.get
+
+    message2 = contract.functions.request("",int(request.session['lid']), int(vehid), int(scrapdealerid))
+
+    return HttpResponse('''<script>alert("successfully Added");window.location='/coinup/home/'</script>''')
 
 def addscraprequest_post(request):
     return HttpResponse('''<script>alert("Scrapping Requested to all Scrapping Dealers..");window.location='/Myapp/user_home/'</script>''')
@@ -842,4 +869,4 @@ def getcertify(request):
     return render(request, "user/Addscraprequest.html")
 
 def user_home(request):
-    return render(request,"user/home.html")
+    return render(request,"user/userindex.html")

@@ -1,13 +1,13 @@
 {% extends "Admin/adminindex.html" %}
 {% block body %}
-<form action="/Myapp/rtoview_post/" method="post"><table width="200" border="1">
+<form action="/Myapp/rtoview_post/" method="post"><table class="table table-bordered">
     {% csrf_token %}
   <tr>
-    <td><input type="text" name="textfield" id="textfield" /></td>
-    <td><input type="submit" name="button" id="button" value="Search" /></td>
+    <td><input type="text" name="textfield" id="textfield" class="form-control" /></td>
+    <td><input type="submit" name="button" id="button" value="Search" class="btn btn-success" /></td>
   </tr>
 </table>
-<table width="200" border="1">
+<table class="table table-bordered">
   <tr>
     <td>SR.NO</td>
     <td>Name</td>

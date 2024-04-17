@@ -1,14 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Untitled Document</title>
-</head>
-
-<body>
-<form id="form1" name="form1" method="post" action=""><table width="200" border="1">
+{% extends "user/userindex.html" %}
+{% block body %}
+<form id="form1" name="form1" method="post" action=""><table class="table table-bordered">
   <tr>
-    <td><img src="{{ data.photo }}" height="80px" width="80px" alt=""/>&nbsp;</td>
+    <td><img src="{{ data.photo }}" height="80px" width="80px" alt="" />&nbsp;</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
@@ -40,11 +34,10 @@
     <td>{{ data.aadhar_no }}&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="/Myapp/edituserprofile/">Edit</a></td>
+      <td colspan="2" align="center"><a href="/Myapp/edituserprofile/"><b>Edit</b></a></td>
     <td>&nbsp;</td>
   </tr>
 </table>
 
 </form>
-</body>
-</html>
+{% endblock %}

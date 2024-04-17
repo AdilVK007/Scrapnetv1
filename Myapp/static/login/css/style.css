@@ -267,7 +267,7 @@ button:hover {
 }
 
 .forms23-block-hny button.btn.loginhny-btn:hover {
-  background: #BD783A;
+  background: #ff0000;
   color: #2B2022;
   text-decoration: none;
   transition: all 0.2s ease;
@@ -281,7 +281,7 @@ button:hover {
   font-size: 15px;
   line-height: 20px;
   font-weight: bold;
-  color: #BD783A;
+  color: #ff0000;
 }
 .forms23-block-hny .form23 a:hover {
   color:#2B2022;
@@ -343,7 +343,7 @@ button:hover {
 }
 
 .w3l-copy-right p a {
-  color: #bd783a;
+  color: #ff0000;
 }
 .w3l-copy-right p a:hover {
   color:#fff;

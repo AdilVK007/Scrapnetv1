@@ -1,0 +1,43 @@
+{% extends "user/userindex.html" %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/Myapp/userviewscrapdealer_post/">
+    {% csrf_token %}
+ 
+<table class="table table-bordered">
+        <tr>
+            <td><input type="text" name="textfield" class="form-control"/></td>
+            <td><input type="submit" value="search" class="btn btn-info"/></td>
+        </tr>
+</table>
+<table class="table table-bordered"><input type="hidden" name="vid" value="{{ vid }}" >
+  <tr>
+    <td>sl no.</td>
+    <td>Name</td>
+    <td>Profile Picture</td>
+    <td>Email</td>
+    <td>Phone</td>
+    <td>Place</td>
+    <td>Post</td>
+    <td>Pin</td>
+    <td>District</td>
+    <td>License Number</td>
+  </tr>
+    {% for i in data %}
+  <tr>
+    <td>{{ forloop.counter }}&nbsp;</td>
+    <td>{{ i.name }}&nbsp;</td>
+    <td><img src="{{ i.photo }}" alt="" width="80px" height="80px"/> &nbsp;</td>
+    <td>{{ i.email }}&nbsp;</td>
+    <td>{{ i.phone }}&nbsp;</td>
+    <td>{{ i.place }}&nbsp;</td>
+    <td>{{ i.post }}&nbsp;</td>
+    <td>{{ i.pin }}&nbsp;</td>
+    <td>{{ i.district }}&nbsp;</td>
+    <td>{{ i.license_no }}&nbsp;</td>
+
+  </tr>
+    {% endfor %}
+</table>
+</form>
+
+{% endblock %}
