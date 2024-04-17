@@ -7,6 +7,38 @@ from django.shortcuts import render
 from Myapp.models import *
 
 
+###########################################BC
+
+
+
+
+import json
+
+#to establish connection with ganache(bc)
+
+from web3 import Web3, HTTPProvider
+blockchain_address = 'http://127.0.0.1:7545'
+web3 = Web3(HTTPProvider(blockchain_address))
+web3.eth.defaultAccount = web3.eth.accounts[0]
+
+compiled_contract_path = 'C:\\Users\\Administrator\\PycharmProjects\\scrap\\Myapp\\static\\BC\\build\\contracts\\scrapnet.json'
+deployed_contract_addressa = web3.eth.accounts[0]
+deployed_contract_address = web3.eth.accounts[0]
+
+
+
+#############################################3
+
+
+
+
+
+
+
+
+
+
+
 def login(request):
     return render(request,"indexlogin.html")
 
@@ -823,6 +855,12 @@ def edituserprofile_post(request):
     u.save()
 
     return HttpResponse('''<script>alert("Profile has been updated..");window.location='/Myapp/userviewprofile/'</script>''')
+#
+# def viewvehicle(request):
+#     a=User.objects.get(LOGIN_id=request.session['lid']).aadhar_no
+#     vv = Vehicle.objects.filter(aadhar_no=a)
+#     return render(request,"user/viewvhicle.html",{'data':vv})
+#
 
 def viewvehicle(request):
     a=User.objects.get(LOGIN_id=request.session['lid']).aadhar_no
@@ -833,34 +871,132 @@ def viewvehicle_post(request):
     search = request.POST['textfield']
     vehv = Vehicle.objects.filter(vehicle_name__icontains=search)
     return render(request,"user/viewvhicle.html",{'data':vehv})
+#
+# def userviewscrapdealer(request,id):
+#     vs = Scrapdealer.objects.filter(status='Approved')
+#     return render(request, "user/scrapdealerview.html",{'data':vs,'vid':id})
 
-def userviewscrapdealer(request,id):
+
+
+def userviewscrapdealer(request):
     vs = Scrapdealer.objects.filter(status='Approved')
-    return render(request, "user/scrapdealerview.html",{'data':vs,'vid':id})
+    return render(request, "user/scrapdealerview.html",{'data':vs})
+
 
 def userviewscrapdealer_post(request):
     search = request.POST['textfield']
     vs = Scrapdealer.objects.filter(name__icontains=search)
     return render(request, "user/scrapdealerview.html",{'data':vs})
 
-def addscraprequest(request):
-    vehid = request.POST['textarea']
-    scrapdealerid = request.POST['textfield']
+def addscraprequest(request,id):
+    return render(request,"user/Addscraprequest.html",{'id':id})
 
-    with open("C:\\Users\\Administrator\\PycharmProjects\\scrap\\Myapp\\static\\BC\\contracts") as file:
+def addscraprequest_post(request,id):
+    # vehid = request.POST['vid']
+    # scrapdealerid = request.POST['sid']
+    vv=Vehicle.objects.filter(id=id).update(status="pending")
+
+    with open(compiled_contract_path) as file:
         contract_json = json.load(file)  # load contract info as JSON
         contract_abi = contract_json['abi']  # fetch contract's abi - necessary to call its functions
         print(contract_abi)
     contract = web3.eth.contract(address=deployed_contract_addressa, abi=contract_abi)
     blocknumber = web3.eth.get_block_number()
-    u=User.update.get
 
-    message2 = contract.functions.request("",int(request.session['lid']), int(vehid), int(scrapdealerid))
+    # scrapdealerid = int(scrapdealerid)
+    vehicle_id = int(vv)
+    from datetime import datetime
+    date = datetime.now().date()
+    types = "request"
+    status='pending'
 
-    return HttpResponse('''<script>alert("successfully Added");window.location='/coinup/home/'</script>''')
+    obj = Request()
+    obj.status = 'pending'
+    rid = blocknumber
+    obj.requestid = int(rid)
+    obj.save()
 
-def addscraprequest_post(request):
-    return HttpResponse('''<script>alert("Scrapping Requested to all Scrapping Dealers..");window.location='/Myapp/user_home/'</script>''')
+    message2 = contract.functions.addrequest(int(rid), int(request.session['lid']),  int(vehicle_id),
+                                             str(types), str(date),str(status)).transact({'from': web3.eth.accounts[0]})
+
+    return HttpResponse('''<script>alert("successfully Requested");window.location='/Myapp/viewvehicle/'</script>''')
+
+
+
+
+def viewscrappingstatus(request):
+    with open(compiled_contract_path) as file:
+        contract_json = json.load(file)  # load contract info as JSON
+        contract_abi = contract_json['abi']  # fetch contract's abi - necessary to call its functions
+        print(contract_abi)
+    contract = web3.eth.contract(address=deployed_contract_addressa, abi=contract_abi)
+    blocknumber = web3.eth.get_block_number()
+    lq = []
+    for i in range(blocknumber, 0, -1):
+        print(i, "kkkk")
+        a = web3.eth.get_transaction_by_block(i, 0)
+        try:
+            decoded_input = contract.decode_function_input(a['input'])
+            print(decoded_input)
+            print("ku")
+            print(decoded_input)
+            lq.append(decoded_input[1])
+        except Exception as a:
+            print("jjjjj")
+            pass
+    print(lq)
+    tot = 0
+    ls = []
+    for i in lq:
+        # try:
+        # print(i['suspiciousida'], "aaaaaaaaaaaaaaaaa")
+        if i["typea"] == "request":
+
+            res2 = User.objects.filter(LOGIN_id=i['lida'])
+            if res2.exists():
+                res2 = res2[0]
+                adharno = res2.aadhar_no
+
+                print(res2, "rrrrrrrrrrrr")
+                res = Vehicle.objects.filter(id=i['vehicleida'], adharno=adharno)
+                print(res, 'vvvvvvvvvvv')
+
+                if res.exists():
+                    res = res[0]
+
+                    res3 = Request.objects.filter(reqid=i['reqida'], status="approved")
+
+                    if res3.exists():
+                        a = {
+                            'date': i['date'],
+                            'reqida': i['reqida'],
+                            'vehicle_name': res.vehicle_name,
+                            'reg_number': res.reg_number,
+                            'chase_number': res.chase_number,
+                            'engine_number': res.engine_number,
+                            'aadhar_no': res.aadhar_no,
+                            'reg_date': res.reg_date,
+                            'status':res.status,
+                            'photo': res.photo,
+                            'Vehicle_type': res.Vehicle_type,
+                            # 'name': res2.name,
+                            # 'idproof': res2.idproof,
+                            # 'housename': res2.housename,
+                            # 'pincode': res2.pincode,
+                            # 'district': res2.district,
+                            # 'state': res2.state,
+                            # 'place':res2.place,
+                            # 'mail':res2.mail,
+                            # 'phone':res2.phone,
+                        }
+                        ls.append(a)
+    return render(request,"RTO/viewscrappingstatus.html",{"data:ls"})
+
+
+
+
+
+
 
 def viewrequeststation(request):
     return render(request, "user/Addscraprequest.html")

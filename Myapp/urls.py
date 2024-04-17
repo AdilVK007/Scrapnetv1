@@ -114,9 +114,10 @@ urlpatterns = [
     # path('userviewprofile_post/', views.userviewprofile_post),
     path('viewvehicle/', views.viewvehicle),
     path('viewvehicle_post/', views.viewvehicle_post),
-    path('userviewscrapdealer/<id>', views.userviewscrapdealer),
+    # path('userviewscrapdealer/<id>', views.userviewscrapdealer),
+    path('userviewscrapdealer/', views.userviewscrapdealer),
     path('userviewscrapdealer_post/', views.userviewscrapdealer_post),
-    path('addscraprequest/', views.addscraprequest),
-    path('addscraprequest_post/', views.addscraprequest_post),
+    path('addscraprequest/<id>', views.addscraprequest),
+    path('addscraprequest_post/<id>', views.addscraprequest_post),
     path('user_home/', views.user_home)
 ]
