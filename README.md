@@ -30,6 +30,18 @@ The car scrapping process in India lacks organization compared to the sale of us
 python manage.py makemigrations
 ```
 
+## __Documentation__
+html table responsive
+
+
+```html
+<table class="table table-bordered">
+    <tr>
+        <td><input type="text" name="textfield" class="form-control"/></td>
+        <td><input type="submit" value="search" class="btn btn-info"/></td>
+    </tr>
+</table>
+```
 
 ## Features
 
