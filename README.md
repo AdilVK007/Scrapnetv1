@@ -30,6 +30,17 @@ The car scrapping process in India lacks organization compared to the sale of us
 python manage.py makemigrations
 ```
 
+`make config variables with ganache (Blockchain)`
+
+```Ganache config
+truffle migarations
+```
+```
+truffle compile
+
+After compilation create a work spece in ganache and do bc process as blocks every process as blocks , blocks are memory spaces for every process
+```
+
 ## __Documentation__
 html table responsive
 
