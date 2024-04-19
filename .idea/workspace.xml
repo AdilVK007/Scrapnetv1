@@ -2,15 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f1ee3945-6c18-4034-aa66-416397883984" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/user/viewverifystatus.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/Admin/viewrejected_scraprequest.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/Admin/viewverifiedscraprequest.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/scrap dealer/viewpendscraprequest.html" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/scrap dealer/viewrequest.html" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/templates/user/viewverifystatus.html" afterPath="$PROJECT_DIR$/templates/user/viewscrappingstatus.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Myapp/static/BC/contracts/scrapnet.sol" afterPath="$PROJECT_DIR$/Myapp/static/BC/contracts/scrapnet.sol" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Myapp/urls.py" afterPath="$PROJECT_DIR$/Myapp/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Myapp/views.py" afterPath="$PROJECT_DIR$/Myapp/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/indexlogin.html" afterPath="$PROJECT_DIR$/templates/indexlogin.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/user/scrapdealerview.html" afterPath="$PROJECT_DIR$/templates/user/scrapdealerview.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/scrap dealer/scrapdealerindex.html" afterPath="$PROJECT_DIR$/templates/scrap dealer/scrapdealerindex.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/user/changepasswd.html" afterPath="$PROJECT_DIR$/templates/user/changepasswd.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/user/userindex.html" afterPath="$PROJECT_DIR$/templates/user/userindex.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/user/viewvhicle.html" afterPath="$PROJECT_DIR$/templates/user/viewvhicle.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -31,10 +33,32 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Myapp/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="567">
-              <caret line="979" column="47" lean-forward="true" selection-start-line="979" selection-start-column="47" selection-end-line="979" selection-end-column="47" />
+            <state relative-caret-position="1197">
+              <caret line="839" column="23" lean-forward="false" selection-start-line="839" selection-start-column="4" selection-end-line="839" selection-end-column="23" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="scrapnet.sol" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Myapp/static/BC/contracts/scrapnet.sol">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="420">
+              <caret line="20" column="31" lean-forward="false" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="viewpendscraprequest.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/scrap dealer/viewpendscraprequest.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="483">
+              <caret line="51" column="61" lean-forward="false" selection-start-line="51" selection-start-column="61" selection-end-line="51" selection-end-column="61" />
+              <folding>
+                <element signature="e#1825#1843#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -43,28 +67,38 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Myapp/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="567">
-              <caret line="76" column="16" lean-forward="false" selection-start-line="76" selection-start-column="4" selection-end-line="76" selection-end-column="16" />
+            <state relative-caret-position="1953">
+              <caret line="93" column="13" lean-forward="false" selection-start-line="93" selection-start-column="4" selection-end-line="93" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="scrapdealerview.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/user/scrapdealerview.html">
+      <file leaf-file-name="scrapdealersignupindex.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/scrap dealer/scrapdealersignupindex.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="777">
-              <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+            <state relative-caret-position="1239">
+              <caret line="59" column="24" lean-forward="false" selection-start-line="59" selection-start-column="24" selection-end-line="59" selection-end-column="24" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="viewvhicle.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/user/viewvhicle.html">
+      <file leaf-file-name="scrapdealerindex.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/scrap dealer/scrapdealerindex.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="22" column="17" lean-forward="false" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="17" />
+            <state relative-caret-position="630">
+              <caret line="30" column="56" lean-forward="false" selection-start-line="30" selection-start-column="56" selection-end-line="30" selection-end-column="56" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style-starter.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Myapp/static/home/assets/css/style-starter.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="206661">
+              <caret line="9841" column="39" lean-forward="false" selection-start-line="9841" selection-start-column="39" selection-end-line="9841" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -73,18 +107,21 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="28728">
-              <caret line="1372" column="0" lean-forward="false" selection-start-line="1295" selection-start-column="0" selection-end-line="1376" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="31647">
+              <caret line="1511" column="4" lean-forward="false" selection-start-line="1511" selection-start-column="0" selection-end-line="1563" selection-end-column="0" />
+              <folding>
+                <element signature="e#51190#53664#0" expanded="false" />
+                <element signature="e#52057#53565#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="userindex.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/user/userindex.html">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Myapp/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1701">
-              <caret line="81" column="30" lean-forward="false" selection-start-line="81" selection-start-column="30" selection-end-line="81" selection-end-column="30" />
+            <state relative-caret-position="2142">
+              <caret line="104" column="46" lean-forward="false" selection-start-line="104" selection-start-column="46" selection-end-line="104" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -101,36 +138,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>scrapdealer</find>
-      <find>usersignup</find>
-      <find>signup_dealer</find>
-      <find>john</find>
-      <find>dealersignup</find>
-      <find>input,</find>
-      <find>input</find>
-      <find>&lt;div class</find>
-      <find>&lt;div</find>
-      <find>usersig</find>
-      <find>Home interior</find>
-      <find>Home Interior</find>
-      <find>We are</find>
-      <find>oginhny-btn</find>
-      <find>login</find>
-      <find>#BD783A</find>
-      <find>Login</find>
-      <find>loginhny-btn</find>
-      <find>#39ff14</find>
-      <find>Tr</find>
       <find>Read More</find>
-      <find>view</find>
       <find>scrapdealerview</find>
       <find>viewvehicle</find>
       <find>Home</find>
       <find>nav-item active</find>
       <find>style</find>
       <find>sty</find>
-      <find>addscraprequest_post</find>
       <find>userviewscrapdealer</find>
+      <find>viewscrappingstatus</find>
+      <find>view profi</find>
+      <find>addscra</find>
+      <find>/Myapp/admin_home/</find>
+      <find>viewrequest</find>
+      <find>Request</find>
+      <find>moon</find>
+      <find>gg-moon</find>
+      <find>what</find>
+      <find>view</find>
+      <find>status</find>
+      <find>home inter</find>
+      <find>info@example.com</find>
+      <find>stylish home</find>
+      <find>viewpendscraprequest</find>
+      <find>addscraprequest</find>
+      <find>addscraprequest_post</find>
+      <find>if logo</find>
+      <find>navbar-brand</find>
+      <find>pending_scrapreq</find>
+      <find>approve_</find>
+      <find>approve_user_request</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -139,11 +176,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/templates/Admin/editpolicestation.html" />
-        <option value="$PROJECT_DIR$/templates/Admin/editrto.html" />
-        <option value="$PROJECT_DIR$/templates/Admin/viewrejectedscrapdealer.html" />
-        <option value="$PROJECT_DIR$/templates/Admin/scrappedvehicleview.html" />
-        <option value="$PROJECT_DIR$/templates/Admin/rtoview.html" />
         <option value="$PROJECT_DIR$/templates/Admin/pdstationmanagementview.html" />
         <option value="$PROJECT_DIR$/templates/Admin/viewapprovedscrapdealer.html" />
         <option value="$PROJECT_DIR$/templates/Admin/scrapdealerapprove.html" />
@@ -165,14 +197,11 @@
         <option value="$PROJECT_DIR$/templates/RTO/rtoindex.html" />
         <option value="$PROJECT_DIR$/templates/user/signup.html" />
         <option value="$PROJECT_DIR$/templates/user/editprofile.html" />
-        <option value="$PROJECT_DIR$/templates/user/changepasswd.html" />
         <option value="$PROJECT_DIR$/templates/user/Addscraprequest.html" />
         <option value="$PROJECT_DIR$/templates/scrap dealer/viewverifystats.html" />
         <option value="$PROJECT_DIR$/templates/scrap dealer/viewsuspeciousactivity.html" />
-        <option value="$PROJECT_DIR$/templates/scrap dealer/viewrequest.html" />
         <option value="$PROJECT_DIR$/templates/scrap dealer/updateprofile.html" />
         <option value="$PROJECT_DIR$/templates/scrap dealer/signup.html" />
-        <option value="$PROJECT_DIR$/templates/scrap dealer/scrapdealerindex.html" />
         <option value="$PROJECT_DIR$/templates/user/viewprofile.html" />
         <option value="$PROJECT_DIR$/templates/scrap dealer/viewprofile.html" />
         <option value="$PROJECT_DIR$/Myapp/static/signup/css/style.css" />
@@ -184,12 +213,20 @@
         <option value="$PROJECT_DIR$/Myapp/static/BC/contracts/scrapnet.sol" />
         <option value="$PROJECT_DIR$/templates/user/usersignindex.html" />
         <option value="$PROJECT_DIR$/templates/indexlogin.html" />
-        <option value="$PROJECT_DIR$/Myapp/urls.py" />
-        <option value="$PROJECT_DIR$/templates/user/userindex.html" />
         <option value="$PROJECT_DIR$/templates/user/scrapdealerview.html" />
         <option value="$PROJECT_DIR$/templates/user/viewvhicle.html" />
         <option value="$PROJECT_DIR$/templates/user/viewverifystatus.html" />
+        <option value="$PROJECT_DIR$/templates/user/viewscrappingstatus.html" />
+        <option value="$PROJECT_DIR$/templates/user/changepasswd.html" />
+        <option value="$PROJECT_DIR$/templates/scrap dealer/viewrequest.html" />
+        <option value="$PROJECT_DIR$/Myapp/static/home/assets/css/style-starter.css" />
+        <option value="$PROJECT_DIR$/templates/Admin/viewverifiedscraprequest.html" />
+        <option value="$PROJECT_DIR$/templates/Admin/viewrejected_scraprequest.html" />
+        <option value="$PROJECT_DIR$/templates/user/userindex.html" />
+        <option value="$PROJECT_DIR$/templates/scrap dealer/scrapdealerindex.html" />
+        <option value="$PROJECT_DIR$/Myapp/urls.py" />
         <option value="$PROJECT_DIR$/Myapp/views.py" />
+        <option value="$PROJECT_DIR$/templates/scrap dealer/viewpendscraprequest.html" />
       </list>
     </option>
   </component>
@@ -221,7 +258,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -316,24 +352,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="police station" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scrap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scrap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="Admin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -352,8 +370,153 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scrap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scrap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Myapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scrap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scrap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Myapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="home" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scrap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scrap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Myapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="home" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scrap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scrap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Myapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="home" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scrap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scrap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Myapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scrap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scrap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Myapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="contracts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -364,11 +527,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrator\PycharmProjects\scrap\templates\Admin" />
       <recent name="C:\Users\Administrator\PycharmProjects\scrap\templates\user" />
       <recent name="C:\Users\Administrator\PycharmProjects\scrap" />
       <recent name="C:\Users\Administrator\PycharmProjects\scrap\Myapp\static" />
       <recent name="C:\Users\Administrator\PycharmProjects\scrap\Myapp\static\signupuser" />
-      <recent name="C:\Users\Administrator\PycharmProjects\scrap\Myapp\static\signup\images" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -664,7 +827,14 @@
       <option name="project" value="LOCAL" />
       <updated>1713315424408</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="blockchain scrapping request">
+      <created>1713379788003</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1713379788003</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TodoView">
@@ -680,13 +850,13 @@
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22717509" sideWeight="0.8493771" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24006444" sideWeight="0.8493771" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24801812" sideWeight="0.5064447" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24801812" sideWeight="0.4935553" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29445073" sideWeight="0.4935553" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32223415" sideWeight="0.15062287" order="2" side_tool="true" content_ui="tabs" />
@@ -775,7 +945,8 @@
     <MESSAGE value="Forms completed starting template updates" />
     <MESSAGE value="Login template loaded and added table formation" />
     <MESSAGE value="home and signup template added and Blockchain just started" />
-    <option name="LAST_COMMIT_MESSAGE" value="home and signup template added and Blockchain just started" />
+    <MESSAGE value="blockchain scrapping request" />
+    <option name="LAST_COMMIT_MESSAGE" value="blockchain scrapping request" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -806,75 +977,15 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Myapp/views.py</url>
-          <line>888</line>
+          <line>1027</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="6" />
+      <option name="time" value="7" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/scrap dealer/scrapdealerindex.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="777">
-          <caret line="183" column="20" lean-forward="true" selection-start-line="183" selection-start-column="20" selection-end-line="183" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/scrap dealer/signup.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="45" column="7" lean-forward="false" selection-start-line="45" selection-start-column="7" selection-end-line="45" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Myapp/static/signupuser/main.html" />
-    <entry file="file://$PROJECT_DIR$/Myapp/static/signupuser/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Myapp/static/signupuser/css/bootstrap/mixins/_visibility.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Myapp/static/signupuser/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="61">
-          <caret line="209" column="5" lean-forward="true" selection-start-line="209" selection-start-column="5" selection-end-line="209" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/scrap dealer/scrapdealersignupindex.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="102" column="34" lean-forward="true" selection-start-line="102" selection-start-column="34" selection-end-line="102" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/user/usersignupindex.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="52" column="121" lean-forward="false" selection-start-line="52" selection-start-column="121" selection-end-line="52" selection-end-column="121" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Myapp/static/home/assets/images/team4.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Myapp/static/home/assets/images/team3.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Myapp/static/home/assets/images/team2.jpg">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -974,13 +1085,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Myapp/static/BC/contracts/scrapnet.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" column="20" lean-forward="false" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/Admin/rtoview.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="558">
@@ -1009,13 +1113,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
           <caret line="11" column="33" lean-forward="true" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/user/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1056,19 +1153,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Myapp/urls.py">
+    <entry file="file://$PROJECT_DIR$/templates/user/viewprofile.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2415">
-          <caret line="117" column="29" lean-forward="false" selection-start-line="117" selection-start-column="10" selection-end-line="117" selection-end-column="29" />
+        <state relative-caret-position="756">
+          <caret line="36" column="73" lean-forward="false" selection-start-line="36" selection-start-column="73" selection-end-line="36" selection-end-column="73" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/user/userindex.html">
+    <entry file="file://$PROJECT_DIR$/templates/user/usersignupindex.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1701">
-          <caret line="81" column="30" lean-forward="false" selection-start-line="81" selection-start-column="30" selection-end-line="81" selection-end-column="30" />
-          <folding />
+        <state relative-caret-position="1092">
+          <caret line="52" column="121" lean-forward="false" selection-start-line="52" selection-start-column="121" selection-end-line="52" selection-end-column="121" />
         </state>
       </provider>
     </entry>
@@ -1080,58 +1176,160 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views.py">
+    <entry file="file://$PROJECT_DIR$/templates/user/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="28728">
-          <caret line="1372" column="0" lean-forward="false" selection-start-line="1295" selection-start-column="0" selection-end-line="1376" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/user/editprofile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/user/Addscraprequest.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1239">
-          <caret line="59" column="21" lean-forward="false" selection-start-line="59" selection-start-column="21" selection-end-line="59" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/user/viewverifystatus.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="22" column="17" lean-forward="false" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/user/viewprofile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="745">
-          <caret line="36" column="73" lean-forward="false" selection-start-line="36" selection-start-column="73" selection-end-line="36" selection-end-column="73" />
-          <folding />
+        <state relative-caret-position="567">
+          <caret line="49" column="8" lean-forward="true" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="8" />
+          <folding>
+            <element signature="e#2227#2233#1#HTML" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/user/viewvhicle.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="22" column="17" lean-forward="false" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="17" />
+        <state relative-caret-position="558">
+          <caret line="50" column="0" lean-forward="true" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/user/changepasswd.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/user/viewscrappingstatus.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="25" lean-forward="true" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Myapp/static/home/assets/css/style-starter.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206661">
+          <caret line="9841" column="39" lean-forward="false" selection-start-line="9841" selection-start-column="39" selection-end-line="9841" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Admin/viewrejectedscrapdealer.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Admin/viewverifiedscraprequest.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="28" lean-forward="false" selection-start-line="0" selection-start-column="28" selection-end-line="0" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Admin/viewrejected_scraprequest.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="33" lean-forward="false" selection-start-line="0" selection-start-column="33" selection-end-line="0" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/scrap dealer/scrapdealersignupindex.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1239">
+          <caret line="59" column="24" lean-forward="false" selection-start-line="59" selection-start-column="24" selection-end-line="59" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/user/userindex.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="95" column="95" lean-forward="false" selection-start-line="95" selection-start-column="95" selection-end-line="95" selection-end-column="95" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/scrap dealer/scrapdealerindex.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="30" column="56" lean-forward="false" selection-start-line="30" selection-start-column="56" selection-end-line="30" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Myapp/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2142">
+          <caret line="104" column="46" lean-forward="false" selection-start-line="104" selection-start-column="46" selection-end-line="104" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="31647">
+          <caret line="1511" column="4" lean-forward="false" selection-start-line="1511" selection-start-column="0" selection-end-line="1563" selection-end-column="0" />
+          <folding>
+            <element signature="e#51190#53664#0" expanded="false" />
+            <element signature="e#52057#53565#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Myapp/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="76" column="16" lean-forward="false" selection-start-line="76" selection-start-column="4" selection-end-line="76" selection-end-column="16" />
+        <state relative-caret-position="1953">
+          <caret line="93" column="13" lean-forward="false" selection-start-line="93" selection-start-column="4" selection-end-line="93" selection-end-column="13" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Myapp/static/BC/contracts/scrapnet.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="20" column="31" lean-forward="false" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/scrap dealer/viewpendscraprequest.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="51" column="61" lean-forward="false" selection-start-line="51" selection-start-column="61" selection-end-line="51" selection-end-column="61" />
+          <folding>
+            <element signature="e#1825#1843#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Myapp/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="979" column="47" lean-forward="true" selection-start-line="979" selection-start-column="47" selection-end-line="979" selection-end-column="47" />
+        <state relative-caret-position="1197">
+          <caret line="839" column="23" lean-forward="false" selection-start-line="839" selection-start-column="4" selection-end-line="839" selection-end-column="23" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>

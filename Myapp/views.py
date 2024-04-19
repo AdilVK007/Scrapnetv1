@@ -707,12 +707,151 @@ def updateprofile_post(request):
 
 def viewrequest(request):
     vr = Request.objects.all()
-    return render(request,"scrap dealer/viewrequest.html",{'data':vr})
+    return render(request, "scrap dealer/viewpendscraprequest.html", {'data':vr})
 
 def viewrequest_post(request):
     search = request.POST['textfield']
     w = Request.objects.filter(requestid_icontains=search)
-    return render(request, "scrap dealer/viewrequest.html",{'data': w})
+    return render(request, "scrap dealer/viewpendscraprequest.html", {'data': w})
+
+
+
+def pending_scrapreq(request):
+    with open(compiled_contract_path) as file:
+        contract_json = json.load(file)  # load contract info as JSON
+        contract_abi = contract_json['abi']  # fetch contract's abi - necessary to call its functions
+    contract = web3.eth.contract(address=deployed_contract_addressa, abi=contract_abi)
+    blocknumber = web3.eth.get_block_number()
+    print(blocknumber,"hhhh")
+    lq = []
+    for i in range(blocknumber, 0, -1):
+        print(i,"kkkk")
+        a = web3.eth.get_transaction_by_block(i, 0)
+        try:
+            decoded_input = contract.decode_function_input(a['input'])
+            print(decoded_input)
+            print("ku")
+            print(decoded_input)
+            lq.append(decoded_input[1])
+        except Exception as a:
+            print("jjjjj")
+
+    print(lq)
+    tot = 0
+    ls = []
+    print(lq,"kkkk")
+    for i in lq:
+            # try:
+             # print(i['suspiciousida'], "aaaaaaaaaaaaaaaaa")
+            if i["typea"]=="request":
+                print(i,"hhhhhhhhhh")
+                res2 = User.objects.filter(LOGIN_id=i['lida'])
+                if res2.exists():
+                    res2= res2[0]
+                    aadhar_no=res2.aadhar_no
+                    print(res2,"rrrrrrrrrrrr")
+                    v = Vehicle.objects.filter(id= i['vehicleida'],aadhar_no=aadhar_no)
+                    res3 = Request.objects.filter(req=i['requestid'], status='pending')
+                    if res3.exists():
+                      if v.exists():
+                        v= v[0]
+                        a = {
+                            'reqida': i['reqida'],
+                            'name': res2.username,
+                            'vehiclename': v.vehicle_name,
+                            'regnnum': v.reg_number,
+                            'ownername': v.owner_name,
+                            'regdate': v.reg_date,
+                            'regplace': v.reg_place,
+                            'vehicletype': v.Vehicle_type,
+                            'contact': v.contact,
+                            'photo': v.photo,
+                            'enginenumber': v.engine_number,
+                            'chassis_number': v.chase_number,
+                            'year_of_manufacturing': v.year_of_manufacturing,
+                            'month_of_manufacturing': v.year_of_manufacturing,
+                            'status': v.status,                        }
+                        ls.append(a)
+    print(ls,"helllllll")
+    return render(request,'scrap dealer/viewpendscraprequest.html',{'data':ls})
+
+
+
+
+
+
+
+
+
+
+# def pending_scrapreq(request):
+#     ls=[]
+#     with open(compiled_contract_path) as file:
+#         contract_json = json.load(file)  # load contract info as JSON
+#         contract_abi = contract_json['abi']  # fetch contract's abi - necessary to call its functions
+#     contract = web3.eth.contract(address=deployed_contract_addressa, abi=contract_abi)
+#     blocknumber = web3.eth.get_block_number()
+#     print(blocknumber)
+#     l1 = []
+#     for i in range(blocknumber, 0, -1):
+#
+#         a = web3.eth.get_transaction_by_block(i, 0)
+#         decoded_input = contract.decode_function_input(a['input'])
+#         c = decoded_input[1]
+#
+#         print(c)
+#
+#         if c['typea']=="request":
+#             m=c["vehicleida"]
+#             v=Vehicle.objects.filter(id=m, status="pending")
+#             if v.exists():
+#                 v=v[0]
+#                 s=User.objects.get(aadhar_no=v.aadhar_no)
+#
+#                 ls.append({
+#
+#                     'reqida': i['reqida'],
+#
+#                     'vehicle':v,'u':s,
+#                            'name': s.username,
+#                            'vehiclename':v.vehicle_name,
+#                            'regnnum':v.reg_number,
+#                            'ownername':v.owner_name,
+#                            'regdate':v.reg_date,
+#                            'regplace':v.reg_place,
+#                            'vehicletype':v.Vehicle_type,
+#                            'contact':v.contact,
+#                            'photo':v.photo,
+#                            'enginenumber':v.engine_number,
+#                            'chassis_number': v.chase_number,
+#                            'year_of_manufacturing': v.year_of_manufacturing,
+#                            'month_of_manufacturing': v.year_of_manufacturing,
+#                            'status': v.status,
+#                            })
+#
+#     return render(request,'scrap dealer/viewpendscraprequest.html',{'data':ls})
+
+
+
+def approve_user_request(request,id):
+    aa=Request.objects.filter(requestid=id).update(status='approved')
+    return HttpResponse('''<script>alert("Forward");window.location='/myapp/pending_scrapreq/'</script>''')
+
+def reject_user_request(request,id):
+    aa = Request.objects.filter(requestid=id).update(status='rejected')
+    return HttpResponse('''<script>alert("Forward");window.location='/myapp/pending_scrapreq/'</script>''')
+
+
+
+
+
+
+
+
+
+
+
+
 
 def viewsusAct(request):
     viewactivty = Activity.objects.all()
@@ -896,6 +1035,7 @@ def addscraprequest_post(request,id):
     # scrapdealerid = request.POST['sid']
     vv=Vehicle.objects.filter(id=id).update(status="pending")
 
+
     with open(compiled_contract_path) as file:
         contract_json = json.load(file)  # load contract info as JSON
         contract_abi = contract_json['abi']  # fetch contract's abi - necessary to call its functions
@@ -904,98 +1044,93 @@ def addscraprequest_post(request,id):
     blocknumber = web3.eth.get_block_number()
 
     # scrapdealerid = int(scrapdealerid)
-    vehicle_id = int(vv)
+    vehicle_id = int(id)
+
+    if  Vehicle.objects.filter(id=id,status='pending').exists():
+        return HttpResponse(
+            '''<script>alert("Request Already exist!");window.location='/Myapp/viewvehicle/'</script>''')
+
     from datetime import datetime
     date = datetime.now().date()
     types = "request"
     status='pending'
+
 
     obj = Request()
     obj.status = 'pending'
     rid = blocknumber
     obj.requestid = int(rid)
     obj.save()
+    # Vehicle.objects.filter(id=vv).update(status='requested')
 
     message2 = contract.functions.addrequest(int(rid), int(request.session['lid']),  int(vehicle_id),
                                              str(types), str(date),str(status)).transact({'from': web3.eth.accounts[0]})
-
     return HttpResponse('''<script>alert("successfully Requested");window.location='/Myapp/viewvehicle/'</script>''')
-
-
 
 
 def viewscrappingstatus(request):
     with open(compiled_contract_path) as file:
         contract_json = json.load(file)  # load contract info as JSON
         contract_abi = contract_json['abi']  # fetch contract's abi - necessary to call its functions
-        print(contract_abi)
-    contract = web3.eth.contract(address=deployed_contract_addressa, abi=contract_abi)
-    blocknumber = web3.eth.get_block_number()
-    lq = []
-    for i in range(blocknumber, 0, -1):
-        print(i, "kkkk")
-        a = web3.eth.get_transaction_by_block(i, 0)
-        try:
-            decoded_input = contract.decode_function_input(a['input'])
-            print(decoded_input)
-            print("ku")
-            print(decoded_input)
-            lq.append(decoded_input[1])
-        except Exception as a:
-            print("jjjjj")
-            pass
-    print(lq)
-    tot = 0
-    ls = []
-    for i in lq:
-        # try:
-        # print(i['suspiciousida'], "aaaaaaaaaaaaaaaaa")
-        if i["typea"] == "request":
+        # print(contract_abi)
+        contract = web3.eth.contract(address=deployed_contract_addressa, abi=contract_abi)
+        blocknumber = web3.eth.get_block_number()
+        ls = []
+        for j in range(blocknumber, 0, -1):
+            a = web3.eth.get_transaction_by_block(j, 0)
+            try:
+                # print(contract.decode_function_input(a['input']))
+                decoded_input = contract.decode_function_input(a['input'])
+                i = decoded_input[1]
+                if i['typea'] == 'request':
+                    print(i)
 
-            res2 = User.objects.filter(LOGIN_id=i['lida'])
-            if res2.exists():
-                res2 = res2[0]
-                adharno = res2.aadhar_no
+                    res2 = User.objects.filter(LOGIN_id=i['lida'])
+                    if res2.exists():
+                        res2 = res2[0]
+                        adharno = res2.aadhar_no
 
-                print(res2, "rrrrrrrrrrrr")
-                res = Vehicle.objects.filter(id=i['vehicleida'], adharno=adharno)
-                print(res, 'vvvvvvvvvvv')
+                        res = Vehicle.objects.filter(id=i['vehicleida'], aadhar_no=adharno)
+                        if res.exists():
+                            res = res[0]
 
-                if res.exists():
-                    res = res[0]
+                            res3 = Request.objects.filter(requestid=i['reqida'], status="approved")
 
-                    res3 = Request.objects.filter(reqid=i['reqida'], status="approved")
-
-                    if res3.exists():
-                        a = {
-                            'date': i['date'],
-                            'reqida': i['reqida'],
-                            'vehicle_name': res.vehicle_name,
-                            'reg_number': res.reg_number,
-                            'chase_number': res.chase_number,
-                            'engine_number': res.engine_number,
-                            'aadhar_no': res.aadhar_no,
-                            'reg_date': res.reg_date,
-                            'status':res.status,
-                            'photo': res.photo,
-                            'Vehicle_type': res.Vehicle_type,
-                            # 'name': res2.name,
-                            # 'idproof': res2.idproof,
-                            # 'housename': res2.housename,
-                            # 'pincode': res2.pincode,
-                            # 'district': res2.district,
-                            # 'state': res2.state,
-                            # 'place':res2.place,
-                            # 'mail':res2.mail,
-                            # 'phone':res2.phone,
-                        }
-                        ls.append(a)
-    return render(request,"RTO/viewscrappingstatus.html",{"data:ls"})
-
-
-
-
-
+                            if res3.exists():
+                                a = {
+                                    'date': i['datea'],
+                                    'reqida': i['reqida'],
+                                    'vehicle_name': res.vehicle_name,
+                                    'owner_name': res.owner_name,
+                                    'photo': res.photo,
+                                    'reg_number': res.reg_number,
+                                    'reg_place': res.reg_place,
+                                    'contact': res.contact,
+                                    'reg_date': res.reg_date,
+                                    'chase_number': res.chase_number,
+                                    'engine_number': res.engine_number,
+                                    'year_of_manufacturing': res.year_of_manufacturing,
+                                    'month_of_manufacturing': res.month_of_manufacturing,
+                                    'aadhar_no': res.aadhar_no,
+                                    'status': res.status,
+                                    'Vehicle_type': res.Vehicle_type,
+                                    # 'name': res2.name,
+                                    # 'idproof': res2.idproof,
+                                    # 'housename': res2.housename,
+                                    # 'pincode': res2.pincode,
+                                    # 'district': res2.district,
+                                    # 'state': res2.state,
+                                    # 'place':res2.place,
+                                    # 'mail':res2.mail,
+                                    # 'phone':res2.phone,
+                                }
+                                print(a)
+                                ls.append(a)
+            except Exception as a:
+                print(a, 'exception')
+                pass
+    print(ls)
+    return render(request,"User/viewscrappingstatus.html",{'data':ls})
 
 
 def viewrequeststation(request):

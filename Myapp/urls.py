@@ -101,8 +101,11 @@ urlpatterns = [
     path('scrapstationup/', views.scrapstationup),
     path('scrapstationup_post/', views.scrapstationup_post),
     path('scrapdealer_home/', views.scrapdealer_home),
+    path('pending_scrapreq/', views.pending_scrapreq),
+    path('approve_user_request/<id>', views.approve_user_request),
+    path('reject_user_request/', views.reject_user_request),
 
-# user
+    # user
 
     path('usersignup/', views.usersignup),
     path('usersignup_post/', views.usersignup_post),
@@ -119,5 +122,6 @@ urlpatterns = [
     path('userviewscrapdealer_post/', views.userviewscrapdealer_post),
     path('addscraprequest/<id>', views.addscraprequest),
     path('addscraprequest_post/<id>', views.addscraprequest_post),
+    path('viewscrappingstatus/', views.viewscrappingstatus),
     path('user_home/', views.user_home)
 ]

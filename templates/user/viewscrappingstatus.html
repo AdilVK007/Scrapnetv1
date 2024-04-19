@@ -1,0 +1,50 @@
+{% extends "user/userindex.html" %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/Myapp/viewvehicle_post/">
+    {% csrf_token %}
+{#    <table class="table table-bordered">#}
+{#        <tr>#}
+{#            <td><input type="text" name="textfield" class="form-control"/></td>#}
+{#            <td><input type="submit" value="search" class="btn btn-info"/></td>#}
+{#        </tr>#}
+{#    </table>#}
+    <table class="table table-bordered">
+    <tr>
+        <td>sl no</td>
+      <td>Vehicle name</td>
+      <td>Registration number</td>
+      <td>owner name</td>
+      <td>Registration Date</td>
+      <td>Registration Place</td>
+      <td>Vehicle Type</td>
+      <td>Contact</td>
+      <td>Photo</td>
+      <td>Engine Number</td>
+      <td>Chassis number</td>
+      <td>Year of Manufacturing</td>
+      <td>Month of manufacturing</td>
+{#      <tdtd>&nbsp;</tdtd>#}
+{#      <td>&nbsp;</td>#}
+    </tr>
+        {% for i in data %}
+    <tr>
+      <td>{{ forloop.counter }}&nbsp;</td>
+      <td>{{ i.vehicle_name }}&nbsp;</td>
+      <td>{{ i.reg_number }}&nbsp;</td>
+      <td>{{ i.owner_name }}&nbsp;</td>
+      <td>{{ i.reg_date }}&nbsp;</td>
+      <td>{{ i.reg_place }}&nbsp;</td>
+      <td>{{ i.Vehicle_type }}&nbsp;</td>
+      <td>{{ i.contact }}&nbsp;</td>
+      <td><img src="{{ i.photo }}" height="80px" width="80px" alt=""/>&nbsp;</td>
+      <td>{{ i.engine_number }}&nbsp;</td>
+      <td>{{ i.chase_number }}&nbsp;</td>
+      <td>{{ i.year_of_manufacturing }}&nbsp;</td>
+        <td>{{ i.month_of_manufacturing }}&nbsp;</td>
+{#      <td><a href="/Myapp/addscraprequest_post/{{ i.id }}">Request</a></td>#}
+{#      <td><a href="/Myapp/deleteveh/{{ i.id }}">Delete</a></td>#}
+    </tr>
+        {% endfor %}
+  </table>
+</form>
+{% endblock %}
