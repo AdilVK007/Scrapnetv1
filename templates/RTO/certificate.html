@@ -1,0 +1,36 @@
+{% extends 'RTO/rtoindex.html' %}
+{% block body %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Certificate</title>
+</head>
+<body>
+<form action="/Myapp/certificate_rto_post/" method="post" enctype="multipart/form-data" name="form1" id="form1">
+  {% csrf_token %}
+    <table class="table table-bordered">
+    <tr>
+      <td>CERTIFICATE</td>
+      <td><label for="fileField"></label>
+      <input type="file" name="fileField" id="fileField"  class="form-control" required/>
+      <input type="hidden" name="vid" id="fileField" value="{{ vid }}"  class="form-control" required/>
+
+      </td>
+    </tr>
+{#    <tr>#}
+{#      <td>Certified Date</td>#}
+{#      <td>#}
+{#        <input type="date" name="textfield2" id="textfield2"  class="form-control" required/></td>#}
+{#    </tr>#}
+    <tr>
+      <td colspan="2"><div align="center">
+        <input type="submit" name="button" id="button" value="Submit" class="btn btn-success" />
+      </div></td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>
+{% endblock %}

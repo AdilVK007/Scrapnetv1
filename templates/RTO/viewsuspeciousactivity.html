@@ -1,6 +1,6 @@
-{% extends "scrap dealer/scrapdealerindex.html" %}
+{% extends "RTO/rtoindex.html" %}
 {% block body %}
-<form id="form1" name="form1" method="post" action="/Myapp/viewsusAct_post/">
+<form id="form1" name="form1" method="post" action="/Myapp/viewsusActrto_post/">
 {% csrf_token %}
     <table class="table table-bordered">
         <tr>
@@ -17,11 +17,11 @@
     <tr>
       <td>sl no</td>
       <td><p>vehicle</p></td>
-        <td><p>vehicle Registration Number</p></td>
+        <td><p>Vehicle Registration Number</p></td>
       <td>Activity</td>
       <td>Date of Reporting</td>
-        <td>POlice Station</td>
-        <td>POlice Station Place</td>
+        <td>Police Station</td>
+        <td>Place of Police Station</td>
 
 
 

@@ -94,3 +94,7 @@ class Request(models.Model):
     requestid = models.CharField(max_length=100)
     status = models.CharField(max_length=100)
 
+class certificate(models.Model):
+    status=models.CharField(max_length=100)
+    file=models.CharField(max_length=200)
+    VEHICLE=models.ForeignKey(Vehicle,on_delete=models.CASCADE)

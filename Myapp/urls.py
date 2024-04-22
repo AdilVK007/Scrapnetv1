@@ -84,6 +84,10 @@ urlpatterns = [
     path('viewusers_post/', views.viewusers_post),
     path('viewscrapedveh/', views.viewscrapedveh),
     path('viewscrapedveh_post/', views.viewscrapedveh_post),
+    path('certificate_rto/<vid>', views.certificate_rto),
+    path('certificate_rto_post/', views.certificate_rto_post),
+    path('viewsusAct_rto/<vid>', views.viewsusAct_rto),
+    path('viewsusActrto_post/', views.viewsusActrto_post),
     path('rto_home/', views.rto_home),
 
     #scrapdealer Module
@@ -102,8 +106,11 @@ urlpatterns = [
     path('scrapstationup_post/', views.scrapstationup_post),
     path('scrapdealer_home/', views.scrapdealer_home),
     path('pending_scrapreq/', views.pending_scrapreq),
+    path('viewapproved_scrapreq/', views.viewapproved_scrapreq),
+    path('viewrejected_scrapreq/', views.viewrejected_scrapreq),
+    path('view_userrequest_rto/', views.view_userrequest_rto),
     path('approve_user_request/<id>', views.approve_user_request),
-    path('reject_user_request/', views.reject_user_request),
+    path('reject_user_request/<id>', views.reject_user_request),
 
     # user
 

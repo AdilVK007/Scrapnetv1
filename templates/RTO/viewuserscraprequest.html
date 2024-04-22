@@ -2,12 +2,12 @@
 {% block body %}
 <form action="/Myapp/viewrequest_post/" method="post">
     {% csrf_token %}
-    <table class="table table-bordered">
-    <tr>
-            <td><input type="text" name="textfield" class="form-control"/></td>
-            <td><input type="submit" value="search" class="btn btn-info"/></td>
-        </tr>
-    </table>
+{#    <table class="table table-bordered">#}
+{#    <tr>#}
+{#            <td><input type="text" name="textfield" class="form-control"/></td>#}
+{#            <td><input type="submit" value="search" class="btn btn-info"/></td>#}
+{#        </tr>#}
+{#    </table>#}
 <table class="table table-bordered">
   <tr>
       <td>sl no.</td>
@@ -45,10 +45,8 @@
       <td>{{ i.year_of_manufacturing }}&nbsp;</td>
         <td>{{ i.month_of_manufacturing }}&nbsp;</td>
     <td>{{ i.status }}&nbsp;</td>
-
-      <td><a href="/Myapp/approve_user_request/{{ i.reqida }}" style="color: green" >Approve</a> </td>
-      <td><a href="/Myapp/reject_user_request/{{ i.reqida }}" style="color: red">Reject</a> </td>
-
+    <td><a href="/Myapp/certificate_rto/{{ i.vid }}">Verify Certificate</a></td>
+      <td><a href="/Myapp/viewsusAct_rto/{{ i.vid }}">Suspecious Activity</a> </td>
 
 
 

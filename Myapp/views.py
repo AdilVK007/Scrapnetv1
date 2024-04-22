@@ -604,6 +604,42 @@ def viewscrapedveh_post(request):
     s = Vehicle.objects.filter(vehicle_name__icontains=search)
     return render(request, "RTO/viewscrappedvehicle.html", {'data': s})
 
+def certificate_rto(request,vid):
+    return render(request,"RTO/certificate.html",{'vid':vid})
+
+
+def certificate_rto_post(request):
+    crtfct= request.FILES['fileField']
+    lid=request.session['lid']
+    vid=request.POST["vid"]
+
+    RID=Rto.objects.get(LOGIN_id=lid)
+    fs=FileSystemStorage()
+    date="certificate/"+datetime.datetime.now().strftime("%Y%m%d%H%M%S")+'.jpg'
+    fn=fs.save(date,crtfct)
+    path=fs.url(date)
+
+    obj = certificate()
+    obj.file=path
+    obj.VEHICLE_id=vid
+    obj.status="Issued"
+    obj.save()
+    Vehicle.objects.filter(id=vid).update(status="DEACTIVATE")
+    return HttpResponse('''<script>alert('issue certificate  Successfully');window.location="/Myapp/rto_home/"</script>''')
+
+def viewsusAct_rto(request, vid):
+    ls = Activity.objects.filter(VEHICLE_id=vid)
+    request.session['sid'] = vid
+    return render(request,"RTO/viewsuspeciousactivity.html",{'data':ls})
+
+def viewsusActrto_post(request):
+    date = request.POST['textfield']
+    todate = request.POST['textfield2']
+    act = Activity.objects.filter(date__range=[date, todate])
+    return render(request, "RTO/viewsuspeciousactivity.html", {'data': act})
+
+
+
 def rto_home(request):
     return render(request,"RTO/rtoindex.html")
 
@@ -746,12 +782,14 @@ def pending_scrapreq(request):
             if i["typea"]=="request":
                 print(i,"hhhhhhhhhh")
                 res2 = User.objects.filter(LOGIN_id=i['lida'])
+                print(res2,'222222222222')
                 if res2.exists():
                     res2= res2[0]
                     aadhar_no=res2.aadhar_no
-                    print(res2,"rrrrrrrrrrrr")
                     v = Vehicle.objects.filter(id= i['vehicleida'],aadhar_no=aadhar_no)
-                    res3 = Request.objects.filter(req=i['requestid'], status='pending')
+                    print(v,'444444')
+                    res3 = Request.objects.filter(requestid=i['reqida'], status='pending')
+                    print(res3,'rrrrrr')
                     if res3.exists():
                       if v.exists():
                         v= v[0]
@@ -769,15 +807,197 @@ def pending_scrapreq(request):
                             'enginenumber': v.engine_number,
                             'chassis_number': v.chase_number,
                             'year_of_manufacturing': v.year_of_manufacturing,
-                            'month_of_manufacturing': v.year_of_manufacturing,
-                            'status': v.status,                        }
+                            'month_of_manufacturing': v.month_of_manufacturing,
+                            'status': i['statusa'],                        }
                         ls.append(a)
     print(ls,"helllllll")
     return render(request,'scrap dealer/viewpendscraprequest.html',{'data':ls})
 
 
+def viewapproved_scrapreq(request):
+    with open(compiled_contract_path) as file:
+        contract_json = json.load(file)  # load contract info as JSON
+        contract_abi = contract_json['abi']  # fetch contract's abi - necessary to call its functions
+    contract = web3.eth.contract(address=deployed_contract_addressa, abi=contract_abi)
+    blocknumber = web3.eth.get_block_number()
+    print(blocknumber,"hhhh")
+    lq = []
+    for i in range(blocknumber, 0, -1):
+        print(i,"kkkk")
+        a = web3.eth.get_transaction_by_block(i, 0)
+        try:
+            decoded_input = contract.decode_function_input(a['input'])
+            print(decoded_input)
+            print("ku")
+            print(decoded_input)
+            lq.append(decoded_input[1])
+        except Exception as a:
+            print("jjjjj")
 
+    print(lq)
+    tot = 0
+    ls = []
+    print(lq,"kkkk")
+    for i in lq:
+            # try:
+             # print(i['suspiciousida'], "aaaaaaaaaaaaaaaaa")
+            if i["typea"]=="request":
+                print(i,"hhhhhhhhhh")
+                res2 = User.objects.filter(LOGIN_id=i['lida'])
+                print(res2,'222222222222')
+                if res2.exists():
+                    res2= res2[0]
+                    aadhar_no=res2.aadhar_no
+                    v = Vehicle.objects.filter(id= i['vehicleida'],aadhar_no=aadhar_no)
+                    print(v,'444444')
+                    res3 = Request.objects.filter(requestid=i['reqida'], status='approved')
+                    print(res3,'rrrrrr')
+                    if res3.exists():
+                      if v.exists():
+                        v= v[0]
+                        a = {
+                            'reqida': i['reqida'],
+                            'name': res2.username,
+                            'vehiclename': v.vehicle_name,
+                            'regnnum': v.reg_number,
+                            'ownername': v.owner_name,
+                            'regdate': v.reg_date,
+                            'regplace': v.reg_place,
+                            'vehicletype': v.Vehicle_type,
+                            'contact': v.contact,
+                            'photo': v.photo,
+                            'enginenumber': v.engine_number,
+                            'chassis_number': v.chase_number,
+                            'year_of_manufacturing': v.year_of_manufacturing,
+                            'month_of_manufacturing': v.month_of_manufacturing,
+                            'status': i['statusa'],                        }
+                        ls.append(a)
+    print(ls,"helllllll")
+    return render(request,'scrap dealer/viewapprovedscraprequest.html',{'data':ls})
 
+def viewrejected_scrapreq(request):
+    with open(compiled_contract_path) as file:
+        contract_json = json.load(file)  # load contract info as JSON
+        contract_abi = contract_json['abi']  # fetch contract's abi - necessary to call its functions
+    contract = web3.eth.contract(address=deployed_contract_addressa, abi=contract_abi)
+    blocknumber = web3.eth.get_block_number()
+    print(blocknumber,"hhhh")
+    lq = []
+    for i in range(blocknumber, 0, -1):
+        print(i,"kkkk")
+        a = web3.eth.get_transaction_by_block(i, 0)
+        try:
+            decoded_input = contract.decode_function_input(a['input'])
+            print(decoded_input)
+            print("ku")
+            print(decoded_input)
+            lq.append(decoded_input[1])
+        except Exception as a:
+            print("jjjjj")
+
+    print(lq)
+    tot = 0
+    ls = []
+    print(lq,"kkkk")
+    for i in lq:
+            # try:
+             # print(i['suspiciousida'], "aaaaaaaaaaaaaaaaa")
+            if i["typea"]=="request":
+                print(i,"hhhhhhhhhh")
+                res2 = User.objects.filter(LOGIN_id=i['lida'])
+                print(res2,'222222222222')
+                if res2.exists():
+                    res2= res2[0]
+                    aadhar_no=res2.aadhar_no
+                    v = Vehicle.objects.filter(id= i['vehicleida'],aadhar_no=aadhar_no)
+                    print(v,'444444')
+                    res3 = Request.objects.filter(requestid=i['reqida'], status='rejected')
+                    print(res3,'rrrrrr')
+                    if res3.exists():
+                      if v.exists():
+                        v= v[0]
+                        a = {
+                            'reqida': i['reqida'],
+                            'name': res2.username,
+                            'vehiclename': v.vehicle_name,
+                            'regnnum': v.reg_number,
+                            'ownername': v.owner_name,
+                            'regdate': v.reg_date,
+                            'regplace': v.reg_place,
+                            'vehicletype': v.Vehicle_type,
+                            'contact': v.contact,
+                            'photo': v.photo,
+                            'enginenumber': v.engine_number,
+                            'chassis_number': v.chase_number,
+                            'year_of_manufacturing': v.year_of_manufacturing,
+                            'month_of_manufacturing': v.month_of_manufacturing,
+                            'status': i['statusa'],                        }
+                        ls.append(a)
+    print(ls,"helllllll")
+    return render(request,'scrap dealer/viewrejectedscraprequest.html',{'data':ls})
+
+def view_userrequest_rto(request):
+    with open(compiled_contract_path) as file:
+        contract_json = json.load(file)  # load contract info as JSON
+        contract_abi = contract_json['abi']  # fetch contract's abi - necessary to call its functions
+    contract = web3.eth.contract(address=deployed_contract_addressa, abi=contract_abi)
+    blocknumber = web3.eth.get_block_number()
+    print(blocknumber,"hhhh")
+    lq = []
+    for i in range(blocknumber, 0, -1):
+        print(i,"kkkk")
+        a = web3.eth.get_transaction_by_block(i, 0)
+        try:
+            decoded_input = contract.decode_function_input(a['input'])
+            print(decoded_input)
+            print("ku")
+            print(decoded_input)
+            lq.append(decoded_input[1])
+        except Exception as a:
+            print("jjjjj")
+
+    print(lq)
+    tot = 0
+    ls = []
+    print(lq,"kkkk")
+    for i in lq:
+            # try:
+             # print(i['suspiciousida'], "aaaaaaaaaaaaaaaaa")
+            if i["typea"]=="request":
+                print(i,"hhhhhhhhhh")
+                res2 = User.objects.filter(LOGIN_id=i['lida'])
+                print(res2,'222222222222')
+                if res2.exists():
+                    res2= res2[0]
+                    aadhar_no=res2.aadhar_no
+                    v = Vehicle.objects.filter(id= i['vehicleida'],aadhar_no=aadhar_no)
+                    print(v,'444444')
+                    res3 = Request.objects.filter(requestid=i['reqida'], status='approved')
+                    print(res3,'rrrrrr')
+                    if res3.exists():
+                      if v.exists():
+                        v= v[0]
+                        a = {
+                            'reqida': i['reqida'],
+                            'name': res2.username,
+                            'vid': v.id,
+
+                            'vehiclename': v.vehicle_name,
+                            'regnnum': v.reg_number,
+                            'ownername': v.owner_name,
+                            'regdate': v.reg_date,
+                            'regplace': v.reg_place,
+                            'vehicletype': v.Vehicle_type,
+                            'contact': v.contact,
+                            'photo': v.photo,
+                            'enginenumber': v.engine_number,
+                            'chassis_number': v.chase_number,
+                            'year_of_manufacturing': v.year_of_manufacturing,
+                            'month_of_manufacturing': v.month_of_manufacturing,
+                            'status': i['statusa'],                        }
+                        ls.append(a)
+    print(ls,"helllllll")
+    return render(request,'RTO/viewuserscraprequest.html',{'data':ls})
 
 
 
@@ -835,23 +1055,11 @@ def pending_scrapreq(request):
 
 def approve_user_request(request,id):
     aa=Request.objects.filter(requestid=id).update(status='approved')
-    return HttpResponse('''<script>alert("Forward");window.location='/myapp/pending_scrapreq/'</script>''')
+    return HttpResponse('''<script>alert("Forward");window.location='/Myapp/pending_scrapreq/cript>''')
 
 def reject_user_request(request,id):
     aa = Request.objects.filter(requestid=id).update(status='rejected')
-    return HttpResponse('''<script>alert("Forward");window.location='/myapp/pending_scrapreq/'</script>''')
-
-
-
-
-
-
-
-
-
-
-
-
+    return HttpResponse('''<script>alert("Rejected");window.location='/Myapp/pending_scrapreq/'</script>''')
 
 def viewsusAct(request):
     viewactivty = Activity.objects.all()
@@ -1033,7 +1241,8 @@ def addscraprequest(request,id):
 def addscraprequest_post(request,id):
     # vehid = request.POST['vid']
     # scrapdealerid = request.POST['sid']
-    vv=Vehicle.objects.filter(id=id).update(status="pending")
+    # vv=Vehicle.objects.filter(id=id).update(status="pending")
+    vv=Vehicle.objects.filter(id=id)
 
 
     with open(compiled_contract_path) as file:
