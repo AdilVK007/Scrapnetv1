@@ -59,6 +59,8 @@ html table responsive
 </table>
 ```
 
+# Bugs
+
 ## Features
 
 - Damage Detection and Price Prediction:
