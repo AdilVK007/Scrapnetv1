@@ -58,7 +58,13 @@ html table responsive
     </tr>
 </table>
 ```
+If it must must need something on table should use <required> attribut
+Eg:
 ```
+<div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input type="password" class="form-control" id="password" required>
+</div>
 ```
 
 # Bugs
