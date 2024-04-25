@@ -27,7 +27,13 @@ The car scrapping process in India lacks organization compared to the sale of us
 `Changes mades on the models which can be affecting the database`
 
 ```After updating models you can use this to update data
-python manage.py makemigrations
+python3 manage.py makemigrations
+```
+```
+{location python currently used version} manage.py makemigrations
+```
+```
+{location python currently used version} manage.py migrate
 ```
 
 `make config variables with ganache (Blockchain)`
