@@ -58,7 +58,7 @@ html table responsive
     </tr>
 </table>
 ```
-If it must must need something on table should use <required> attribut
+Any feild should needs
 Eg:
 ```
 <div class="mb-3">
