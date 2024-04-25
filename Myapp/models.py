@@ -63,6 +63,7 @@ class User(models.Model):
     District = models.CharField(max_length=100,default="")
     state = models.CharField(max_length=100,default="")
     aadhar_no = models.CharField(max_length=100)
+    lic_no = models.CharField(max_length=20, default="")
     LOGIN = models.ForeignKey(Login,on_delete=models.CASCADE,default="")
 
 

@@ -264,10 +264,12 @@ button:hover {
   -o-border-radius:4px;
   -moz-border-radius:4px;
   margin-top: 12px;
+  /*border-radius: 100%;*/
+  /*transition: border-radius 0.3s;*/
 }
 
 .forms23-block-hny button.btn.loginhny-btn:hover {
-  background: #ff0000;
+  background: #007bff;
   color: #2B2022;
   text-decoration: none;
   transition: all 0.2s ease;
@@ -275,6 +277,7 @@ button:hover {
   -webkit-transition: all 0.2s ease;
   -ms-transition: all 0.2s ease;
   -o-transition: all 0.2s ease;
+  /*border-radius: 20%;*/
 }
 
 .forms23-block-hny .form23 a {

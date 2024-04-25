@@ -38,7 +38,7 @@ deployed_contract_address = web3.eth.accounts[0]
 
 
 
-
+# Main login section
 def login(request):
     return render(request,"indexlogin.html")
 
@@ -64,6 +64,7 @@ def login_post(request):
     else:
         return HttpResponse('''<script>alert("Sorry, we couldn't find that user. Please check your credentials and try again.");window.location='/Myapp/login/'</script>''')
 
+# change pass for admin
 def change_password(request):
     return render(request,"Admin/changepassword.html")
 
@@ -82,7 +83,7 @@ def change_pass_post(request):
     else:
         return HttpResponse('''<script>alert("Your password has been successfully changed...");window.location='/Myapp/login/'</script>''')
 
-
+# rto management (Add,Edit, delete rto)
 def rto_management(request):
     return render(request,'Admin/rtomanagement.html')
 
@@ -181,6 +182,7 @@ def editro_post(request):
     r.save()
     return HttpResponse('''<script>alert("RTO user updated successfully.");window.location='/Myapp/rto_view/'</script>''')
 
+# police station mangement (Add, edit, delete police)
 def police_station(request):
     return render(request,"Admin/policestationmanagement.html")
 
@@ -522,6 +524,7 @@ def vehicleadd_post(request):
     obj.month_of_manufacturing = monthofmanufacture
     obj.year_of_manufacturing=yearofmanufacture
     obj.aadhar_no=adhar
+    obj.lic_no=lic_no
     obj.RTO=Rto.objects.get(LOGIN=request.session['lid'])
     obj.save()
 
@@ -1109,6 +1112,7 @@ def usersignup_post(request):
     pic = request.FILES['textfield12']
     passwd = request.POST['textfield13']
     confirmpass = request.POST['textfield14']
+    lic_no = request.POST['textfield15']
 
     fs = FileSystemStorage()
     date = datetime.datetime.now().strftime("%Y%m%d-%H%%M%S")+".jpg"
@@ -1132,6 +1136,7 @@ def usersignup_post(request):
     u.District=district
     u.state=state
     u.aadhar_no = Aadharno
+    u.lic_no = lic_no
     u.LOGIN = lobj
     u.save()
 
@@ -1212,16 +1217,19 @@ def edituserprofile_post(request):
 def viewvehicle(request):
     a=User.objects.get(LOGIN_id=request.session['lid']).aadhar_no
     vv = Vehicle.objects.filter(aadhar_no=a)
-    return render(request,"user/viewvhicle.html",{'data':vv})
+    v = certificate.objects.filter(VEHICLE__aadhar_no=a)
+    certs = [i.VEHICLE.id for i in v]
+    return render(request,"user/viewvhicle.html",{'data':vv, 'certs':certs})
 
 def viewvehicle_post(request):
     search = request.POST['textfield']
     vehv = Vehicle.objects.filter(vehicle_name__icontains=search)
     return render(request,"user/viewvhicle.html",{'data':vehv})
 #
-# def userviewscrapdealer(request,id):
-#     vs = Scrapdealer.objects.filter(status='Approved')
-#     return render(request, "user/scrapdealerview.html",{'data':vs,'vid':id})
+def userviewcertificate(request,id):
+    vs = certificate.objects.filter(VEHICLE_id=id)
+    a=User.objects.get(aadhar_no = vs[0].VEHICLE.aadhar_no)
+    return render(request, "user/view_usercertificate.html",{'data':vs, 'User':a,'vid':id})
 
 
 
@@ -1238,6 +1246,7 @@ def userviewscrapdealer_post(request):
 def addscraprequest(request,id):
     return render(request,"user/Addscraprequest.html",{'id':id})
 
+#bc
 def addscraprequest_post(request,id):
     # vehid = request.POST['vid']
     # scrapdealerid = request.POST['sid']
@@ -1276,7 +1285,7 @@ def addscraprequest_post(request,id):
                                              str(types), str(date),str(status)).transact({'from': web3.eth.accounts[0]})
     return HttpResponse('''<script>alert("successfully Requested");window.location='/Myapp/viewvehicle/'</script>''')
 
-
+#bc
 def viewscrappingstatus(request):
     with open(compiled_contract_path) as file:
         contract_json = json.load(file)  # load contract info as JSON
@@ -1291,7 +1300,7 @@ def viewscrappingstatus(request):
                 # print(contract.decode_function_input(a['input']))
                 decoded_input = contract.decode_function_input(a['input'])
                 i = decoded_input[1]
-                if i['typea'] == 'request':
+                if i['typea'] == 'request' and str(i['lida']) == str(request.session['lid']):
                     print(i)
 
                     res2 = User.objects.filter(LOGIN_id=i['lida'])
@@ -1345,8 +1354,11 @@ def viewscrappingstatus(request):
 def viewrequeststation(request):
     return render(request, "user/Addscraprequest.html")
 
-def getcertify(request):
-    return render(request, "user/Addscraprequest.html")
+def getcertificate(request,id):
+    c = certificate.objects.get(VEHICLE_id=id)[0]
+    a = User.objects.get(LOGIN_id = request.session['lid']).aadhar_no
+
+    return render(request, "user/view_usercertificate.html",{''})
 
 def user_home(request):
     return render(request,"user/userindex.html")

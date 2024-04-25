@@ -41,7 +41,11 @@
       <td>{{ i.chase_number }}&nbsp;</td>
       <td>{{ i.year_of_manufacturing }}&nbsp;</td>
         <td>{{ i.month_of_manufacturing }}&nbsp;</td>
-      <td><a href="/Myapp/addscraprequest_post/{{ i.id }}">Request</a></td>
+      <td>{% if i.id in certs %}
+<a href="/Myapp/userviewcertificate/{{ i.id }}">Certificate</a>
+          {% else %}
+      <a href="/Myapp/addscraprequest_post/{{ i.id }}">Request</a>
+      {% endif %}</td>
 {#      <td><a href="/Myapp/deleteveh/{{ i.id }}">Delete</a></td>#}
     </tr>
         {% endfor %}

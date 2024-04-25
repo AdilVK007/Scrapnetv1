@@ -1,0 +1,9 @@
+/* styles.css */
+.show-error {
+    color: red;
+    display: block;
+}
+
+.hide-error {
+    display: none;
+}

@@ -22,15 +22,13 @@
           <img src="{{ data.photo }}" width="50px" height="50px" alt=""/>
           <input type="file" name="textfield12" id="textfield12" class="form-control" /></td>
     <tr>
-      <td class="form-control">Gender </td>
+      <td>Gender </td>
       <td><p>
-        <label class="form-control">
-          <input type="radio" va name="RadioGroup1" value="Male" id="RadioGroup1_0" {% if data.gender == 'Male' %}checked {% endif %} />
-          Male</label>
+          <input type="radio" name="RadioGroup1" value="Male" id="RadioGroup1_0" {% if data.gender == 'Male' %}checked {% endif %} />
+          Male
         <br />
-        <label class="form-control">
           <input type="radio" name="RadioGroup1" value="Female" id="RadioGroup1_1" {% if data.gender == 'Female' %}checked {% endif %} />
-          Female</label>
+          Female
         <br />
       </p></td>
     </tr>

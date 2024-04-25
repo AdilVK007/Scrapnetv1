@@ -5,20 +5,20 @@
     <input type="hidden" name="id" value="{{ data.id }}">
   <tr>
     <td>USERNAME</td>
-    <td><input type="text" name="textfield" id="textfield" value="{{ data.username }}" /></td>
+    <td><input type="text" name="textfield" id="textfield" value="{{ data.username }}" required /></td>
   </tr>
   <tr>
     <td>PROFILE PHOTO</td>
     <td><img src="{{ data.photo }}" alt="" height="50px" width="50px"/>
-        <input type="file" name="textfield2" id="textfield2" /></td>
+        <input type="file" name="textfield2" id="textfield2" required /></td>
   </tr>
   <tr>
     <td>EMAIL</td>
-    <td><input type="text" name="textfield3" id="textfield3" value="{{ data.email }}" class="form-control"/></td>
+    <td><input type="text" name="textfield3" id="textfield3" value="{{ data.email }}" class="form-control" required /></td>
   </tr>
   <tr>
     <td>PHONE NUMBER</td>
-    <td><input type="text" name="textfield4" id="textfield4" value="{{ data.phone }}" class="form-control" /></td>
+    <td><input type="text" name="textfield4" id="textfield4" value="{{ data.phone }}" class="form-control" required /></td>
   </tr>
   <tr>
     <td>PLACE</td>

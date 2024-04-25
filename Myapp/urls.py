@@ -124,6 +124,7 @@ urlpatterns = [
     # path('userviewprofile_post/', views.userviewprofile_post),
     path('viewvehicle/', views.viewvehicle),
     path('viewvehicle_post/', views.viewvehicle_post),
+    path('userviewcertificate/<id>', views.userviewcertificate),
     # path('userviewscrapdealer/<id>', views.userviewscrapdealer),
     path('userviewscrapdealer/', views.userviewscrapdealer),
     path('userviewscrapdealer_post/', views.userviewscrapdealer_post),

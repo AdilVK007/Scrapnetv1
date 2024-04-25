@@ -1,6 +1,6 @@
 {% extends "scrap dealer/scrapdealerindex.html" %}
 {% block body %}
-<form action="/Myapp/viewrequest_post/" method="post">
+<form action="/Myapp/viewrequest_post/" method="post" xmlns:max-width="http://www.w3.org/1999/xhtml">
     {% csrf_token %}
 {#    <table class="table table-bordered">#}
 {#    <tr>#}
@@ -8,7 +8,7 @@
 {#            <td><input type="submit" value="search" class="btn btn-info"/></td>#}
 {#        </tr>#}
 {#    </table>#}
-<table class="table table-bordered">
+<table class="table table-bordered" style="max-width: 100%" width="100%">
   <tr>
       <td>sl no.</td>
 {#    <td>Request Id </td>#}
@@ -44,7 +44,7 @@
       <td>{{ i.chassis_number }}&nbsp;</td>
       <td>{{ i.year_of_manufacturing }}&nbsp;</td>
         <td>{{ i.month_of_manufacturing }}&nbsp;</td>
-    <td>{{ i.status }}&nbsp;</td>
+      <td>{{ i.status }}&nbsp;</td>
 
 
 
