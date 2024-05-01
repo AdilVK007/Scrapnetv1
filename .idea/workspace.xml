@@ -1,47 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f1ee3945-6c18-4034-aa66-416397883984" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Myapp/static/damagedetectioninput/20240216212215.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Myapp/static/damagedetectioninput/20240221122353.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Myapp/static/damagedetectioninput/20240221122405.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Myapp/static/damagedetectioninput/20240221122424.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Myapp/static/damagedetectioninput/20240221122433.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Myapp/static/damagedetectioninput/20240221160005.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Myapp/static/damagedetectioninput/20240221160042.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Myapp/static/damagedetectioninput/20240221160314.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Myapp/static/damagedetectioninput/20240221160352.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Myapp/static/damagedetectioninput/20240221160528.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Myapp/static/damagedetectioninput/20240221160615.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Myapp/static/damagedetectioninput/20240221160735.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Myapp/static/damagedetectioninput/20240221160800.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Myapp/static/damagedetectioninput/20240221160915.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Myapp/static/damagedetectioninput/20240221160917.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Myapp/static/damagedetectioninput/20240221161303.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Myapp/static/damagedetectioninput/20240221161305.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Myapp/static/damagedetectioninput/20240225170051.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Myapp/static/damagedetectioninput/20240225170100.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Myapp/static/damagedetectioninput/20240225170103.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Myapp/static/damagedetectioninput/20240225170114.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/user/damagedetection.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/user/prediction_user.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Myapp/static/login/images/banner1.jpg" afterPath="$PROJECT_DIR$/Myapp/static/login/images/banner1.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Myapp/static/signup/images/banner1.jpg" afterPath="$PROJECT_DIR$/Myapp/static/signup/images/banner1.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/scrap.iml" afterPath="$PROJECT_DIR$/.idea/scrap.iml" />
+    <list default="true" id="f1ee3945-6c18-4034-aa66-416397883984" name="Default" comment="Damage prediction and price prediction of damaged car">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Myapp/urls.py" afterPath="$PROJECT_DIR$/Myapp/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Myapp/views.py" afterPath="$PROJECT_DIR$/Myapp/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Admin/adminindex.html" afterPath="$PROJECT_DIR$/templates/Admin/adminindex.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Admin/pdstationmanagementview.html" afterPath="$PROJECT_DIR$/templates/Admin/pdstationmanagementview.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Admin/policestationmanagement.html" afterPath="$PROJECT_DIR$/templates/Admin/policestationmanagement.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/RTO/viewuserscraprequest.html" afterPath="$PROJECT_DIR$/templates/RTO/viewuserscraprequest.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/indexlogin.html" afterPath="$PROJECT_DIR$/templates/indexlogin.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/user/Addscraprequest.html" afterPath="$PROJECT_DIR$/templates/user/Addscraprequest.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/user/changepasswd.html" afterPath="$PROJECT_DIR$/templates/user/changepasswd.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/user/userindex.html" afterPath="$PROJECT_DIR$/templates/user/userindex.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/user/view_usercertificate.html" afterPath="$PROJECT_DIR$/templates/user/view_usercertificate.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/user/viewscrappingstatus.html" afterPath="$PROJECT_DIR$/templates/user/viewscrappingstatus.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/user/damagedetection.html" afterPath="$PROJECT_DIR$/templates/user/damagedetection.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -149,11 +111,9 @@
       <file leaf-file-name="damagedetection.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/user/damagedetection.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1095">
-              <caret line="125" column="0" lean-forward="true" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
-              <folding>
-                <element signature="n#style#0;n#span#0;n#form#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="415">
+              <caret line="131" column="0" lean-forward="true" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -777,7 +737,14 @@
       <option name="project" value="LOCAL" />
       <updated>1714037466754</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Damage prediction and price prediction of damaged car">
+      <created>1714551343874</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1714551343874</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TodoView">
@@ -797,7 +764,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29445073" sideWeight="0.5107411" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29445073" sideWeight="0.48925886" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29445073" sideWeight="0.48925886" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -892,7 +859,8 @@
     <MESSAGE value="view,reject and approove requests from user (not completed)" />
     <MESSAGE value="request, request session for rto, scrap dealer, user will be added" />
     <MESSAGE value="minor changes and found some bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor changes and found some bugs" />
+    <MESSAGE value="Damage prediction and price prediction of damaged car" />
+    <option name="LAST_COMMIT_MESSAGE" value="Damage prediction and price prediction of damaged car" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1292,11 +1260,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/user/damagedetection.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1095">
-          <caret line="125" column="0" lean-forward="true" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#form#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="415">
+          <caret line="131" column="0" lean-forward="true" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
