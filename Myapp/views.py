@@ -607,6 +607,7 @@ def viewscrapedveh_post(request):
     s = Vehicle.objects.filter(vehicle_name__icontains=search)
     return render(request, "RTO/viewscrappedvehicle.html", {'data': s})
 
+#-------------------------certificate issued by rto-----------------------------------------
 def certificate_rto(request,vid):
     return render(request,"RTO/certificate.html",{'vid':vid})
 
@@ -618,7 +619,7 @@ def certificate_rto_post(request):
 
     RID=Rto.objects.get(LOGIN_id=lid)
     fs=FileSystemStorage()
-    date="certificate/"+datetime.datetime.now().strftime("%Y%m%d%H%M%S")+'.jpg'
+    date="certificate/"+datetime.datetime.now().strftime("%Y%m%d-%H%M%S")+'.pdf'
     fn=fs.save(date,crtfct)
     path=fs.url(date)
 
@@ -647,7 +648,7 @@ def rto_home(request):
     return render(request,"RTO/rtoindex.html")
 
 
-# scrap dealer module
+# =------------------------scrap dealer module--------------------------
 
 def signup_dealer(request):
     return render(request, "scrap dealer/scrapdealersignupindex.html")
@@ -1350,10 +1351,6 @@ def viewscrappingstatus(request):
     print(ls)
     return render(request,"User/viewscrappingstatus.html",{'data':ls})
 
-
-def viewrequeststation(request):
-    return render(request, "user/Addscraprequest.html")
-
 def getcertificate(request,id):
     c = certificate.objects.get(VEHICLE_id=id)[0]
     a = User.objects.get(LOGIN_id = request.session['lid']).aadhar_no
@@ -1362,3 +1359,146 @@ def getcertificate(request,id):
 
 def user_home(request):
     return render(request,"user/userindex.html")
+
+
+
+
+
+
+
+#--------------------------AI DON DP -------------------
+#--------------------------DAMAGE PREDICTION--------------
+def dmgpredict(request):
+    return render(request,"user/damagedetection.html")
+
+
+def damageprediction_post(request):
+    photo = request.FILES['fileField']
+    from datetime import datetime
+    date = datetime.now().strftime("%Y%m%d%H%M%S") + ".jpg"
+    pa = "C:\\Users\\Administrator\\PycharmProjects\\scrap\\media\\" + date
+
+    import base64
+
+
+    fs=FileSystemStorage()
+    fs.save(date,photo)
+
+    import  tensorflow as tf
+    image_data = tf.gfile.FastGFile(pa, 'rb').read()
+
+    label_lines = [line.rstrip() for line
+                   in tf.gfile.GFile(
+            "C:\\Users\\Administrator\\PycharmProjects\\scrap\\Alg1DamageDetection\\logsold\\output_labels.txt")]
+
+    # Unpersists graph from file
+    with tf.gfile.FastGFile(
+            "C:\\Users\\Administrator\\PycharmProjects\\scrap\\Alg1DamageDetection\\logsold\\output_graph.pb",
+            'rb') as f:
+        graph_def = tf.GraphDef()
+        graph_def.ParseFromString(f.read())
+        _ = tf.import_graph_def(graph_def, name='')
+
+    with tf.Session() as sess:
+        # Feed the image_data as input to the graph and get first prediction
+        softmax_tensor = sess.graph.get_tensor_by_name('final_result:0')
+
+        predictions = sess.run(softmax_tensor, \
+                               {'DecodeJpeg/contents:0': image_data})
+
+        # Sort to show labels of first prediction in order of confidence
+        top_k = predictions[0].argsort()[-len(predictions[0]):][::-1]
+
+        for node_id in top_k:
+            human_string = label_lines[node_id]
+            score = predictions[0][node_id]
+            print('%s (score = %.5f)' % (human_string, score))
+
+            if human_string == "00 damage":
+                print("Haaaai")
+                ss = human_string
+                sc = score
+                break
+
+    print(ss, sc, "================================================================================")
+    res = sc * 100
+    print(res, "----------------------------------------------------------")
+    damagelevel = 0
+    if res <= 0:
+        damagelevel = 0
+    elif res > 0 and res < 20:
+        damagelevel = 1
+    elif res > 20 and res < 40:
+        damagelevel = 2
+    elif res > 40 and res < 60:
+        damagelevel = 3
+    elif res > 60 and res < 80:
+        damagelevel = 4
+    elif res > 80 and res <= 100:
+        damagelevel = 5
+
+    damagelevel= "Damage percentage is "+ str(res)
+    # return render({'status': 'ok', 'damagelevel': str(damagelevel)})
+    return render(request,'User/damagedetection.html',{'damagelevel':str(damagelevel)})
+
+
+
+# ------------------Price Prediction--------------------------------
+def prediction(request):
+
+
+    import pandas as pd
+    data = pd.read_csv("C:\\Users\\DELL\\Desktop\\smi scrapnet\\untitled1\\ALg2Dataset\\csv1.csv")
+    df = pd.DataFrame(data)
+    res = df.name.unique()
+    print(res)
+
+    return render(request,'user/prediction_user.html',{'data':res})
+
+
+def prediction_post(request):
+
+        name = request.POST['textfield']
+        year = request.POST['textfield2']
+        km_driven = request.POST['filefield']
+        fuel = request.POST['s1']
+        seller_type = request.POST['s2']
+        transmission = request.POST['s3']
+        owner = request.POST['s4']
+        Mileage = request.POST['filefield7']
+        engine = request.POST['filefield8']
+        seat = request.POST['filefield9']
+
+        import numpy as np
+        import pandas as pd
+
+        # Load the dataset
+        cars_data = pd.read_csv(r"C:\\Users\\Administrator\\PycharmProjects\\scrap\\ALg2Dataset\\cars.csv")
+
+        # Split the data into features (X) and target variable (y)
+        X = cars_data.iloc[:25000, :-1]
+        y = cars_data.iloc[:25000, -1]
+
+        # Split the data into training and testing sets
+        from sklearn.model_selection import train_test_split
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+
+        # Feature scaling
+        from sklearn.preprocessing import StandardScaler
+        scaler = StandardScaler()
+        X_train = scaler.fit_transform(X_train)
+        X_test = scaler.transform(X_test)
+
+        # Train the random forest model
+        from sklearn.ensemble import RandomForestRegressor
+        rf_regressor = RandomForestRegressor(n_estimators=100, random_state=0)
+        rf_regressor.fit(X_train, y_train)
+
+
+        # Predict the price of a car
+        car = [[name, year, km_driven, fuel, seller_type, transmission, owner, Mileage, engine, seat]]
+        car = scaler.transform(car)
+        predicted_price = rf_regressor.predict(car)
+        print("Predicted price of the car is:", predicted_price)
+
+        return render(request,"user/prediction_user.html",{'data1':predicted_price[0]})

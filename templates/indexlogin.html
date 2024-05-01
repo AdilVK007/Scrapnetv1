@@ -33,7 +33,7 @@ Author URL: http://w3layouts.com
 	<section class="w3l-forms-23">
 		<div class="forms23-block-hny">
 			<div class="wrapper">
-				<h1>LOGIN PAGE</h1>
+				<h1>LOGIN HERE</h1>
 				<!-- if logo is image enable this   
 					<a class="logo" href="index.html">
 					  <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
@@ -51,9 +51,9 @@ Author URL: http://w3layouts.com
 							<form action="/Myapp/login_post/" method="post">
                                 {% csrf_token %}
 								<input type="email" name="textfield" class="input-form" placeholder="Your Email"
-										required="required" />
+										required >
 								<input type="password" name="textfield2" class="input-form"
-										placeholder="Your Password" required="required" />
+										placeholder="Your Password" required />
 								<button type="submit" class="loginhny-btn btn">Login</button>
 							</form>
 							<p>Not a member yet? <a href="/Myapp/usersignup/">Join Now!</a></p>

@@ -1,0 +1,48 @@
+{% extends "user/userindex.html" %}
+{% block body %}
+<form action="/Myapp/addscraprequest_post/" method="post" enctype="multipart/form-data" name="form1" id="form1">
+    {% csrf_token %}
+  <table class="table table-bordered table-hover">
+    <tr>
+      <td>Name</td>
+      <td><input type="text" name="textfield" id="textfield" class="form-control" required /></td>
+    </tr>
+    <tr>
+      <td>Year</td>
+      <td><input type="number" name="textfield2" id="textfield2" class="form-control" required /></td>
+    </tr>
+    <tr>
+      <td>Driven Kilometers</td>
+      <td><input type="text" name="filefield" id="filefield" class="form-control" required /></td>
+    </tr>
+    <tr>
+      <td>Fuel</td>
+      <td><input type="number" name="s1" id="s1" class="form-control" required /></td>
+    </tr>
+      <tr>
+      <td>Seller Type</td>
+      <td><input type="text" name="s2" id="s2" class="form-control" required /></td>
+    </tr>
+       <tr>
+      <td>Transmission</td>
+      <td><input type="number" name="s3" id="s3" class="form-control" required /></td>
+    </tr>
+      <tr>
+      <td>Owner</td>
+      <td><input type="text" name="s4" id="s4" class="form-control" required /></td>
+    </tr>
+      <tr>
+      <td>Milage</td>
+      <td><input type="file" name="filefield2" id="filefield2" class="form-control" required /></td>
+    </tr>
+      <tr>
+      <td>Engine</td>
+      <td><input type="file" name="filefield3" id="filefield3" class="form-control" required /></td>
+    </tr>
+      <tr>
+      <td>Seat</td>
+      <td><input type="file" name="filefield3" id="filefield3" class="form-control" required /></td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

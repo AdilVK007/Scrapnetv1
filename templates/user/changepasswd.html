@@ -12,19 +12,27 @@
 </head>
 <body class="container">
     <!-- Your different form elements -->
-    <form id="myForm">
+    <form id="myForm" action="/Myapp/change_pass_post/" method="post">
+        {% csrf_token %}
         <!-- Other form fields here -->
         <div class="mb-3">
+            <label for="password" class="form-label">Current Password</label>
+            <input type="password" name="textfield" class="form-control" id="Current Password" required>
+        </div>
+        <div class="mb-3">
             <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password">
+            <input type="password" name="textfield2" class="form-control" id="password" required>
         </div>
         <div class="mb-3">
             <label for="confirmPassword" class="form-label">Confirm Password</label>
-            <input type="password" class="form-control" id="confirmPassword">
+            <input type="password" name="textfield3" class="form-control" id="confirmPassword">
         </div>
-        <span class="hide-error" id="errorMessage">
-            Passwords did not match
-        </span>
+{#        <span class="hide-error" id="errorMessage">#}
+{#            Passwords did not match#}
+{#        </span>#}
+        <div align="center">
+            <input type="submit" name="change password" class="btn btn-success">
+        </div>
         <!-- Other form fields here -->
     </form>
     <script src="index.js"></script>

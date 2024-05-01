@@ -1,0 +1,125 @@
+{#{% extends "user/userindex.html" %}#}
+{#{% block body %}#}
+{#    <form id="form1" name="form1" method="post" action="/Myapp/damageprediction_post/" enctype="multipart/form-data">#}
+{#    {% csrf_token %}#}
+{#     <table class="table table-bordered">#}
+{#    <tr>#}
+{#        <td>Upload File</td>#}
+{#      <td><label for="fileField"></label>#}
+{#      <input type="file" name="fileField" id="fileField"  class="form-control" required/>#}
+{#      </td>#}
+{#    </tr>#}
+{#         <tr>#}
+{#      <td colspan="2" align="center">#}
+{#        <input type="submit" name="button" id="button" value="Submit" class="btn btn-success" />#}
+{#      </tr>#}
+{#     </table>#}
+{##}
+{#        <span style="--font-color: red">Output:{{ damagelevel }}</span>#}
+{##}
+{#    </form>#}
+{##}
+{##}
+{##}
+{#{% endblock %}#}
+
+
+{#{% extends "user/userindex.html" %}#}
+{#{% block body %}#}
+{#<script>#}
+{#function validateFile() {#}
+{#    const fileInput = document.getElementById('fileField');#}
+{#    const filePath = fileInput.value;#}
+{#    // Allowed file extensions for image files#}
+{#    const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;#}
+{#    if (!allowedExtensions.exec(filePath)) {#}
+{#        alert('Please upload file having extensions .jpeg/.jpg/.png only.');#}
+{#        fileInput.value = '';#}
+{#        return false;#}
+{#    }#}
+{#    return true;#}
+{#}#}
+{#</script>#}
+{##}
+{#<!-- Page Title and Description -->#}
+{#<h2>Damage Prediction File Upload</h2>#}
+{#<p>Please upload an image of the damaged area. Acceptable file formats are JPEG and PNG. The system will analyze the image and predict the level of damage.</p>#}
+{##}
+{#<form id="form1" name="form1" method="post" action="/Myapp/damageprediction_post/" enctype="multipart/form-data" onsubmit="return validateFile()">#}
+{#    {% csrf_token %}#}
+{#    <table class="table table-bordered">#}
+{#    <tr>#}
+{#        <td>Upload File</td>#}
+{#        <td>#}
+{#            <label for="fileField"></label>#}
+{#            <input type="file" name="fileField" id="fileField" class="form-control" required/>#}
+{#        </td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#        <td colspan="2" align="center">#}
+{#            <input type="submit" name="button" id="button" value="Submit" class="btn btn-success" />#}
+{#        </td>#}
+{#    </tr>#}
+{#    </table>#}
+{##}
+{#    Output: <td style="--font-color: red">{{ damagelevel }}</td>#}
+{#</form>#}
+{#{% endblock %}#}
+
+
+{% extends "user/userindex.html" %}
+{% block body %}
+<style>
+    .error-message {
+        color: red;
+        font-size: 14px;
+        margin-top: 5px; /* Adjust spacing */
+    }
+</style>
+
+<script>
+function validateFile() {
+    const fileInput = document.getElementById('fileField');
+    const errorDiv = document.getElementById('error-message');
+    const filePath = fileInput.value;
+    // Allowed file extensions for image files
+    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+
+    if (!allowedExtensions.exec(filePath)) {
+        errorDiv.innerHTML = 'Please upload file having extensions .jpeg/.jpg/.png/.gif only.';
+        errorDiv.style.display = 'block'; // Show the error message
+        fileInput.value = ''; // Reset the file input
+        return false;
+    } else {
+        errorDiv.innerHTML = ''; // Clear the error message if the file is correct
+        errorDiv.style.display = 'none'; // Hide the error message
+    }
+    return true;
+}
+</script>
+
+<h2>Damage Prediction File Upload</h2>
+<p>Please upload an image of the damaged area. Acceptable file formats are JPEG, PNG, and GIF. The system will analyze the image and predict the level of damage.</p>
+
+<form id="form1" name="form1" method="post" action="/Myapp/damageprediction_post/" enctype="multipart/form-data" onsubmit="return validateFile()">
+    {% csrf_token %}
+    <table class="table table-bordered">
+        <tr>
+            <td>Upload File</td>
+            <td>
+                <label for="fileField"></label>
+                <input type="file" name="fileField" id="fileField" class="form-control" required/>
+                <!-- Error message display -->
+                <div id="error-message" class="error-message"></div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <input type="submit" name="button" id="button" value="Submit" class="btn btn-success" />
+            </td>
+        </tr>
+    </table>
+
+    <span style="color: red">Output: {{ damagelevel }}</span>
+</form>
+{% endblock %}
