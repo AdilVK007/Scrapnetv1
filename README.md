@@ -27,7 +27,13 @@ The car scrapping process in India lacks organization compared to the sale of us
 `Changes mades on the models which can be affecting the database`
 
 ```After updating models you can use this to update data
-python manage.py makemigrations
+python3 manage.py makemigrations
+```
+```
+{location python currently used version} manage.py makemigrations
+```
+```
+{location python currently used version} manage.py migrate
 ```
 
 `make config variables with ganache (Blockchain)`
@@ -52,6 +58,16 @@ html table responsive
     </tr>
 </table>
 ```
+Any feild should needs
+Eg:
+```
+<div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input type="password" class="form-control" id="password" required>
+</div>
+```
+
+# Bugs
 
 ## Features
 
