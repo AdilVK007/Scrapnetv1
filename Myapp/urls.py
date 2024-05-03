@@ -135,6 +135,9 @@ urlpatterns = [
 
 # -------AI---------------
 path('dmgpredict/', views.dmgpredict),
-path('damageprediction_post/', views.damageprediction_post)
+path('damageprediction_post/', views.damageprediction_post),
+path('prediction/', views.prediction),
+path('prediction_post/', views.prediction_post)
+
 ]
 

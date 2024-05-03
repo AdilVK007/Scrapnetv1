@@ -1,48 +1,132 @@
 {% extends "user/userindex.html" %}
 {% block body %}
-<form action="/Myapp/addscraprequest_post/" method="post" enctype="multipart/form-data" name="form1" id="form1">
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+{#    <link rel="stylesheet" href="styles.css">#}
+    <title>Price Prediction</title>
+</head>
+<style>
+    .output-text {
+        color: green;
+        font-size: 16px;
+        font-weight: bold;
+        margin-top: 10px;
+        display: none; /* Hide by default */
+    }
+    select {
+        appearance: none; /* Removes default styling */
+        border: 1px solid #ccc;
+        border-radius: 15px; /* Rounded borders */
+        padding: 5px 10px;
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"><path d="M0 2l6 6 6-6z"/></svg>');
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-color: white;
+        cursor: pointer;
+    }
+    select:hover {
+        border-color: #888; /* Change border color on hover */
+    }
+    select#mySelect option:hover {
+    background-color: #f0f0f0; /* Change background color on hover */
+}
+</style>
+<script>
+    // Function to show output text if damage level is available
+function showOutputText() {
+    const damageLevel = "{{ data1 }}";
+    const outputText = document.getElementById('output-text');
+    if (damageLevel.trim() !== '') {
+        outputText.style.display = 'block'; // Show the output text
+    }
+}
+</script>
+<form action="/Myapp/prediction_post/" method="post" enctype="multipart/form-data" name="form1" id="form1">
     {% csrf_token %}
   <table class="table table-bordered table-hover">
     <tr>
-      <td>Name</td>
-      <td><input type="text" name="textfield" id="textfield" class="form-control" required /></td>
+      <td>Vehicle Name</td>
+      <td><select name="textfield" id="mySelect">
+          {% for i in data2 %}
+          <option value="{{ i.id }}">{{ i.car }}</option>
+          {% endfor %}
+
+      </select> </td>
+{#      <td><input type="text" name="textfield" id="textfield" class="form-control" required /></td>#}
     </tr>
     <tr>
-      <td>Year</td>
+      <td>Year of manufacture</td>
       <td><input type="number" name="textfield2" id="textfield2" class="form-control" required /></td>
     </tr>
     <tr>
       <td>Driven Kilometers</td>
-      <td><input type="text" name="filefield" id="filefield" class="form-control" required /></td>
+      <td><input type="number" name="filefield" id="filefield" class="form-control" required /></td>
     </tr>
     <tr>
-      <td>Fuel</td>
-      <td><input type="number" name="s1" id="s1" class="form-control" required /></td>
+      <td>Fuel Type</td>
+      <td><select name="s1" id="mySelect" style="padding-right: 30px;">
+          {% for i in fuels %}
+          <option value="{{ i.id }}">{{ i.fuel }}</option>
+          {% endfor %}
+
+      </select> </td>
+{#      <td><input type="text" name="s1" id="s1" class="form-control" required /></td>#}
     </tr>
       <tr>
       <td>Seller Type</td>
-      <td><input type="text" name="s2" id="s2" class="form-control" required /></td>
+      <td><select name="s2">
+          {% for i in seller_type %}
+          <option value="{{ i.id }}">{{ i.seller_type }}</option>
+          {% endfor %}
+
+      </select> </td>
+{#      <td><input type="text" name="s2" id="s2" class="form-control" required /></td>#}
     </tr>
        <tr>
       <td>Transmission</td>
-      <td><input type="number" name="s3" id="s3" class="form-control" required /></td>
+      <td><select name="s3">
+          {% for i in transmission %}
+          <option value="{{ i.id }}">{{ i.transmission }}</option>
+          {% endfor %}
+
+      </select> </td>
     </tr>
       <tr>
-      <td>Owner</td>
-      <td><input type="text" name="s4" id="s4" class="form-control" required /></td>
+      <td>Owner Name</td>
+      <td><select name="s4">
+          {% for i in owner %}
+          <option value="{{ i.id }}">{{ i.owner }}</option>
+          {% endfor %}
+
+      </select> </td>
     </tr>
       <tr>
       <td>Milage</td>
-      <td><input type="file" name="filefield2" id="filefield2" class="form-control" required /></td>
+      <td><input type="number" name="filefield2" id="filefield2" class="form-control" required /></td>
     </tr>
       <tr>
       <td>Engine</td>
-      <td><input type="file" name="filefield3" id="filefield3" class="form-control" required /></td>
+      <td><input type="text" name="filefield3" id="filefield3" class="form-control" required /></td>
     </tr>
       <tr>
       <td>Seat</td>
-      <td><input type="file" name="filefield3" id="filefield3" class="form-control" required /></td>
+      <td><input type="number" name="filefield4" id="filefield4" class="form-control" required /></td>
     </tr>
   </table>
+
+<div align="center">
+    <input type="submit" name="scan" class="btn btn-success">
+</div>
 </form>
+     <!-- Output text display -->
+<span id="output-text" class="output-text">Predicted price of the car is : {{ data1 }}</span>
+<script>
+    // Call function to show output text if damage level is available
+    showOutputText();
+</script>
 {% endblock %}

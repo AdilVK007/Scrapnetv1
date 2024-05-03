@@ -1351,12 +1351,14 @@ def viewscrappingstatus(request):
     print(ls)
     return render(request,"User/viewscrappingstatus.html",{'data':ls})
 
+# download rto verified cerficate
 def getcertificate(request,id):
     c = certificate.objects.get(VEHICLE_id=id)[0]
     a = User.objects.get(LOGIN_id = request.session['lid']).aadhar_no
 
     return render(request, "user/view_usercertificate.html",{''})
 
+# user home page
 def user_home(request):
     return render(request,"user/userindex.html")
 
@@ -1366,7 +1368,7 @@ def user_home(request):
 
 
 
-#--------------------------AI DON DP -------------------
+#--------------------------AI!!!!!!!!!!-------------------
 #--------------------------DAMAGE PREDICTION--------------
 def dmgpredict(request):
     return render(request,"user/damagedetection.html")
@@ -1448,12 +1450,46 @@ def prediction(request):
 
 
     import pandas as pd
-    data = pd.read_csv("C:\\Users\\DELL\\Desktop\\smi scrapnet\\untitled1\\ALg2Dataset\\csv1.csv")
+    data = pd.read_csv("C:\\Users\\Administrator\\PycharmProjects\\scrap\\ALg2Dataset\\csv1.csv")
+    data2 = pd.read_csv("C:\\Users\\Administrator\\PycharmProjects\\scrap\\ALg2Dataset\\cars.csv")
     df = pd.DataFrame(data)
+    df2 = pd.DataFrame(data2)
     res = df.name.unique()
-    print(res)
+    res2 = df2.name.unique()
 
-    return render(request,'user/prediction_user.html',{'data':res})
+    fuelnms = df.fuel.unique()
+    fuelindex = df2.fuel.unique()
+
+    seller_typenms = df.seller_type.unique()
+    seller_typeindex = df2.seller_type.unique()
+
+    transmission_typenms = df.transmission.unique()
+    transmission_typeindex = df2.transmission.unique()
+
+    owner_typenms = df.owner.unique()
+    owner_typeindex = df2.owner.unique()
+
+    res3 = []
+    for i, j in zip(res2, res):
+        res3.append({'id': i, 'car': j})
+
+    fuels = []
+    for i, j in zip(fuelindex, fuelnms):
+        fuels.append({'id': i, 'fuel': j})
+
+    seller_type = []
+    for i, j in zip(seller_typeindex, seller_typenms):
+        seller_type.append({'id': i, 'seller_type': j})
+
+    transmission = []
+    for i, j in zip(transmission_typeindex, transmission_typenms):
+        transmission.append({'id': i, 'transmission': j})
+
+    owner = []
+    for i, j in zip(owner_typeindex, owner_typenms):
+        owner.append({'id': i, 'owner': j})
+
+    return render(request,'user/prediction_user.html',{'data':res, 'data2':res3, 'fuels':fuels, 'seller_type':seller_type, 'transmission':transmission, 'owner':owner})
 
 
 def prediction_post(request):
@@ -1465,9 +1501,9 @@ def prediction_post(request):
         seller_type = request.POST['s2']
         transmission = request.POST['s3']
         owner = request.POST['s4']
-        Mileage = request.POST['filefield7']
-        engine = request.POST['filefield8']
-        seat = request.POST['filefield9']
+        Mileage = request.POST['filefield2']
+        engine = request.POST['filefield3']
+        seat = request.POST['filefield4']
 
         import numpy as np
         import pandas as pd
