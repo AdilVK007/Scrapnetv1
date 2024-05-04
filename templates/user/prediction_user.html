@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+{#    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">#}
 {#    <link rel="stylesheet" href="styles.css">#}
     <title>Price Prediction</title>
 </head>
@@ -18,23 +18,23 @@
         margin-top: 10px;
         display: none; /* Hide by default */
     }
-    select {
-        appearance: none; /* Removes default styling */
-        border: 1px solid #ccc;
-        border-radius: 15px; /* Rounded borders */
-        padding: 5px 10px;
-        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"><path d="M0 2l6 6 6-6z"/></svg>');
-        background-repeat: no-repeat;
-        background-position: right 10px center;
-        background-color: white;
-        cursor: pointer;
-    }
-    select:hover {
-        border-color: #888; /* Change border color on hover */
-    }
-    select#mySelect option:hover {
-    background-color: #f0f0f0; /* Change background color on hover */
-}
+{#    select {#}
+{#        appearance: none; /* Removes default styling */#}
+{#        border: 1px solid #ccc;#}
+{#        border-radius: 15px; /* Rounded borders */#}
+{#        padding: 5px 10px;#}
+{#        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"><path d="M0 2l6 6 6-6z"/></svg>');#}
+{#        background-repeat: no-repeat;#}
+{#        background-position: right 10px center;#}
+{#        background-color: white;#}
+{#        cursor: pointer;#}
+{#    }#}
+{#    select:hover {#}
+{#        border-color: #888; /* Change border color on hover */#}
+{#    }#}
+{#    select#mySelect option:hover {#}
+{#    background-color: #f0f0f0; /* Change background color on hover */#}
+{#}#}
 </style>
 <script>
     // Function to show output text if damage level is available
@@ -51,7 +51,7 @@ function showOutputText() {
   <table class="table table-bordered table-hover">
     <tr>
       <td>Vehicle Name</td>
-      <td><select name="textfield" id="mySelect">
+      <td><select name="textfield" id="mySelect" class="form-control">
           {% for i in data2 %}
           <option value="{{ i.id }}">{{ i.car }}</option>
           {% endfor %}
@@ -69,7 +69,7 @@ function showOutputText() {
     </tr>
     <tr>
       <td>Fuel Type</td>
-      <td><select name="s1" id="mySelect" style="padding-right: 30px;">
+      <td><select name="s1" id="mySelect" style="padding-right: 30px;" class="form-control">
           {% for i in fuels %}
           <option value="{{ i.id }}">{{ i.fuel }}</option>
           {% endfor %}
@@ -79,7 +79,7 @@ function showOutputText() {
     </tr>
       <tr>
       <td>Seller Type</td>
-      <td><select name="s2">
+      <td><select name="s2" class="form-control">
           {% for i in seller_type %}
           <option value="{{ i.id }}">{{ i.seller_type }}</option>
           {% endfor %}
@@ -89,7 +89,7 @@ function showOutputText() {
     </tr>
        <tr>
       <td>Transmission</td>
-      <td><select name="s3">
+      <td><select name="s3" style="padding-right: 30px;" class="form-control">
           {% for i in transmission %}
           <option value="{{ i.id }}">{{ i.transmission }}</option>
           {% endfor %}
@@ -98,7 +98,7 @@ function showOutputText() {
     </tr>
       <tr>
       <td>Owner Name</td>
-      <td><select name="s4">
+      <td><select name="s4" class="form-control">
           {% for i in owner %}
           <option value="{{ i.id }}">{{ i.owner }}</option>
           {% endfor %}

@@ -9882,6 +9882,7 @@ a.link-style:hover:before {
   transform: rotate(-45deg); }
 
 .gg-sun:after {
+  --font-color: white;
   transform: rotate(45deg); }
 
 .mode-container i.gg-sun {

@@ -1,7 +1,9 @@
 import datetime
+import smtplib
+
 from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 from Myapp.models import *
@@ -66,9 +68,13 @@ def login_post(request):
 
 # change pass for admin
 def change_password(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     return render(request,"Admin/changepassword.html")
 
 def change_pass_post(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     currentpass=request.POST['textfield']
     newpass = request.POST['textfield2']
     confirmpass = request.POST['textfield3']
@@ -85,9 +91,13 @@ def change_pass_post(request):
 
 # rto management (Add,Edit, delete rto)
 def rto_management(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     return render(request,'Admin/rtomanagement.html')
 
 def rto_management_post(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     username = request.POST['textfield']
     photo = request.FILES['textfield2']
     email = request.POST['textfield3']
@@ -123,24 +133,34 @@ def rto_management_post(request):
     return HttpResponse('''<script>alert("RTO has been successfully added.");window.location='/Myapp/admin_home/'</script>''')
 
 def rto_view(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     r = Rto.objects.all()
     return render(request,"Admin/rtoview.html",{'data':r})
 
 def rtoview_post(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     search = request.POST['textfield']
     r = Rto.objects.filter(username__icontains=search)
     return render(request, "Admin/rtoview.html", {'data': r})
 
 def deleterto(request,id):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     r = Rto.objects.get(id=id)
     r.delete()
     return HttpResponse('''<script>alert("RTO successfully deleted.");window.location='/Myapp/rto_view/'</script>''')
 
 def editrto(request,id):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     r = Rto.objects.get(id=id)
     return render(request,"Admin/editrto.html",{'data':r})
 
 def editro_post(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     username = request.POST['textfield']
     email = request.POST['textfield3']
     phone = request.POST['textfield4']
@@ -184,9 +204,13 @@ def editro_post(request):
 
 # police station mangement (Add, edit, delete police)
 def police_station(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     return render(request,"Admin/policestationmanagement.html")
 
 def policestation_post(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     username = request.POST['textfield']
     photo = request.FILES['textfield1']
     email = request.POST['textfield2']
@@ -226,18 +250,27 @@ def policestation_post(request):
     return HttpResponse('''<script>alert("Police station successfully added.");window.location='/Myapp/admin_home/'</script>''')
 
 def police_station_view(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     obj = Policestation.objects.all()
     return render(request,"Admin/pdstationmanagementview.html",{'data':obj})
 
 def policestationview_post(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     search = request.POST['textfield']
     obj = Policestation.objects.filter(username__icontains=search)
     return render(request,"Admin/pdstationmanagementview.html",{'data':obj})
 
 def editpolicestation(request,id):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     p = Policestation.objects.get(id=id)
     return render(request,"Admin/editpolicestation.html",{'data':p})
 def editpolicestation_post(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
+
     id = request.POST['id']
     username = request.POST['textfield']
     email = request.POST['textfield2']
@@ -264,6 +297,8 @@ def editpolicestation_post(request):
     return HttpResponse('''<script>alert("Police station updated successfully.");window.location='/Myapp/police_station_view/'</script>''')
 
 def deletepolicestation(request,id):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     pd = Policestation.objects.get(id=id)
     pd.delete()
     #Policestation.objects.get(id=id).delete(username=username,email=email,phone=phone,place=place,post=post,district=district,state=state,siname=siname,pin=pin)
@@ -271,6 +306,9 @@ def deletepolicestation(request,id):
 
 #scrap dealer view
 def scrap_dealer_approve(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
+
     s = Scrapdealer.objects.filter(status='Approved')
     # s.status = 'Approved'
     return render(request, "Admin/scrapdealerapprove.html",{'data':s})
@@ -278,48 +316,85 @@ def scrap_dealer_approve(request):
 
 #approved scrap dealer status on database
 def scrapdealer(request,id):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
+
     Scrapdealer.objects.filter(LOGIN_id=id).update(status='Approved')
     Login.objects.filter(id=id).update(type='ScrapDealer')
-    # return  render(request,"Admin/scrap_dealer_approve")
+    email=Scrapdealer.objects.get(LOGIN_id=id).email
+
+    res = Login.objects.filter(username=email)
+
+
+    if res.exists():
+        import random
+        new_pass = random.randint(0000, 9999)
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login("safedore3@gmail.com", "yqqlwlyqbfjtewam")  # App Password
+        to = email
+        subject = "Test Email"
+        body = "Your new password is " + str(new_pass)
+        msg = f"Subject: {subject}\n\n{body}"
+        server.sendmail("s@gmail.com", to, msg)
+
     return HttpResponse('''<script>alert("Scrap dealer successfully approved.");window.location='/Myapp/scrap_dealer_approve/'</script>''')
 
 # scrap dealer approve post
 def scrap_dealer_approve_post(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
+
     search = request.POST['textfield']
     s = Scrapdealer.objects.filter(name__icontains=search)
     return render(request, "Admin/scrapdealerapprove.html",{'data':s})
 
 #rejected scrapdealer(update in database)
 def rejectscrapdealer(request,id):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
+
     Scrapdealer.objects.filter(id=id).update(status='Rejected')
     # return render(request, "Admin/scrapdealerapprove.html")
     return HttpResponse('''<script>alert("Scrap Dealer Successfuly Rejected");window.location='/Myapp/scrap_dealer_view/'</script>''')
 
 # view approved scrap dealers
 def viewapprovedscrapdealer(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     return render(request, "Admin/viewapprovedscrapdealer.html")
 
 def viewapprovedscrapdealer_post(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     search = request.POST['textfield']
     s = Scrapdealer.objects.filter(name__icontains=search)
     return render(request,"Admin/scrapdealerview.html",{'data':s})
 
 # logined scrap dealers
 def scrap_dealer_view(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     res=Scrapdealer.objects.filter(status='Pending')
     return render(request,"Admin/scrapdealerview.html",{'data':res})
 
 def scrap_dealer_view_post(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     search = request.POST['textfield']
     s = Scrapdealer.objects.filter(name__icontains=search)
     return render(request,"Admin/scrapdealerview.html",{'data':s})
 
 def view_rejected_scrap_dealer(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     r = Scrapdealer.objects.filter(status='Rejected')
     return render(request,"Admin/viewrejectedscrapdealer.html",{'data':r})
 
 #displaying rejected scrapdealers
 def view_rejected_scrap_dealer_post(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     search = request.POST['textfield']
     s = Scrapdealer.objects.filter(name__icontains=search)
     return render(request,"Admin/viewrejectedscrapdealer.html",{'data':s})
@@ -344,12 +419,16 @@ def view_rejected_scrap_dealer_post(request):
 #     return HttpResponse('''<script>alert("Vehicle succesfully added");window.location='/Myapp/vehiclemangementadd/'</script>''')
 
 def scrapped_vehicle_view(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     sv = Vehicle.objects.filter(status='scrapping')
     return render(request,"Admin/scrappedvehicleview.html",{'data':sv})
 
 
 
 def scrapped_vehicle_view_post(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     search = request.POST['textfield']
     s = Vehicle.objects.filter(vehicle_name__icontains=search)
     return render(request, "Admin/scrappedvehicleview.html",{'data':s})
@@ -358,15 +437,21 @@ def scrapped_vehicle_view_post(request):
 #     return render(request,"Admin/viewvehicle.html")
 
 def view_users(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     users = User.objects.all()
     return render(request,"Admin/viewusers.html",{'data':users})
 
 def view_users_post(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     search = request.POST['textfield']
     s = User.objects.filter(username__icontains=search)
     return render(request,"Admin/viewusers.html",{"data":s})
 
 def admin_home(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     return render(request,"Admin/adminindex.html")
 
 
@@ -376,9 +461,13 @@ def admin_home(request):
 #police station
 
 def changepasspolice(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     return render(request,"police station/changepass.html")
 
 def changepass_post(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     currentpassword = request.POST['textfield']
     newpassword = request.POST['textfield2']
     confirmpassword = request.POST['textfield3']
@@ -396,10 +485,14 @@ def changepass_post(request):
         return HttpResponse('''<script>alert("Your password has been changed successfully...");window.location='/Myapp/login/'</script>''')
 
 def addsuspeciousactvity(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     res = Vehicle.objects.all()
     return render(request,"police station/addsuspeciousactvity.html",{'data':res})
 
 def addsuspeciousactvity_post(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     vehicle = request.POST['vehicle']
     activity = request.POST['textfield2']
     datee = request.POST['textfield3']
@@ -412,15 +505,22 @@ def addsuspeciousactvity_post(request):
     return HttpResponse('''<script>alert("New suspicious activity detected and added...");window.location='/Myapp/addsuspeciousactvity/'</script>''')
 
 def viewsusactivity(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     viewactivty = Activity.objects.all()
     return render(request,"police station/viewsusactivity.html",{'data':viewactivty})
 
 def editsusactivity(request,id):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     susactivy = Activity.objects.get(id=id)
     ve=Vehicle.objects.all()
     return render(request, "police station/editsuspeciousactvity.html", {'data': susactivy,'data1':ve})
 
 def editsusactivity_post(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
+
     vehicle = request.POST['vehicle']
     V = Vehicle.objects.get(id=vehicle)
     activity = request.POST['textfield2']
@@ -435,35 +535,49 @@ def editsusactivity_post(request):
     return HttpResponse('''<script>alert("Activity successfully updated..");window.location='/Myapp/viewsusactivity/'</script>''')
 
 def deletesusactity(request,id):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     susactivity = Activity.objects.get(id=id)
     susactivity.delete()
     return HttpResponse('''<script>alert("Actvity Successfully Removed..");window.location='/Myapp/viewsusactivity/'</script>''')
 
 def viewsusactivity_post(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     date = request.POST['textfield']
     todate = request.POST['textfield2']
     a = Activity.objects.filter(date__range=[date,todate])
     return render(request,"police station/viewsusactivity.html",{'data':a})
 
 def viewscrappedvehicle(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     viewscrapedveh = Vehicle.objects.filter(status='Vehicle Scrapped')
     return render(request,"police station/viewscrappedvehicle.html",{'data':viewscrapedveh})
 
 def viewscrappedvehicle_post(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     search = request.POST['textfield']
     w = Vehicle.objects.filter(vehicle_name__icontains=search,status='Vehicle Scrapped')
     return render(request,"police station/viewscrappedvehicle.html",{'data':w})
 
 def police_home(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     return render(request,"police station/policeindex.html")
 
 
 
 # RTO MODULE
 def changepass(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     return render(request,"RTO/changepass.html")
 
 def changepass_post(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     currentpassword = request.POST['textfield']
     newpassword = request.POST['textfield2']
     confirmpassword = request.POST['textfield3']
@@ -481,6 +595,8 @@ def changepass_post(request):
         return HttpResponse('''<script>alert("New password has updated..");window.location='/Myapp/login/'</script>''')
 
 def viewprofile(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     r = Rto.objects.get(LOGIN=request.session['lid'])
     return render(request,"RTO/viewprofile.html",{"data":r})
 
@@ -488,9 +604,13 @@ def viewprofile(request):
 #     return render(request,"RTO/viewprofile.html")
 
 def vehicleadd(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     return render(request,"RTO/vehicleadd.html")
 
 def vehicleadd_post(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     vehiclename = request.POST['textfield']
     regnum = request.POST['textfield2']
     ownername = request.POST['textfield3']
@@ -503,6 +623,7 @@ def vehicleadd_post(request):
     monthofmanufacture = request.POST['textfield10']
     yearofmanufacture = request.POST['textfield9']
     regplace = request.POST['textfield11']
+    lic_no = request.POST['textfield13']
     adhar = request.POST['textfield12']
 
     fs = FileSystemStorage()
@@ -531,19 +652,28 @@ def vehicleadd_post(request):
     return HttpResponse('''<script>alert("Vehicle succesfully added");window.location='/Myapp/vehicleadd/'</script>''')
 
 def viewveh(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     ev = Vehicle.objects.all()
     return render(request, "RTO/viewvehicle.html", {'data':ev})
 
 def viewveh_post(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     search = request.POST['textfield']
     w = Vehicle.objects.filter(vehicle_name__icontains=search)
     return render(request, "RTO/viewvehicle.html", {'data': w})
 
 def editveh(request,id):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     ev = Vehicle.objects.get(id=id)
     return render(request, "RTO/editvehicle.html", {'data':ev})
 
 def editveh_post(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
+
     vehiclename = request.POST['textfield']
     regnum = request.POST['textfield2']
     ownername = request.POST['textfield3']
@@ -584,35 +714,49 @@ def editveh_post(request):
     return HttpResponse('''<script>alert("Vehicle succesfully Updated");window.location='/Myapp/viewveh/'</script>''')
 
 def deleteveh(request,id):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     delveh = Vehicle.objects.get(id=id)
     delveh.delete()
     return HttpResponse('''<script>alert("Actvity Successfully Removed..");window.location='/Myapp/viewveh/'</script>''')
 
 
 def viewusers(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     users = User.objects.all()
     return render(request,"RTO/viewusers.html",{'data':users})
 
 def viewusers_post(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     search = request.POST['textfield']
     s = User.objects.filter(username__icontains=search)
     return render(request, "RTO/viewusers.html", {"data": s})
 
 def viewscrapedveh(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     sv = Vehicle.objects.filter(status='Vehicle Scrapped')
     return render(request, "RTO/viewscrappedvehicle.html", {'data': sv})
 
 def viewscrapedveh_post(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     search = request.POST['textfield']
     s = Vehicle.objects.filter(vehicle_name__icontains=search)
     return render(request, "RTO/viewscrappedvehicle.html", {'data': s})
 
 #-------------------------certificate issued by rto-----------------------------------------
 def certificate_rto(request,vid):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     return render(request,"RTO/certificate.html",{'vid':vid})
 
 
 def certificate_rto_post(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     crtfct= request.FILES['fileField']
     lid=request.session['lid']
     vid=request.POST["vid"]
@@ -632,11 +776,15 @@ def certificate_rto_post(request):
     return HttpResponse('''<script>alert('issue certificate  Successfully');window.location="/Myapp/rto_home/"</script>''')
 
 def viewsusAct_rto(request, vid):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     ls = Activity.objects.filter(VEHICLE_id=vid)
     request.session['sid'] = vid
     return render(request,"RTO/viewsuspeciousactivity.html",{'data':ls})
 
 def viewsusActrto_post(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     date = request.POST['textfield']
     todate = request.POST['textfield2']
     act = Activity.objects.filter(date__range=[date, todate])
@@ -645,10 +793,12 @@ def viewsusActrto_post(request):
 
 
 def rto_home(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     return render(request,"RTO/rtoindex.html")
 
 
-# =------------------------scrap dealer module--------------------------
+# =------------------------scrapdealer module--------------------------=
 
 def signup_dealer(request):
     return render(request, "scrap dealer/scrapdealersignupindex.html")
@@ -698,15 +848,22 @@ def signup_dealer_post(request):
         return HttpResponse('''<script>alert("Password doesn't Matching..");window.location='/Myapp/signup_dealer/'</script>''')
 
 def dealer_viewprofile(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     d = Scrapdealer.objects.get(LOGIN=request.session['lid'])
     return render(request,"scrap dealer/viewprofile.html",{'data':d})
 
 
 def updateprofile(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     d = Scrapdealer.objects.get(LOGIN=request.session['lid'])
     return render(request,"scrap dealer/updateprofile.html",{'data':d})
 
 def updateprofile_post(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
+
     name = request.POST['textfield']
     email = request.POST['textfield3']
     phone = request.POST['textfield4']
@@ -746,10 +903,14 @@ def updateprofile_post(request):
     return HttpResponse('''<script>alert("Account is successfully updated..");window.location='/Myapp/dealer_viewprofile/'</script>''')
 
 def viewrequest(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     vr = Request.objects.all()
     return render(request, "scrap dealer/viewpendscraprequest.html", {'data':vr})
 
 def viewrequest_post(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     search = request.POST['textfield']
     w = Request.objects.filter(requestid_icontains=search)
     return render(request, "scrap dealer/viewpendscraprequest.html", {'data': w})
@@ -757,6 +918,9 @@ def viewrequest_post(request):
 
 
 def pending_scrapreq(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
+
     with open(compiled_contract_path) as file:
         contract_json = json.load(file)  # load contract info as JSON
         contract_abi = contract_json['abi']  # fetch contract's abi - necessary to call its functions
@@ -819,6 +983,9 @@ def pending_scrapreq(request):
 
 
 def viewapproved_scrapreq(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
+
     with open(compiled_contract_path) as file:
         contract_json = json.load(file)  # load contract info as JSON
         contract_abi = contract_json['abi']  # fetch contract's abi - necessary to call its functions
@@ -880,6 +1047,9 @@ def viewapproved_scrapreq(request):
     return render(request,'scrap dealer/viewapprovedscraprequest.html',{'data':ls})
 
 def viewrejected_scrapreq(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
+
     with open(compiled_contract_path) as file:
         contract_json = json.load(file)  # load contract info as JSON
         contract_abi = contract_json['abi']  # fetch contract's abi - necessary to call its functions
@@ -941,6 +1111,9 @@ def viewrejected_scrapreq(request):
     return render(request,'scrap dealer/viewrejectedscraprequest.html',{'data':ls})
 
 def view_userrequest_rto(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
+
     with open(compiled_contract_path) as file:
         contract_json = json.load(file)  # load contract info as JSON
         contract_abi = contract_json['abi']  # fetch contract's abi - necessary to call its functions
@@ -1058,38 +1231,57 @@ def view_userrequest_rto(request):
 
 
 def approve_user_request(request,id):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     aa=Request.objects.filter(requestid=id).update(status='approved')
     return HttpResponse('''<script>alert("Forward");window.location='/Myapp/pending_scrapreq/cript>''')
 
 def reject_user_request(request,id):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     aa = Request.objects.filter(requestid=id).update(status='rejected')
     return HttpResponse('''<script>alert("Rejected");window.location='/Myapp/pending_scrapreq/'</script>''')
 
 def viewsusAct(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
+
     viewactivty = Activity.objects.all()
     return render(request,"scrap dealer/viewsuspeciousactivity.html",{'data':viewactivty})
 
 def viewsusAct_post(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     date = request.POST['textfield']
     todate = request.POST['textfield2']
     act = Activity.objects.filter(date__range=[date, todate])
     return render(request, "scrap dealer/viewsuspeciousactivity.html", {'data': act})
 
 def viewverifystats(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     return render(request,"scrap dealer/viewverifystats.html")
 
 def viewverifystats_post(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     # search = request.POST['textfield']
     # v = Request.objects.filter(requestid_icontains=search)
     return render(request,"scrap dealer/viewverifystats.html")
 
 def scrapstationup(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     return render(request,"scrap dealer/updateprofile.html")
 
 def scrapstationup_post(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     return render(request,"scrap dealer/updateprofile.html")
 
 def scrapdealer_home(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     return render(request,"scrap dealer/scrapdealerindex.html")
 
 
@@ -1143,9 +1335,13 @@ def usersignup_post(request):
 
     return HttpResponse('''<script>alert("Account is successfully created..");window.location='/Myapp/login/'</script>''')
 def changepasswd(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     return render(request,"user/changepasswd.html")
 
 def changepasswd_post(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     currentpass = request.POST['textfield']
     newpass = request.POST['textfield2']
     confirmpass = request.POST['textfield3']
@@ -1163,14 +1359,21 @@ def changepasswd_post(request):
         return HttpResponse('''<script>alert("New password has updated..");window.location='/Myapp/login/'</script>''')
 
 def userviewprofile(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     u = User.objects.get(LOGIN_id=request.session['lid'])
     return render(request,"user/viewprofile.html",{'data':u})
 
 def edituserprofile(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     eu = User.objects.get(LOGIN_id=request.session['lid'])
     return render(request,"user/editprofile.html",{'data':eu})
 
 def edituserprofile_post(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
+
     username = request.POST['textfield']
     email = request.POST['textfield2']
     phone = request.POST['textfield3']
@@ -1216,6 +1419,9 @@ def edituserprofile_post(request):
 #
 
 def viewvehicle(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
+
     a=User.objects.get(LOGIN_id=request.session['lid']).aadhar_no
     vv = Vehicle.objects.filter(aadhar_no=a)
     v = certificate.objects.filter(VEHICLE__aadhar_no=a)
@@ -1223,11 +1429,15 @@ def viewvehicle(request):
     return render(request,"user/viewvhicle.html",{'data':vv, 'certs':certs})
 
 def viewvehicle_post(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     search = request.POST['textfield']
     vehv = Vehicle.objects.filter(vehicle_name__icontains=search)
     return render(request,"user/viewvhicle.html",{'data':vehv})
 #
 def userviewcertificate(request,id):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     vs = certificate.objects.filter(VEHICLE_id=id)
     a=User.objects.get(aadhar_no = vs[0].VEHICLE.aadhar_no)
     return render(request, "user/view_usercertificate.html",{'data':vs, 'User':a,'vid':id})
@@ -1235,20 +1445,28 @@ def userviewcertificate(request,id):
 
 
 def userviewscrapdealer(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     vs = Scrapdealer.objects.filter(status='Approved')
     return render(request, "user/scrapdealerview.html",{'data':vs})
 
 
 def userviewscrapdealer_post(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     search = request.POST['textfield']
     vs = Scrapdealer.objects.filter(name__icontains=search)
     return render(request, "user/scrapdealerview.html",{'data':vs})
 
 def addscraprequest(request,id):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     return render(request,"user/Addscraprequest.html",{'id':id})
 
 #bc
 def addscraprequest_post(request,id):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     # vehid = request.POST['vid']
     # scrapdealerid = request.POST['sid']
     # vv=Vehicle.objects.filter(id=id).update(status="pending")
@@ -1288,6 +1506,8 @@ def addscraprequest_post(request,id):
 
 #bc
 def viewscrappingstatus(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     with open(compiled_contract_path) as file:
         contract_json = json.load(file)  # load contract info as JSON
         contract_abi = contract_json['abi']  # fetch contract's abi - necessary to call its functions
@@ -1353,6 +1573,8 @@ def viewscrappingstatus(request):
 
 # download rto verified cerficate
 def getcertificate(request,id):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     c = certificate.objects.get(VEHICLE_id=id)[0]
     a = User.objects.get(LOGIN_id = request.session['lid']).aadhar_no
 
@@ -1360,10 +1582,15 @@ def getcertificate(request,id):
 
 # user home page
 def user_home(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     return render(request,"user/userindex.html")
 
 
-
+# logout section
+def logout(request):
+    request.session['lid']=""
+    return redirect('/Myapp/login');
 
 
 
@@ -1371,10 +1598,14 @@ def user_home(request):
 #--------------------------AI!!!!!!!!!!-------------------
 #--------------------------DAMAGE PREDICTION--------------
 def dmgpredict(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     return render(request,"user/damagedetection.html")
 
 
 def damageprediction_post(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     photo = request.FILES['fileField']
     from datetime import datetime
     date = datetime.now().strftime("%Y%m%d%H%M%S") + ".jpg"
@@ -1447,7 +1678,8 @@ def damageprediction_post(request):
 
 # ------------------Price Prediction--------------------------------
 def prediction(request):
-
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
 
     import pandas as pd
     data = pd.read_csv("C:\\Users\\Administrator\\PycharmProjects\\scrap\\ALg2Dataset\\csv1.csv")
@@ -1493,48 +1725,97 @@ def prediction(request):
 
 
 def prediction_post(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
 
-        name = request.POST['textfield']
-        year = request.POST['textfield2']
-        km_driven = request.POST['filefield']
-        fuel = request.POST['s1']
-        seller_type = request.POST['s2']
-        transmission = request.POST['s3']
-        owner = request.POST['s4']
-        Mileage = request.POST['filefield2']
-        engine = request.POST['filefield3']
-        seat = request.POST['filefield4']
-
-        import numpy as np
-        import pandas as pd
-
-        # Load the dataset
-        cars_data = pd.read_csv(r"C:\\Users\\Administrator\\PycharmProjects\\scrap\\ALg2Dataset\\cars.csv")
-
-        # Split the data into features (X) and target variable (y)
-        X = cars_data.iloc[:25000, :-1]
-        y = cars_data.iloc[:25000, -1]
-
-        # Split the data into training and testing sets
-        from sklearn.model_selection import train_test_split
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
-
-        # Feature scaling
-        from sklearn.preprocessing import StandardScaler
-        scaler = StandardScaler()
-        X_train = scaler.fit_transform(X_train)
-        X_test = scaler.transform(X_test)
-
-        # Train the random forest model
-        from sklearn.ensemble import RandomForestRegressor
-        rf_regressor = RandomForestRegressor(n_estimators=100, random_state=0)
-        rf_regressor.fit(X_train, y_train)
+    ################################### get value #####################################################
 
 
-        # Predict the price of a car
-        car = [[name, year, km_driven, fuel, seller_type, transmission, owner, Mileage, engine, seat]]
-        car = scaler.transform(car)
-        predicted_price = rf_regressor.predict(car)
-        print("Predicted price of the car is:", predicted_price)
+    import pandas as pd
+    data = pd.read_csv("C:\\Users\\Administrator\\PycharmProjects\\scrap\\ALg2Dataset\\csv1.csv")
+    data2 = pd.read_csv("C:\\Users\\Administrator\\PycharmProjects\\scrap\\ALg2Dataset\\cars.csv")
+    df = pd.DataFrame(data)
+    df2 = pd.DataFrame(data2)
+    res = df.name.unique()
+    res2 = df2.name.unique()
 
-        return render(request,"user/prediction_user.html",{'data1':predicted_price[0]})
+    fuelnms = df.fuel.unique()
+    fuelindex = df2.fuel.unique()
+
+    seller_typenms = df.seller_type.unique()
+    seller_typeindex = df2.seller_type.unique()
+
+    transmission_typenms = df.transmission.unique()
+    transmission_typeindex = df2.transmission.unique()
+
+    owner_typenms = df.owner.unique()
+    owner_typeindex = df2.owner.unique()
+
+    res3 = []
+    for i, j in zip(res2, res):
+        res3.append({'id': i, 'car': j})
+
+    fuels = []
+    for i, j in zip(fuelindex, fuelnms):
+        fuels.append({'id': i, 'fuel': j})
+
+    st = []
+    for i, j in zip(seller_typeindex, seller_typenms):
+        st.append({'id': i, 'seller_type': j})
+
+    Transmission = []
+    for i, j in zip(transmission_typeindex, transmission_typenms):
+        Transmission.append({'id': i, 'transmission': j})
+
+    ownership = []
+    for i, j in zip(owner_typeindex, owner_typenms):
+        ownership.append({'id': i, 'owner': j})
+
+
+    ############################################################################# end value
+
+
+    name = request.POST['textfield']
+    year = request.POST['textfield2']
+    km_driven = request.POST['filefield']
+    fuel = request.POST['s1']
+    seller_type = request.POST['s2']
+    transmission = request.POST['s3']
+    owner = request.POST['s4']
+    Mileage = request.POST['filefield2']
+    engine = request.POST['filefield3']
+    seat = request.POST['filefield4']
+
+    import numpy as np
+    import pandas as pd
+
+    # Load the dataset
+    cars_data = pd.read_csv(r"C:\\Users\\Administrator\\PycharmProjects\\scrap\\ALg2Dataset\\cars.csv")
+
+    # Split the data into features (X) and target variable (y)
+    X = cars_data.iloc[:25000, :-1]
+    y = cars_data.iloc[:25000, -1]
+
+    # Split the data into training and testing sets
+    from sklearn.model_selection import train_test_split
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+
+    # Feature scaling
+    from sklearn.preprocessing import StandardScaler
+    scaler = StandardScaler()
+    X_train = scaler.fit_transform(X_train)
+    X_test = scaler.transform(X_test)
+
+    # Train the random forest model
+    from sklearn.ensemble import RandomForestRegressor
+    rf_regressor = RandomForestRegressor(n_estimators=100, random_state=0)
+    rf_regressor.fit(X_train, y_train)
+
+
+    # Predict the price of a car
+    car = [[name, year, km_driven, fuel, seller_type, transmission, owner, Mileage, engine, seat]]
+    car = scaler.transform(car)
+    predicted_price = rf_regressor.predict(car)
+    print("Predicted price of the car is:", predicted_price)
+
+    return render(request,"user/prediction_user.html",{'data1':predicted_price[0],'data':res, 'data2':res3, 'fuels':fuels, 'seller_type':st, 'transmission':Transmission, 'owner':ownership})

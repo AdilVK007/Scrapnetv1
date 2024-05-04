@@ -132,8 +132,9 @@ urlpatterns = [
     path('addscraprequest_post/<id>', views.addscraprequest_post),
     path('viewscrappingstatus/', views.viewscrappingstatus),
     path('user_home/', views.user_home),
+    path('logout/', views.logout),
 
-# -------AI---------------
+    # -------AI---------------
 path('dmgpredict/', views.dmgpredict),
 path('damageprediction_post/', views.damageprediction_post),
 path('prediction/', views.prediction),
