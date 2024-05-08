@@ -4,26 +4,26 @@
 <body>
 <form id="form1" name="form1" method="post" action="/Myapp/view_rejected_scrap_dealer_post/">
     {% csrf_token %}
- <table class="table table-bordered">
+ <table class="pull-left">
         <tr>
-            <td><input type="text" name="textfield" class="form-control"/></td>
+            <td><input type="text" name="textfield" class="form-control" placeholder="Search with name" p/></td>
             <td><input type="submit" value="search" class="btn btn-info"/></td>
         </tr>
 </table>
     <table class="table table-bordered">
     <tr>
-      <td>sl.no</td>
-      <td>name</td>
-      <td>profile picture</td>
-      <td>email</td>
-      <td>phone</td>
-      <td>place</td>
-      <td>post</td>
-      <td>pin</td>
-      <td>district</td>
-      <td>License number</td>
-      <td>status</td>
-      <td>&nbsp;</td>
+      <th>sl.no</th>
+      <th>name</th>
+      <th>profile picture</th>
+      <th>email</th>
+      <th>phone</th>
+      <th>place</th>
+      <th>post</th>
+      <th>pin</th>
+      <th>district</th>
+      <th>License number</th>
+      <th>status</th>
+      <th>&nbsp;</th>
     </tr>
         {% for i in data %}
     <tr>
@@ -38,7 +38,7 @@
       <td>{{ i.district }}&nbsp;</td>
       <td>{{ i.license_no }}&nbsp;</td>
       <td>{{ i.status }}&nbsp;</td>
-      <td colspan="2" align="center"><a href="#" class="btn btn-success">Approve</a></td>
+      <td colspan="2" align="center"><a href="/Myapp/scrapdealer/{{ i.LOGIN.id }}" class="btn btn-success">Approve</a></td>
     </tr>
         {% endfor %}
   </table>

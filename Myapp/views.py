@@ -62,7 +62,7 @@ def login_post(request):
         elif l.type == 'User':
             return HttpResponse('''<script>alert("Welcome! You have successfully logged in.");window.location='/Myapp/user_home'</script>''')
         else:
-            return HttpResponse('''<script>alert("Welcome! You have successfully logged in.");window.location='/Myapp/login/'</script>''')
+            return HttpResponse('''<script>alert("Sorry, we couldn't find that user. Please check your credentials and try again.");window.location='/Myapp/login/'</script>''')
     else:
         return HttpResponse('''<script>alert("Sorry, we couldn't find that user. Please check your credentials and try again.");window.location='/Myapp/login/'</script>''')
 
@@ -328,13 +328,13 @@ def scrapdealer(request,id):
 
     if res.exists():
         import random
-        new_pass = random.randint(0000, 9999)
+        # new_pass = random.randint(0000, 9999)
         server = smtplib.SMTP('smtp.gmail.com', 587)
         server.starttls()
         server.login("safedore3@gmail.com", "yqqlwlyqbfjtewam")  # App Password
         to = email
-        subject = "Test Email"
-        body = "Your new password is " + str(new_pass)
+        subject = "Account Activation"
+        body = "Your account is approved"               #+ str(new_pass)
         msg = f"Subject: {subject}\n\n{body}"
         server.sendmail("s@gmail.com", to, msg)
 
@@ -466,23 +466,24 @@ def changepasspolice(request):
     return render(request,"police station/changepass.html")
 
 def changepass_post(request):
-    if request.session['lid']=="":
-        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
+    # if request.session['lid']=="":
+    #     return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     currentpassword = request.POST['textfield']
     newpassword = request.POST['textfield2']
     confirmpassword = request.POST['textfield3']
-    l = Login.objects.get(id=request.session['lid'])
-    if l.password == currentpassword:
+    l = Login.objects.filter(password=currentpassword)
+    if l.exists():
+        l1 = Login.objects.get(password=currentpassword,id=request.session['lid'])
         if newpassword == confirmpassword:
-            l.password = newpassword
-            l.save()
-            return HttpResponse(
-                '''<script>alert("Your new password has been updated...");window.location='/Myapp/login/'</script>''')
+            l1 = Login.objects.filter(password=currentpassword, id=request.session['lid']).update(password=newpassword)
+            # l.password = newpassword
+            # l.save()
+            return HttpResponse('''<script>alert("Your new password has been updated...");window.location='/Myapp/login/'</script>''')
         else:
-            return HttpResponse(
-                '''<script>alert("Oops! The passwords you entered do not match. Please try again.");window.location='/Myapp/change_password/'</script>''')
+            return HttpResponse('''<script>alert("Oops! The passwords you entered do not match. Please try again.");window.location='/Myapp/changepasspolice/'</script>''')
     else:
-        return HttpResponse('''<script>alert("Your password has been changed successfully...");window.location='/Myapp/login/'</script>''')
+        return HttpResponse('''<script>alert("Oops! The current passwords you entered do not match. Please try again.");window.location='/Myapp/changepasspolice/'</script>''')
+
 
 def addsuspeciousactvity(request):
     if request.session['lid']=="":
@@ -552,14 +553,16 @@ def viewsusactivity_post(request):
 def viewscrappedvehicle(request):
     if request.session['lid']=="":
         return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
-    viewscrapedveh = Vehicle.objects.filter(status='Vehicle Scrapped')
+    # viewscrapedveh = Vehicle.objects.filter(status='Vehicle Scrapped')
+    viewscrapedveh = Vehicle.objects.filter(status='scrapping')
     return render(request,"police station/viewscrappedvehicle.html",{'data':viewscrapedveh})
 
 def viewscrappedvehicle_post(request):
     if request.session['lid']=="":
         return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     search = request.POST['textfield']
-    w = Vehicle.objects.filter(vehicle_name__icontains=search,status='Vehicle Scrapped')
+    w = Vehicle.objects.filter(vehicle_name__icontains=search,status='scrapping')
+    # w = Vehicle.objects.filter(vehicle_name__icontains=search,status='Vehicle Scrapped')
     return render(request,"police station/viewscrappedvehicle.html",{'data':w})
 
 def police_home(request):
@@ -575,7 +578,7 @@ def changepass(request):
         return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     return render(request,"RTO/changepass.html")
 
-def changepass_post(request):
+def rto_changepass_post(request):
     if request.session['lid']=="":
         return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     currentpassword = request.POST['textfield']
@@ -590,7 +593,7 @@ def changepass_post(request):
                 '''<script>alert("New password has updated..");window.location='/Myapp/login/'</script>''')
         else:
             return HttpResponse(
-                '''<script>alert("Passwords are not matching");window.location='/Myapp/change_password/'</script>''')
+                '''<script>alert("Passwords are not matching");window.location='/Myapp/changepass/'</script>''')
     else:
         return HttpResponse('''<script>alert("New password has updated..");window.location='/Myapp/login/'</script>''')
 

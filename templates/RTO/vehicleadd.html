@@ -4,59 +4,59 @@
     {% csrf_token %}
   <table class="table table-bordered">
     <tr>
-      <td>vehicle name</td>
-      <td><input type="text" name="textfield" id="textfield" class="form-control" /></td>
+      <th>vehicle name</th>
+      <td><input type="text" name="textfield" id="textfield" class="form-control" required pattern="[A-Z a-z]+" /></td>
     </tr>
     <tr>
-      <td>Registration Number</td>
-      <td><input type="text" name="textfield2" id="textfield2" class="form-control" /></td>
+      <th>Registration Number</th>
+      <td><input type="text" name="textfield2" id="textfield2" class="form-control" required pattern="[0-9][A-Z]{8}" max="8" /></td>
     </tr>
     <tr>
-      <td>Owner name</td>
-      <td><input type="text" name="textfield3" id="textfield3" class="form-control" /></td>
+      <th>Owner name</th>
+      <td><input type="text" name="textfield3" id="textfield3" class="form-control" required pattern="[A-Z a-z]+" /></td>
     </tr>
     <tr>
-      <td>Registration Date</td>
-      <td><input type="date" name="textfield4" id="textfield4" class="form-control" /></td>
+      <th>Registration Date</th>
+      <td><input type="date" name="textfield4" id="textfield4" class="form-control" required /></td>
     </tr>
     <tr>
-      <td>Vehicle Type</td>
-      <td><input type="text" name="textfield5" id="textfield5" class="form-control" /></td>
+      <th>Vehicle Type</th>
+      <td><input type="text" name="textfield5" id="textfield5" class="form-control" required pattern="[A-Z a-z]+" /></td>
     </tr>
     <tr>
-      <td>Contact</td>
-      <td><input type="text" name="textfield6" id="textfield6" class="form-control" /></td>
+      <th>Contact</th>
+      <td><input type="text" name="textfield6" id="textfield6" class="form-control" required pattern="[6789][0-9]{9}" max="9" /></td>
     </tr>
     <tr>
-      <td>Vehicle Picture</td>
+      <th>Vehicle Picture</th>
       <td><input type="file" name="fileField" id="fileField" class="form-control" /></td>
     </tr>
     <tr>
-      <td>Engine Number</td>
+      <th>Engine Number</th>
       <td><input type="text" name="textfield7" id="textfield7" class="form-control" /></td>
     </tr>
     <tr>
-      <td>Chase number</td>
+      <th>Chase number</th>
       <td><input type="text" name="textfield8" id="textfield8" class="form-control" /></td>
     </tr>
     <tr>
-      <td>Year of manufacturing</td>
+      <th>Year of manufacturing</th>
       <td><input type="number" name="textfield9" id="textfield9" class="form-control" /></td>
     </tr>
     <tr>
-      <td>month of manufacturing</td>
+      <th>month of manufacturing</th>
       <td><input type="text" name="textfield10" id="textfield10" class="form-control" /></td>
     </tr>
     <tr>
-      <td>Registration place</td>
+      <th>Registration place</th>
       <td><input type="text" name="textfield11" id="textfield11" class="form-control" /></td>
     </tr>
     <tr>
-      <td>Adhaar Number</td>
+      <th>Adhaar Number</th>
       <td><input type="text" name="textfield12" id="textfield12" class="form-control" /></td>
     </tr>
       <tr>
-      <td>Lisence Number</td>
+      <th>Lisence Number</th>
       <td><input type="text" name="textfield13" id="textfield13" class="form-control" /></td>
     </tr>
       <td colspan="2" align="center"><input type="submit" name="Add" id="Add" value="Add" class="btn btn-success" /></td>

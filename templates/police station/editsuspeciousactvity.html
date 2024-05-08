@@ -5,7 +5,7 @@
   <table class="table table-bordered">
     <tr>
     <input type="hidden" name="id1" value="{{ data.id }}">
-      <td>Vehicle</td>
+      <th>Vehicle</th>
       <td>
           <select name="vehicle" class="form-control">
               {% for i in data1 %}
@@ -27,11 +27,11 @@
       </td>
     </tr>
     <tr>
-      <td>Activity</td>
+      <th>Activity</th>
       <td><input type="text" name="textfield2" id="textfield2" class="form-control" required value="{{  data.activity }}" /></td>
     </tr>
     <tr>
-      <td>Date</td>
+      <th>Date</th>
       <td><input type="Date" name="textfield3" id="textfield3" class="form-control" required value="{{ data.date|date:"Y-m-d" }}" /></td>
     </tr>
     <tr>

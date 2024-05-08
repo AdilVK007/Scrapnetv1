@@ -4,45 +4,45 @@
     {% csrf_token %}
     <input type="hidden" name="id" value="{{ data.id }}">
   <tr>
-    <td>USERNAME</td>
-    <td><input type="text" name="textfield" id="textfield" value="{{ data.username }}" required /></td>
+    <th>USERNAME</th>
+    <td><input type="text" name="textfield" id="textfield" class="form-control" value="{{ data.username }}" required pattern="[A-Z a-z]+" /></td>
   </tr>
   <tr>
-    <td>PROFILE PHOTO</td>
+    <th>PROFILE PHOTO</th>
     <td><img src="{{ data.photo }}" alt="" height="50px" width="50px"/>
-        <input type="file" name="textfield2" id="textfield2" required /></td>
+        <input type="file" name="textfield2" id="textfield2"  /></td>
   </tr>
   <tr>
-    <td>EMAIL</td>
-    <td><input type="text" name="textfield3" id="textfield3" value="{{ data.email }}" class="form-control" required /></td>
+    <th>EMAIL</th>
+    <td><input type="email" name="textfield3" id="textfield3" value="{{ data.email }}" class="form-control" required  /></td>
   </tr>
   <tr>
-    <td>PHONE NUMBER</td>
-    <td><input type="text" name="textfield4" id="textfield4" value="{{ data.phone }}" class="form-control" required /></td>
+    <th>PHONE NUMBER</th>
+    <td><input type="text" name="textfield4" id="textfield4" value="{{ data.phone }}" class="form-control" required pattern="[6789][0-9]{9}" max="9" /></td>
   </tr>
   <tr>
-    <td>PLACE</td>
-    <td><input type="text" name="textfield5" id="textfield5" value="{{ data.place }}" class="form-control" /></td>
+    <th>PLACE</th>
+    <td><input type="text" name="textfield5" id="textfield5" value="{{ data.place }}" class="form-control" required /></td>
   </tr>
   <tr>
-    <td>DISTRICT</td>
-    <td><input type="text" name="textfield6" id="textfield6" value="{{ data.district }}" class="form-control" /></td>
+    <th>DISTRICT</th>
+    <td><input type="text" name="textfield6" id="textfield6" value="{{ data.district }}" class="form-control" required pattern="[A-Z a-z]+" /></td>
   </tr>
   <tr>
-    <td>PIN</td>
-    <td><input type="text" name="textfield7" id="textfield7" value="{{ data.pin }}" class="form-control" class="form-control" /></td>
+    <th>PIN</th>
+    <td><input type="text" name="textfield7" id="textfield7" value="{{ data.pin }}" class="form-control" required pattern="[0-9]{6}" max="6" /></td>
   </tr>
    <tr>
-    <td>POST</td>
-    <td><input type="text" name="textfield8" id="textfield8" value="{{ data.post }}" class="form-control" /></td>
+    <th>POST</th>
+    <td><input type="text" name="textfield8" id="textfield8" value="{{ data.post }}" class="form-control" required /></td>
   </tr>
     <tr>
-    <td>STATE</td>
-    <td><input type="text" name="textfield9" id="textfield9" value="{{ data.state }}" class="form-control" /></td>
+    <th>STATE</th>
+    <td><input type="text" name="textfield9" id="textfield9" value="{{ data.state }}" class="form-control" required pattern="[A-Z a-z]+" /></td>
   </tr>
   <tr>
   <tr>
-    <td colspan="2" align="center"><input type="submit" name="button" id="button" value="Edit" /></td>
+    <td colspan="2" align="center"><input type="submit" name="button" id="button" value="Edit" class="btn btn-success" /></td>
     <td>&nbsp;</td>
   </tr>
 </table>

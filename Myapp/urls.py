@@ -70,7 +70,7 @@ urlpatterns = [
 
     #RTO MODULE
     path('changepass/', views.changepass),
-    path('changepass_post/', views.changepass_post),
+    # path('changepass_post/', views.changepass_post),
     path('viewprofile/', views.viewprofile),
     # path('viewprofile_post/', views.viewprofile_post),
     path('vehicleadd/', views.vehicleadd),

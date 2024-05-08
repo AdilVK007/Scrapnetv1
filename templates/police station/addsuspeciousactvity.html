@@ -4,7 +4,7 @@
     {% csrf_token %}
   <table class="table table-bordered">
     <tr>
-      <td>Vehicle</td>
+      <th>Vehicle</th>
       <td>
           <select name="vehicle" class="form-control">
               {% for i in data %}
@@ -26,11 +26,11 @@
       </td>
     </tr>
     <tr>
-      <td>Activity</td>
-      <td><input type="text" name="textfield2" id="textfield2" required="required" class="form-control" required="required" /></td>
+      <th>Activity</th>
+      <td><input type="text" name="textfield2" id="textfield2" class="form-control" required pattern="[A-Z a-z]+" /></td>
     </tr>
     <tr>
-      <td>Date</td>
+      <th>Date</th>
       <td><input type="date" name="textfield3" id="textfield3" class="form-control" required/></td>
     </tr>
     <tr>

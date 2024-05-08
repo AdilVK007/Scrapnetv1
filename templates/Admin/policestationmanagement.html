@@ -4,44 +4,44 @@
     {% csrf_token %}
  <table class="table table-bordered table-hover">
   <tr>
-    <td>Username</td>
-    <td><input type="text" name="textfield" id="textfield" class="form-control" required /></td>
+    <th>Username</th>
+    <td><input type="text" name="textfield" id="textfield" class="form-control" required pattern="[A-Z a-z]+" /></td>
   </tr>
   <tr>
-    <td>Profile Picture</td>
+    <th>Profile Picture</th>
     <td><input type="file" name="textfield1" id="textfield1" class="form-control" required /></td>
   </tr>
   <tr>
-    <td>Email</td>
-    <td><input type="text" name="textfield2" id="textfield2" class="form-control" required /></td>
+    <th>Email</th>
+    <td><input type="email" name="textfield2" id="textfield2" class="form-control" required  /></td>
   </tr>
   <tr>
-    <td>Phone</td>
-    <td><input type="text" name="textfield3" id="textfield3" class="form-control" required /></td>
+    <th>Phone</th>
+    <td><input type="text" name="textfield3" id="textfield3" class="form-control" required pattern="[6789][0-9]{9}" max="9" /></td>
   </tr>
   <tr>
-    <td>Place</td>
+    <th>Place</th>
     <td><input type="text" name="textfield4" id="textfield4" class="form-control" required /></td>
   </tr>
      <tr>
-    <td>Pin</td>
-    <td><input type="text" name="textfield9" id="textfield9" class="form-control" required /></td>
+    <th>Pin</th>
+    <td><input type="text" name="textfield9" id="textfield9" class="form-control" required pattern="[0-9]{6}" max="6" /></td>
   </tr>
      <tr>
-    <td>Post</td>
+    <th>Post</th>
     <td><input type="text" name="textfield5" id="textfield5"class="form-control" required /></td>
   </tr>
   <tr>
-    <td>District</td>
-    <td><input type="text" name="textfield6" id="textfield6" class="form-control" required /></td>
+    <th>District</th>
+    <td><input type="text" name="textfield6" id="textfield6" class="form-control" required pattern="[A-Z a-z]+" /></td>
   </tr>
      <tr>
-         <td>State</td>
-    <td><input type="text" name="textfield7" id="textfield7" class="form-control" required /></td>
+         <th>State</th>
+    <td><input type="text" name="textfield7" id="textfield7" class="form-control" required pattern="[A-Z a-z]+" /></td>
   </tr>
   <tr>
-    <td>SI Name</td>
-    <td><input type="text" name="textfield8" id="textfield8" class="form-control" required /></td>
+    <th>SI Name</th>
+    <td><input type="text" name="textfield8" id="textfield8" class="form-control" required pattern="[A-Z a-z]+" /></td>
   </tr>
   <tr>
     <td colspan="2" align="center"><input type="submit" name="button" id="button" value="ADD" class="btn btn-success btn-outline-dark." /></td>
