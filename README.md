@@ -67,7 +67,6 @@ Eg:
 </div>
 ```
 
-# Bugs
 
 ## Features
 
