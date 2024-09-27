@@ -2,48 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f1ee3945-6c18-4034-aa66-416397883984" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/scrap dealer/changepasswd.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Myapp/static/login/images/banner1.jpg" afterPath="$PROJECT_DIR$/Myapp/static/login/images/banner1.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Myapp/static/signup/images/banner1.jpg" afterPath="$PROJECT_DIR$/Myapp/static/signup/images/banner1.jpg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Myapp/static/home/assets/css/style-starter.css" afterPath="$PROJECT_DIR$/Myapp/static/home/assets/css/style-starter.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Myapp/urls.py" afterPath="$PROJECT_DIR$/Myapp/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Myapp/views.py" afterPath="$PROJECT_DIR$/Myapp/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Admin/adminindex.html" afterPath="$PROJECT_DIR$/templates/Admin/adminindex.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/RTO/certificate.html" afterPath="$PROJECT_DIR$/templates/RTO/certificate.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/RTO/changepass.html" afterPath="$PROJECT_DIR$/templates/RTO/changepass.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/RTO/editvehicle.html" afterPath="$PROJECT_DIR$/templates/RTO/editvehicle.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/RTO/rtoindex.html" afterPath="$PROJECT_DIR$/templates/RTO/rtoindex.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/RTO/vehicleadd.html" afterPath="$PROJECT_DIR$/templates/RTO/vehicleadd.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/RTO/viewprofile.html" afterPath="$PROJECT_DIR$/templates/RTO/viewprofile.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/RTO/viewscrappedvehicle.html" afterPath="$PROJECT_DIR$/templates/RTO/viewscrappedvehicle.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/RTO/viewsuspeciousactivity.html" afterPath="$PROJECT_DIR$/templates/RTO/viewsuspeciousactivity.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/RTO/viewusers.html" afterPath="$PROJECT_DIR$/templates/RTO/viewusers.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/RTO/viewuserscraprequest.html" afterPath="$PROJECT_DIR$/templates/RTO/viewuserscraprequest.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/RTO/viewvehicle.html" afterPath="$PROJECT_DIR$/templates/RTO/viewvehicle.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/police station/policeindex.html" afterPath="$PROJECT_DIR$/templates/police station/policeindex.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/police station/viewscrappedvehicle.html" afterPath="$PROJECT_DIR$/templates/police station/viewscrappedvehicle.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/scrap dealer/scrapdealerindex.html" afterPath="$PROJECT_DIR$/templates/scrap dealer/scrapdealerindex.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/scrap dealer/scrapdealersignupindex.html" afterPath="$PROJECT_DIR$/templates/scrap dealer/scrapdealersignupindex.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/scrap dealer/updateprofile.html" afterPath="$PROJECT_DIR$/templates/scrap dealer/updateprofile.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/scrap dealer/viewapprovedscraprequest.html" afterPath="$PROJECT_DIR$/templates/scrap dealer/viewapprovedscraprequest.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/scrap dealer/viewpendscraprequest.html" afterPath="$PROJECT_DIR$/templates/scrap dealer/viewpendscraprequest.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/scrap dealer/viewprofile.html" afterPath="$PROJECT_DIR$/templates/scrap dealer/viewprofile.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/scrap dealer/viewrejectedscraprequest.html" afterPath="$PROJECT_DIR$/templates/scrap dealer/viewrejectedscraprequest.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/scrap dealer/viewsuspeciousactivity.html" afterPath="$PROJECT_DIR$/templates/scrap dealer/viewsuspeciousactivity.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/scrap dealer/viewverifystats.html" afterPath="$PROJECT_DIR$/templates/scrap dealer/viewverifystats.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/user/Addscraprequest.html" afterPath="$PROJECT_DIR$/templates/user/Addscraprequest.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/user/changepasswd.html" afterPath="$PROJECT_DIR$/templates/user/changepasswd.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/user/damagedetection.html" afterPath="$PROJECT_DIR$/templates/user/damagedetection.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/user/editprofile.html" afterPath="$PROJECT_DIR$/templates/user/editprofile.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/user/prediction_user.html" afterPath="$PROJECT_DIR$/templates/user/prediction_user.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/user/scrapdealerview.html" afterPath="$PROJECT_DIR$/templates/user/scrapdealerview.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/user/userindex.html" afterPath="$PROJECT_DIR$/templates/user/userindex.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/user/usersignindex.html" afterPath="$PROJECT_DIR$/templates/user/usersignindex.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/user/view_usercertificate.html" afterPath="$PROJECT_DIR$/templates/user/view_usercertificate.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/user/viewprofile.html" afterPath="$PROJECT_DIR$/templates/user/viewprofile.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/user/viewscrappingstatus.html" afterPath="$PROJECT_DIR$/templates/user/viewscrappingstatus.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/user/viewvhicle.html" afterPath="$PROJECT_DIR$/templates/user/viewvhicle.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -729,7 +688,14 @@
       <option name="project" value="LOCAL" />
       <updated>1715128036490</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="last update">
+      <created>1727462737395</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1727462737395</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TodoView">
@@ -849,7 +815,8 @@
     <MESSAGE value="price prediction is completed but some design bugs" />
     <MESSAGE value="minor changes" />
     <MESSAGE value="minor changes in design" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor changes in design" />
+    <MESSAGE value="last update" />
+    <option name="LAST_COMMIT_MESSAGE" value="last update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
