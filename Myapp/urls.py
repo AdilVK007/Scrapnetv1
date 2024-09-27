@@ -89,10 +89,13 @@ urlpatterns = [
     path('viewsusAct_rto/<vid>', views.viewsusAct_rto),
     path('viewsusActrto_post/', views.viewsusActrto_post),
     path('rto_home/', views.rto_home),
+    path('pending_scrapreq_post/', views.pending_scrapreq_post),
 
     #scrapdealer Module
     path('signup_dealer/', views.signup_dealer),
     path('signup_dealer_post/', views.signup_dealer_post),
+    path('changepass_dealer/', views.changepass_dealer),
+    path('changepassdealer_post/', views.changepassdealer_post),
     path('dealer_viewprofile/', views.dealer_viewprofile),
     path('updateprofile/', views.updateprofile),
     path('updateprofile_post/', views.updateprofile_post),

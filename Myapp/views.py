@@ -421,7 +421,7 @@ def view_rejected_scrap_dealer_post(request):
 def scrapped_vehicle_view(request):
     if request.session['lid']=="":
         return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
-    sv = Vehicle.objects.filter(status='scrapping')
+    sv = Vehicle.objects.filter(status='Vehicle Scrapped')
     return render(request,"Admin/scrappedvehicleview.html",{'data':sv})
 
 
@@ -458,7 +458,7 @@ def admin_home(request):
 
 
 
-#police station
+#-----------------------------police station module------------------------------------
 
 def changepasspolice(request):
     if request.session['lid']=="":
@@ -554,14 +554,14 @@ def viewscrappedvehicle(request):
     if request.session['lid']=="":
         return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     # viewscrapedveh = Vehicle.objects.filter(status='Vehicle Scrapped')
-    viewscrapedveh = Vehicle.objects.filter(status='scrapping')
+    viewscrapedveh = Vehicle.objects.filter(status='Scrapped')
     return render(request,"police station/viewscrappedvehicle.html",{'data':viewscrapedveh})
 
 def viewscrappedvehicle_post(request):
     if request.session['lid']=="":
         return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     search = request.POST['textfield']
-    w = Vehicle.objects.filter(vehicle_name__icontains=search,status='scrapping')
+    w = Vehicle.objects.filter(vehicle_name__icontains=search,status='Scrapped')
     # w = Vehicle.objects.filter(vehicle_name__icontains=search,status='Vehicle Scrapped')
     return render(request,"police station/viewscrappedvehicle.html",{'data':w})
 
@@ -643,6 +643,7 @@ def vehicleadd_post(request):
     obj.Vehicle_type=vehicletype
     obj.contact=contact
     obj.photo=path
+    obj.status='pending'
     obj.engine_number=enginenumber
     obj.chase_number=chasenum
     obj.month_of_manufacturing = monthofmanufacture
@@ -740,14 +741,15 @@ def viewusers_post(request):
 def viewscrapedveh(request):
     if request.session['lid']=="":
         return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
-    sv = Vehicle.objects.filter(status='Vehicle Scrapped')
+    sv = Vehicle.objects.filter(status='Scrapped')
     return render(request, "RTO/viewscrappedvehicle.html", {'data': sv})
 
 def viewscrapedveh_post(request):
     if request.session['lid']=="":
         return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     search = request.POST['textfield']
-    s = Vehicle.objects.filter(vehicle_name__icontains=search)
+    print(search)
+    s = Vehicle.objects.filter(vehicle_name__icontains=search,status='Vehicle Scrapped')
     return render(request, "RTO/viewscrappedvehicle.html", {'data': s})
 
 #-------------------------certificate issued by rto-----------------------------------------
@@ -849,6 +851,32 @@ def signup_dealer_post(request):
         return HttpResponse('''<script>alert("Account is successfully created..");window.location='/Myapp/login/'</script>''')
     else:
         return HttpResponse('''<script>alert("Password doesn't Matching..");window.location='/Myapp/signup_dealer/'</script>''')
+
+#changepass for scrapdealer
+def changepass_dealer(request):
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
+    return render(request,"police station/changepasswd.html")
+
+def changepassdealer_post(request):
+    # if request.session['lid']=="":
+    #     return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
+    currentpassword = request.POST['textfield']
+    newpassword = request.POST['textfield2']
+    confirmpassword = request.POST['textfield3']
+    l = Login.objects.filter(password=currentpassword)
+    if l.exists():
+        l1 = Login.objects.get(password=currentpassword,id=request.session['lid'])
+        if newpassword == confirmpassword:
+            l1 = Login.objects.filter(password=currentpassword, id=request.session['lid']).update(password=newpassword)
+            # l.password = newpassword
+            # l.save()
+            return HttpResponse('''<script>alert("Your new password has been updated...");window.location='/Myapp/login/'</script>''')
+        else:
+            return HttpResponse('''<script>alert("Oops! The passwords you entered do not match. Please try again.");window.location='/Myapp/changepass_dealer/'</script>''')
+    else:
+        return HttpResponse('''<script>alert("Oops! The current passwords you entered do not match. Please try again.");window.location='/Myapp/changepass_dealer/'</script>''')
+
 
 def dealer_viewprofile(request):
     if request.session['lid']=="":
@@ -966,6 +994,7 @@ def pending_scrapreq(request):
                         v= v[0]
                         a = {
                             'reqida': i['reqida'],
+                            'datea': i['datea'],
                             'name': res2.username,
                             'vehiclename': v.vehicle_name,
                             'regnnum': v.reg_number,
@@ -983,6 +1012,75 @@ def pending_scrapreq(request):
                         ls.append(a)
     print(ls,"helllllll")
     return render(request,'scrap dealer/viewpendscraprequest.html',{'data':ls})
+
+
+
+def pending_scrapreq_post(request):
+    fdate=request.POST['fdate']
+    tdate=request.POST['tdate']
+    if request.session['lid']=="":
+        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
+
+    with open(compiled_contract_path) as file:
+        contract_json = json.load(file)  # load contract info as JSON
+        contract_abi = contract_json['abi']  # fetch contract's abi - necessary to call its functions
+    contract = web3.eth.contract(address=deployed_contract_addressa, abi=contract_abi)
+    blocknumber = web3.eth.get_block_number()
+    print(blocknumber,"hhhh")
+    lq = []
+    for i in range(blocknumber, 0, -1):
+        print(i,"kkkk")
+        a = web3.eth.get_transaction_by_block(i, 0)
+        try:
+            decoded_input = contract.decode_function_input(a['input'])
+            print(decoded_input)
+            print("ku")
+            print(decoded_input)
+            lq.append(decoded_input[1])
+        except Exception as a:
+            print("jjjjj")
+
+    print(lq)
+    tot = 0
+    ls = []
+    print(lq,"kkkk")
+    for i in lq:
+            # try:
+             # print(i['suspiciousida'], "aaaaaaaaaaaaaaaaa")
+            if i["typea"]=="request":
+
+                if i['datea']>fdate and i['datea']<tdate:
+
+                    res2 = User.objects.filter(LOGIN_id=i['lida'])
+                    if res2.exists():
+                        res2= res2[0]
+                        aadhar_no=res2.aadhar_no
+                        v = Vehicle.objects.filter(id= i['vehicleida'],aadhar_no=aadhar_no)
+                        res3 = Request.objects.filter(requestid=i['reqida'], status='pending')
+                        if res3.exists():
+                          if v.exists():
+                            v= v[0]
+                            a = {
+                                'reqida': i['reqida'],
+                                'datea': i['datea'],
+                                'name': res2.username,
+                                'vehiclename': v.vehicle_name,
+                                'regnnum': v.reg_number,
+                                'ownername': v.owner_name,
+                                'regdate': v.reg_date,
+                                'regplace': v.reg_place,
+                                'vehicletype': v.Vehicle_type,
+                                'contact': v.contact,
+                                'photo': v.photo,
+                                'enginenumber': v.engine_number,
+                                'chassis_number': v.chase_number,
+                                'year_of_manufacturing': v.year_of_manufacturing,
+                                'month_of_manufacturing': v.month_of_manufacturing,
+                                'status': i['statusa'],                        }
+                            ls.append(a)
+    print(ls,"helllllll")
+    return render(request,'scrap dealer/viewpendscraprequest.html',{'data':ls})
+
 
 
 def viewapproved_scrapreq(request):
@@ -1104,6 +1202,7 @@ def viewrejected_scrapreq(request):
                             'vehicletype': v.Vehicle_type,
                             'contact': v.contact,
                             'photo': v.photo,
+                            'vstatus':v.status,
                             'enginenumber': v.engine_number,
                             'chassis_number': v.chase_number,
                             'year_of_manufacturing': v.year_of_manufacturing,
@@ -1237,11 +1336,11 @@ def approve_user_request(request,id):
     if request.session['lid']=="":
         return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     aa=Request.objects.filter(requestid=id).update(status='approved')
-    return HttpResponse('''<script>alert("Forward");window.location='/Myapp/pending_scrapreq/cript>''')
+    return HttpResponse('''<script>alert("Forward");window.location='/Myapp/pending_scrapreq/script>''')
 
 def reject_user_request(request,id):
     if request.session['lid']=="":
-        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
+        return HttpResponse('''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     aa = Request.objects.filter(requestid=id).update(status='rejected')
     return HttpResponse('''<script>alert("Rejected");window.location='/Myapp/pending_scrapreq/'</script>''')
 
@@ -1337,29 +1436,32 @@ def usersignup_post(request):
     u.save()
 
     return HttpResponse('''<script>alert("Account is successfully created..");window.location='/Myapp/login/'</script>''')
+
+#change pass for user
 def changepasswd(request):
     if request.session['lid']=="":
         return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     return render(request,"user/changepasswd.html")
 
 def changepasswd_post(request):
-    if request.session['lid']=="":
-        return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
-    currentpass = request.POST['textfield']
-    newpass = request.POST['textfield2']
-    confirmpass = request.POST['textfield3']
-    l = Login.objects.get(id=request.session['lid'])
-    if l.password == currentpass:
-        if newpass == confirmpass:
-            l.password = newpass
-            l.save()
+    currentpassword = request.POST['textfield']
+    newpassword = request.POST['textfield2']
+    confirmpassword = request.POST['textfield3']
+    l = Login.objects.filter(password=currentpassword)
+    if l.exists():
+        l1 = Login.objects.get(password=currentpassword, id=request.session['lid'])
+        if newpassword == confirmpassword:
+            l1 = Login.objects.filter(password=currentpassword, id=request.session['lid']).update(password=newpassword)
+            # l.password = newpassword
+            # l.save()
             return HttpResponse(
-                '''<script>alert("New password has updated..");window.location='/Myapp/login/'</script>''')
+                '''<script>alert("Your new password has been updated...");window.location='/Myapp/login/'</script>''')
         else:
             return HttpResponse(
-                '''<script>alert("Passwords are not matching");window.location='/Myapp/changepasswd/'</script>''')
+                '''<script>alert("Oops! The new passwords you entered do not match. Please try again.");window.location='/Myapp/changepasswd/'</script>''')
     else:
-        return HttpResponse('''<script>alert("New password has updated..");window.location='/Myapp/login/'</script>''')
+        return HttpResponse(
+            '''<script>alert("Oops! The current passwords you entered do not match. Please try again.");window.location='/Myapp/changepasswd/'</script>''')
 
 def userviewprofile(request):
     if request.session['lid']=="":
@@ -1380,7 +1482,7 @@ def edituserprofile_post(request):
     username = request.POST['textfield']
     email = request.POST['textfield2']
     phone = request.POST['textfield3']
-    gender = request.POST['RadioGroup1']
+    gender = request.POST['gender']
     dob = request.POST['textfield5']
     place = request.POST['textfield6']
     post = request.POST['textfield7']
@@ -1435,8 +1537,13 @@ def viewvehicle_post(request):
     if request.session['lid']=="":
         return HttpResponse(''''<script>alert("Please login");window.location='/Myapp/login/'</script>''')
     search = request.POST['textfield']
-    vehv = Vehicle.objects.filter(vehicle_name__icontains=search)
-    return render(request,"user/viewvhicle.html",{'data':vehv})
+    a = User.objects.get(LOGIN_id=request.session['lid']).aadhar_no
+    vv = Vehicle.objects.filter(aadhar_no=a,vehicle_name__icontains=search)
+    v = certificate.objects.filter(VEHICLE__aadhar_no=a)
+    certs = [i.VEHICLE.id for i in v]
+    return render(request, "user/viewvhicle.html", {'data': vv, 'certs': certs})
+
+
 #
 def userviewcertificate(request,id):
     if request.session['lid']=="":
@@ -1486,9 +1593,14 @@ def addscraprequest_post(request,id):
     # scrapdealerid = int(scrapdealerid)
     vehicle_id = int(id)
 
-    if  Vehicle.objects.filter(id=id,status='pending').exists():
+
+    if Request.objects.filter(requestid=blocknumber,status='pending').exists():
         return HttpResponse(
             '''<script>alert("Request Already exist!");window.location='/Myapp/viewvehicle/'</script>''')
+
+    # if  Vehicle.objects.filter(id=id,status='pending').exists():
+    #     return HttpResponse(
+    #         '''<script>alert("Request Already exist!");window.location='/Myapp/viewvehicle/'</script>''')
 
     from datetime import datetime
     date = datetime.now().date()
@@ -1498,7 +1610,7 @@ def addscraprequest_post(request,id):
 
     obj = Request()
     obj.status = 'pending'
-    rid = blocknumber
+    rid = blocknumber+1
     obj.requestid = int(rid)
     obj.save()
     # Vehicle.objects.filter(id=vv).update(status='requested')

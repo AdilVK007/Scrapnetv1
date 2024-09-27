@@ -4,23 +4,22 @@
     {% csrf_token %}
   <table class="table table-bordered">
     <tr>
-      <td>&nbsp;</td>
       <td><img src="{{ data.photo }}" height="80px" width="80px" alt=""/>&nbsp;</td>
     </tr>
     <tr>
-      <td>Name</td>
+      <th>Name</th>
         <td>{{ data.username }}</td>
     </tr>
     <tr>
-      <td>phone</td>
+      <th>phone</th>
         <td>{{ data.phone }}</td>
     </tr>
     <tr>
-      <td>email</td>
+      <th>email</th>
         <td>{{ data.email }}</td>
     </tr>
     <tr>
-      <td>Address</td>
+      <th>Address</th>
         <td>{{ data.place }},<br/>{{ data.post }}, <br/>{{ data.pin }}, <br/>{{ data.district }},<br>{{ data.state }}</td>
     </tr>
 {#      {% for i in data %}#}

@@ -10,20 +10,19 @@
 {#    </table>#}
     <table class="table table-bordered">
     <tr>
-        <td>sl no</td>
-      <td>Vehicle name</td>
-      <td>Registration number</td>
-      <td>owner name</td>
-      <td>Registration Date</td>
-      <td>Registration Place</td>
-      <td>Vehicle Type</td>
-      <td>Contact</td>
-      <td>Photo</td>
-      <td>Engine Number</td>
-      <td>Chassis number</td>
-      <td>Year of Manufacturing</td>
-      <td>Month of manufacturing</td>
-        <td>Status</td>
+        <th>sl no</th>
+      <th>Vehicle Details</th>
+{#      <th>Registration number</th>#}
+{#      <th>owner name</th>#}
+      <th>Registration Date</th>
+      <th>Registration Place</th>
+{#      <th>Vehicle Type</th>#}
+      <th>Contact</th>
+      <th>Engine Number</th>
+      <th>Chassis number</th>
+      <th>Year of Manufacturing</th>
+      <th>Month of manufacturing</th>
+        <th>Status</th>
 
 {#      <tdtd>&nbsp;</tdtd>#}
 {#      <td>&nbsp;</td>#}
@@ -31,14 +30,13 @@
         {% for i in data %}
     <tr>
       <td>{{ forloop.counter }}&nbsp;</td>
-      <td>{{ i.vehicle_name }}&nbsp;</td>
-      <td>{{ i.reg_number }}&nbsp;</td>
-      <td>{{ i.owner_name }}&nbsp;</td>
+      <td>{{ i.vehicle_name }}<br><img src="{{ i.photo }}" height="80px" width="80px" alt=""/><br>{{ i.reg_number }}<br>{{ i.owner_name }}<br>{{ i.Vehicle_type }}&nbsp;</td>
+{#      <td>{{ i.reg_number }}&nbsp;</td>#}
+{#      <td>{{ i.owner_name }}&nbsp;</td>#}
       <td>{{ i.reg_date }}&nbsp;</td>
       <td>{{ i.reg_place }}&nbsp;</td>
-      <td>{{ i.Vehicle_type }}&nbsp;</td>
+{#      <td>{{ i.Vehicle_type }}&nbsp;</td>#}
       <td>{{ i.contact }}&nbsp;</td>
-      <td><img src="{{ i.photo }}" height="80px" width="80px" alt=""/>&nbsp;</td>
       <td>{{ i.engine_number }}&nbsp;</td>
       <td>{{ i.chase_number }}&nbsp;</td>
       <td>{{ i.year_of_manufacturing }}&nbsp;</td>

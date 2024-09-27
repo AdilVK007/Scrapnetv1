@@ -10,36 +10,36 @@
 {#    </table>#}
 <table class="table table-bordered" style="max-width: 100%" width="100%">
   <tr>
-      <td>sl no.</td>
+      <th>sl no.</th>
 {#    <td>Request Id </td>#}
-      <td>User Name</td>
-      <td>Vehicle Name</td>
-      <td>Registration number</td>
-      <td>owner name</td>
-      <td>Registration Date</td>
-      <td>Registration Place</td>
-      <td>Vehicle Type</td>
-      <td>Contact</td>
-      <td>Photo</td>
-      <td>Engine Number</td>
-      <td>Chassis number</td>
-      <td>Year of Manufacturing</td>
-      <td>Month of manufacturing</td>
-      <td>Request Status</td>
+      <th>User Name</th>
+      <th>Vehicle Details</th>
+{#      <th>Registration number</th>#}
+      <th>owner name</th>
+      <th>Registration Date</th>
+      <th>Registration Place</th>
+{#      <th>Vehicle Type</th>#}
+      <th>Contact</th>
+{#      <th>Photo</th>#}
+      <th>Engine Number</th>
+      <th>Chassis number</th>
+      <th>Year of Manufacturing</th>
+      <th>Month of manufacturing</th>
+      <th>Request Status</th>
   </tr>
         {% for i in data %}
   <tr>
       <td>{{ forloop.counter }}&nbsp;</td>
 {#    <td>{{ i.requestid }}&nbsp;</td>#}
           <td>{{ i.name }}&nbsp;</td>
-      <td>{{ i.vehiclename }}&nbsp;</td>
-      <td>{{ i.regnnum }}&nbsp;</td>
+      <td>{{ i.vehiclename }}<br><img src="{{ i.photo }}" height="80px" width="80px" alt=""/><br>{{ i.regnnum }}<br>{{ i.vehicletype }}&nbsp;</td>
+{#      <td>{{ i.regnnum }}&nbsp;</td>#}
       <td>{{ i.ownername }}&nbsp;</td>
       <td>{{ i.regdate }}&nbsp;</td>
       <td>{{ i.regplace }}&nbsp;</td>
-      <td>{{ i.vehicletype }}&nbsp;</td>
+{#      <td>{{ i.vehicletype }}&nbsp;</td>#}
       <td>{{ i.contact }}&nbsp;</td>
-      <td><img src="{{ i.photo }}" height="80px" width="80px" alt=""/>&nbsp;</td>
+{#      <td><img src="{{ i.photo }}" height="80px" width="80px" alt=""/>&nbsp;</td>#}
       <td>{{ i.enginenumber }}&nbsp;</td>
       <td>{{ i.chassis_number }}&nbsp;</td>
       <td>{{ i.year_of_manufacturing }}&nbsp;</td>

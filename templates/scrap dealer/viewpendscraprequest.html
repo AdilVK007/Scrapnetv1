@@ -1,53 +1,52 @@
 {% extends "scrap dealer/scrapdealerindex.html" %}
 {% block body %}
-<form action="/Myapp/viewrequest_post/" method="post">
+<form action="/Myapp/pending_scrapreq_post/" method="post">
     {% csrf_token %}
-    <table class="table table-bordered">
-    <tr>
-            <td><input type="text" name="textfield" class="form-control"/></td>
-            <td><input type="submit" value="search" class="btn btn-info"/></td>
+    <table class="pull-left">
+    <tr><td>From</td>
+            <td><input type="date" name="fdate" class="form-control"/></td>
+        <td>To</td>
+                    <td><input type="date" name="tdate" class="form-control"/></td>
+
+            <td><input type="submit" value="search" class="btn btn-warning"/></td>
         </tr>
     </table>
 <table class="table table-bordered">
   <tr>
-      <td>sl no.</td>
-{#    <td>Request Id </td>#}
-      <td>User Name</td>
-      <td>Vehicle Name</td>
-      <td>Registration number</td>
-      <td>owner name</td>
-      <td>Registration Date</td>
-      <td>Registration Place</td>
-      <td>Vehicle Type</td>
-      <td>Contact</td>
-      <td>Photo</td>
-      <td>Engine Number</td>
-      <td>Chassis number</td>
-      <td>Year of Manufacturing</td>
-      <td>Month of manufacturing</td>
-      <td>Request Status</td>
+      <th>sl no.</th>
+    <th>Date</th>
+      <th>User Name</th>
+      <th>Vehicle Detials</th>
+      <th>owner name</th>
+      <th>Registration Date</th>
+      <th>Registration Place</th>
+      <th>Vehicle Type</th>
+      <th>Engine Number</th>
+      <th>Chassis number</th>
+      <th>Year of Manufacturing</th>
+      <th>Month of manufacturing</th>
+      <th>Request Status</th>
   </tr>
         {% for i in data %}
   <tr>
       <td>{{ forloop.counter }}&nbsp;</td>
-{#    <td>{{ i.requestid }}&nbsp;</td>#}
-          <td>{{ i.name }}&nbsp;</td>
-      <td>{{ i.vehiclename }}&nbsp;</td>
-      <td>{{ i.regnnum }}&nbsp;</td>
+    <td>{{ i.datea }}&nbsp;</td>
+          <td>{{ i.name }}<br><br>{{ i.contact }}&nbsp;</td>
+      <td><img src="{{ i.photo }}" height="80px" width="80px" alt=""/><br>{{ i.vehiclename }}<br>{{ i.regnnum }}<br>{{ i.vehicletype }}&nbsp;</td>
+{#      <td>{{ i.regnnum }}&nbsp;</td>#}
       <td>{{ i.ownername }}&nbsp;</td>
       <td>{{ i.regdate }}&nbsp;</td>
       <td>{{ i.regplace }}&nbsp;</td>
-      <td>{{ i.vehicletype }}&nbsp;</td>
-      <td>{{ i.contact }}&nbsp;</td>
-      <td><img src="{{ i.photo }}" height="80px" width="80px" alt=""/>&nbsp;</td>
+{#      <td>{{ i.vehicletype }}&nbsp;</td>#}
+{#      <td>{{ i.contact }}&nbsp;</td>#}
+{#      <td><img src="{{ i.photo }}" height="80px" width="80px" alt=""/>&nbsp;</td>#}
       <td>{{ i.enginenumber }}&nbsp;</td>
       <td>{{ i.chassis_number }}&nbsp;</td>
       <td>{{ i.year_of_manufacturing }}&nbsp;</td>
         <td>{{ i.month_of_manufacturing }}&nbsp;</td>
     <td>{{ i.status }}&nbsp;</td>
 
-      <td><a href="/Myapp/approve_user_request/{{ i.reqida }}" style="color: green" >Approve</a> </td>
-      <td><a href="/Myapp/reject_user_request/{{ i.reqida }}" style="color: red">Reject</a> </td>
+      <td><a href="/Myapp/approve_user_request/{{ i.reqida }}" class="btn btn-outline-success">Approve</a><br><br><a href="/Myapp/reject_user_request/{{ i.reqida }}" class="btn btn-outline-danger">Reject</a> </td>
 
 
 

@@ -175,7 +175,8 @@ svg {
   vertical-align: middle; }
 
 table {
-  border-collapse: collapse; }
+  border-collapse: collapse;
+  width: 100%}
 
 caption {
   padding-top: 0.75rem;
@@ -223,7 +224,9 @@ button,
 [type="button"],
 [type="reset"],
 [type="submit"] {
-  -webkit-appearance: button; }
+   }
+
+/*-webkit-appearance: button;*/
 
 button:not(:disabled),
 [type="button"]:not(:disabled),

@@ -4,11 +4,11 @@
     {% csrf_token %}
     <table class="table table-bordered">
   <tr>
-    <td>Name</td>
+    <th>Name</th>
     <td><input type="text" value="{{ data.name }}" name="textfield" id="textfield" class="form-control" /></td>
   </tr>
   <tr>
-    <td>Profile Picture</td>
+    <th>Profile Picture</th>
     <td><img src="{{ data.photo }}" height="80px" width="80px" alt=""/><br><input type="file" name="fileField" id="fileField" class="form-control" /></td>
   </tr>
 {#  <tr>#}
@@ -16,27 +16,27 @@
 {#    <td><input type="text" name="textfield2" id="textfield2" /></td>#}
 {#  </tr>#}
   <tr>
-    <td>Email</td>
+    <th>Email</th>
     <td><input type="text" value="{{ data.email }}" name="textfield3" id="textfield3" class="form-control" /></td>
   </tr>
   <tr>
-    <td>Phone</td>
+    <th>Phone</th>
     <td><input type="text" value="{{ data.phone }}" name="textfield4" id="textfield4" class="form-control" /></td>
   </tr>
   <tr>
-    <td>Place</td>
+    <th>Place</th>
     <td><input type="text" value="{{ data.place }}" name="textfield5" id="textfield5" class="form-control" /></td>
   </tr>
   <tr>
-    <td>Post</td>
+    <th>Post</th>
     <td><input type="text" value="{{ data.post }}" name="textfield6" id="textfield6" class="form-control" /></td>
   </tr>
   <tr>
-    <td>Pin</td>
+    <th>Pin</th>
     <td><input type="text" value="{{ data.pin }}" name="textfield7" id="textfield7" class="form-control" /></td>
   </tr>
   <tr>
-    <td>District</td>
+    <th>District</th>
     <td><input type="text" value="{{ data.district }}" name="textfield8" id="textfield8" class="form-control" /></td>
   </tr>
 {#  <tr>#}
@@ -45,7 +45,7 @@
 {#    </select></td>#}
 {#  </tr>#}
   <tr>
-    <td>License Number</td>
+    <th>License Number</th>
     <td><input type="text" value="{{ data.license_no }}" name="textfield9" id="textfield9" class="form-control" /></td>
   </tr>
   <tr>

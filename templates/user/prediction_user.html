@@ -50,7 +50,7 @@ function showOutputText() {
     {% csrf_token %}
   <table class="table table-bordered table-hover">
     <tr>
-      <td>Vehicle Name</td>
+      <th>Vehicle Name</th>
       <td><select name="textfield" id="mySelect" class="form-control">
           {% for i in data2 %}
           <option value="{{ i.id }}">{{ i.car }}</option>
@@ -60,15 +60,15 @@ function showOutputText() {
 {#      <td><input type="text" name="textfield" id="textfield" class="form-control" required /></td>#}
     </tr>
     <tr>
-      <td>Year of manufacture</td>
+      <th>Year of manufacture</th>
       <td><input type="number" name="textfield2" id="textfield2" class="form-control" required /></td>
     </tr>
     <tr>
-      <td>Driven Kilometers</td>
+      <th>Driven Kilometers</th>
       <td><input type="number" name="filefield" id="filefield" class="form-control" required /></td>
     </tr>
     <tr>
-      <td>Fuel Type</td>
+      <th>Fuel Type</th>
       <td><select name="s1" id="mySelect" style="padding-right: 30px;" class="form-control">
           {% for i in fuels %}
           <option value="{{ i.id }}">{{ i.fuel }}</option>
@@ -78,7 +78,7 @@ function showOutputText() {
 {#      <td><input type="text" name="s1" id="s1" class="form-control" required /></td>#}
     </tr>
       <tr>
-      <td>Seller Type</td>
+      <th>Seller Type</th>
       <td><select name="s2" class="form-control">
           {% for i in seller_type %}
           <option value="{{ i.id }}">{{ i.seller_type }}</option>
@@ -88,7 +88,7 @@ function showOutputText() {
 {#      <td><input type="text" name="s2" id="s2" class="form-control" required /></td>#}
     </tr>
        <tr>
-      <td>Transmission</td>
+      <th>Transmission</th>
       <td><select name="s3" style="padding-right: 30px;" class="form-control">
           {% for i in transmission %}
           <option value="{{ i.id }}">{{ i.transmission }}</option>
@@ -97,7 +97,7 @@ function showOutputText() {
       </select> </td>
     </tr>
       <tr>
-      <td>Owner Name</td>
+      <th>Owner Name</th>
       <td><select name="s4" class="form-control">
           {% for i in owner %}
           <option value="{{ i.id }}">{{ i.owner }}</option>
@@ -106,15 +106,15 @@ function showOutputText() {
       </select> </td>
     </tr>
       <tr>
-      <td>Milage</td>
+      <th>Milage</th>
       <td><input type="number" name="filefield2" id="filefield2" class="form-control" required /></td>
     </tr>
       <tr>
-      <td>Engine</td>
+      <th>Engine</th>
       <td><input type="text" name="filefield3" id="filefield3" class="form-control" required /></td>
     </tr>
       <tr>
-      <td>Seat</td>
+      <th>Seat</th>
       <td><input type="number" name="filefield4" id="filefield4" class="form-control" required /></td>
     </tr>
   </table>

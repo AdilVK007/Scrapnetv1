@@ -4,15 +4,15 @@
     {% csrf_token %}
     <table class="table table-bordered">
   <tr>
-    <td>&nbsp;</td>
     <td><img src="{{ data.photo }}" height="80px" width="80px" alt=""/></td>
+      <td></td>
   </tr>
   <tr>
-    <td>username</td>
+    <th>username</th>
     <td>{{ data.name }}&nbsp;</td>
   </tr>
   <tr>
-    <td>email</td>
+    <th>email</th>
     <td>{{ data.email }}&nbsp;</td>
   </tr>
 {#  <tr>#}
@@ -20,11 +20,11 @@
 {#    <td>&nbsp;</td>#}
 {#  </tr>#}
   <tr>
-    <td>phone</td>
+    <th>phone</th>
     <td>{{ data.phone }}&nbsp;</td>
   </tr>
   <tr>
-    <td>Adress</td>
+    <th>Adress</th>
     <td>{{ data.place }},<br>{{ data.post }},<br/>{{ data.pin }}, <br/>{{ data.district }}&nbsp;</td>
   </tr>
 {#  <tr>#}
@@ -32,12 +32,11 @@
 {#    <td>{{ data.state }}&nbsp;</td>#}
 {#  </tr>#}
   <tr>
-    <td>License Number</td>
+    <th>License Number</th>
     <td>{{ data.license_no }}&nbsp;</td>
   </tr>
   <tr>
-    <td colspan="2" align="center"><a href="/Myapp/updateprofile/">Edit</a></td>
-    <td>&nbsp;</td>
+    <td colspan="2" align="center"><a href="/Myapp/updateprofile/" class="btn btn-warning">Edit</a></td>
   </tr>
 </table>
 </form>

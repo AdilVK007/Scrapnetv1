@@ -10,43 +10,49 @@
 {#    </table>#}
 <table class="table table-bordered">
   <tr>
-      <td>sl no.</td>
+      <th>sl no.</th>
 {#    <td>Request Id </td>#}
-      <td>User Name</td>
-      <td>Vehicle Name</td>
-      <td>Registration number</td>
-      <td>owner name</td>
-      <td>Registration Date</td>
-      <td>Registration Place</td>
-      <td>Vehicle Type</td>
-      <td>Contact</td>
-      <td>Photo</td>
-      <td>Engine Number</td>
-      <td>Chassis number</td>
-      <td>Year of Manufacturing</td>
-      <td>Month of manufacturing</td>
-      <td>Request Status</td>
+      <th>User Name</th>
+      <th>Vehicle Name</th>
+      <th>owner name</th>
+      <th>Registration Date</th>
+      <th>Registration Place</th>
+      <th>Vehicle Type</th>
+      <th>Engine Number</th>
+      <th>Chassis number</th>
+      <th>Year of Manufacturing</th>
+      <th>Month of manufacturing</th>
+{#      <th>Status</th>#}
+      <th>Certificate</th>
+      <th>Activity</th>
   </tr>
         {% for i in data %}
   <tr>
       <td>{{ forloop.counter }}&nbsp;</td>
 {#    <td>{{ i.requestid }}&nbsp;</td>#}
-          <td>{{ i.name }}&nbsp;</td>
-      <td>{{ i.vehiclename }}&nbsp;</td>
-      <td>{{ i.regnnum }}&nbsp;</td>
+          <td>{{ i.name }}&nbsp;<br>{{ i.contact }}</td>
+      <td>{{ i.vehiclename }}&nbsp;<br><img src="{{ i.photo }}" height="80px" width="80px" alt=""/>&nbsp;<br>{{ i.regnnum }}&nbsp;</td>
       <td>{{ i.ownername }}&nbsp;</td>
       <td>{{ i.regdate }}&nbsp;</td>
       <td>{{ i.regplace }}&nbsp;</td>
       <td>{{ i.vehicletype }}&nbsp;</td>
-      <td>{{ i.contact }}&nbsp;</td>
-      <td><img src="{{ i.photo }}" height="80px" width="80px" alt=""/>&nbsp;</td>
       <td>{{ i.enginenumber }}&nbsp;</td>
       <td>{{ i.chassis_number }}&nbsp;</td>
       <td>{{ i.year_of_manufacturing }}&nbsp;</td>
         <td>{{ i.month_of_manufacturing }}&nbsp;</td>
-    <td>{{ i.status }}&nbsp;</td>
-    <td><a href="/Myapp/certificate_rto/{{ i.vid }}">Verify Certificate</a></td>
-      <td><a href="/Myapp/viewsusAct_rto/{{ i.vid }}">Suspecious Activity</a> </td>
+{#    <td>{{ i.status }}&nbsp;</td>#}
+    <td>
+
+
+        {% if i.vstatus == 'scrapping' %}
+
+
+        <a href="/Myapp/certificate_rto/{{ i.vid }}" class="btn btn-success">Verify Certificate</a>
+    {% else %}
+            issued
+    {% endif %}
+    </td>
+      <td><a href="/Myapp/viewsusAct_rto/{{ i.vid }}" class="btn btn-info">View Activity</a> </td>
 
 
 

@@ -58,6 +58,15 @@
 {% extends "user/userindex.html" %}
 {% block body %}
 <style>
+    #error-message {
+            display: none;
+            color: red;
+            background-color: #f8d7da; /* Light red background */
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid red;
+            border-radius: 5px;
+    }
     .output-text {
         color: red;
         font-size: 16px;
@@ -73,10 +82,10 @@ function validateFile() {
     const errorDiv = document.getElementById('error-message');
     const filePath = fileInput.value;
     // Allowed file extensions for image files
-    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+    const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
 
     if (!allowedExtensions.exec(filePath)) {
-        errorDiv.innerHTML = 'Please upload file having extensions .jpeg/.jpg/.png/.gif only.';
+        errorDiv.innerHTML = 'Please upload file having extensions .jpeg/.jpg/.png only.';
         errorDiv.style.display = 'block'; // Show the error message
         fileInput.value = ''; // Reset the file input
         return false;
@@ -96,15 +105,13 @@ function showOutputText() {
     }
 }
 </script>
-
-<h2>Damage Prediction File Upload</h2>
-<p>Please upload an image of the damaged area. Acceptable file formats are JPEG, PNG, and GIF. The system will analyze the image and predict the level of damage.</p>
+<p>Please upload an image of the damaged area. Acceptable file formats are JPEG and PNG. The system will analyze the image and predict the level of damage.</p>
 
 <form id="form1" name="form1" method="post" action="/Myapp/damageprediction_post/" enctype="multipart/form-data" onsubmit="return validateFile()">
     {% csrf_token %}
     <table class="table table-bordered">
         <tr>
-            <td>Upload File</td>
+            <th>Upload File</th>
             <td>
                 <label for="fileField"></label>
                 <input type="file" name="fileField" id="fileField" class="form-control" required/>
@@ -114,14 +121,14 @@ function showOutputText() {
         </tr>
         <tr>
             <td colspan="2" align="center">
-                <input type="submit" name="button" id="button" value="" class="btn btn-success" />
+                <input type="submit" name="button" id="button" value="submit" class="btn btn-success" />
             </td>
         </tr>
     </table>
 </form>
 
 <!-- Output text display -->
-<span id="output-text" class="output-text">Output: {{ damagelevel }}</span>
+<span id="output-text" class="output-text">Output: {{ damagelevel }}%</span>
 
 <script>
     // Call function to show output text if damage level is available

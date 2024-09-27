@@ -1,13 +1,18 @@
 {% extends "RTO/rtoindex.html" %}
 {% block body %}
+{#    <title>Upload Vehicle Certificate</title>#}
+{#    <h1>Upload Vehicle Certificate</h1>#}
 <form id="form1" name="form1" method="post" action="/Myapp/viewsusActrto_post/">
+{#    <title>Upload Vehicle Certificate</title>#}
+{#    <h1>Upload Vehicle Certificate</h1>#}
+
 {% csrf_token %}
-    <table class="table table-bordered">
+    <table class="pull-left">
         <tr>
-            <td>from date</td>
+            <th>from date</th>
             <td><input type="date" name="textfield" class="form-control"/></td>
 {#            <td><input type="submit" value="search"/></td>#}
-            <td><p> to </p></td>
+            <th> to </th>
 
             <td><input type="date" name="textfield2" class="form-control"/></td>
             <td><input type="submit" name="textfield3" value="search" class="btn btn-info"/></td>
@@ -15,13 +20,13 @@
     </table>
   <table class="table table-bordered">
     <tr>
-      <td>sl no</td>
-      <td><p>vehicle</p></td>
-        <td><p>Vehicle Registration Number</p></td>
-      <td>Activity</td>
-      <td>Date of Reporting</td>
-        <td>Police Station</td>
-        <td>Place of Police Station</td>
+      <th>sl no</th>
+      <th>vehicle</th>
+        <th>Registration Number</th>
+      <th>Activity</th>
+      <th>Date of Reporting</th>
+        <th>Police Station</th>
+        <th>Place of Police Station</th>
 
 
 
