@@ -27,6 +27,17 @@ The car scrapping process in India lacks organization compared to the sale of us
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/muhammed-adil-7671a3231/)
 [![twitter](https://img.shields.io/badge/twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/a4techmalayalam/)
 
+## Installation
+To install Scrapnet, you can use the following steps:
+
+```Copy code
+# Clone the repository
+git clone https://github.com/AdilVK007/Scrapnetv1.git
+# Navigate into the project directory
+cd scrapnet.
+```
+
+
 ## Usage
 `Changes mades on the models which can be affecting the database`
 
@@ -90,7 +101,9 @@ Eg:
 Contributions are always welcome!
 
 Please adhere to this project's `code of conduct`.
+
 We welcome contributions from the community!
+
 To contribute to Scrapnet:
 
 ```Fork the repository.
