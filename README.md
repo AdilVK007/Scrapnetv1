@@ -89,8 +89,12 @@ Eg:
 
 Contributions are always welcome!
 
-See `contributing.md` for ways to get started.
-
 Please adhere to this project's `code of conduct`.
-push oyur requests..
+We welcome contributions from the community! To contribute to Scrapnet:
+
+```Fork the repository.
+Create a new branch (git checkout -b feature-branch).
+Commit your changes (git commit -m 'Add new feature').
+Push the branch (git push origin feature-branch).
+Open a pull request.```
 
