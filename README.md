@@ -5,18 +5,19 @@ The car scrapping process in India lacks organization compared to the sale of us
 
 
 
-[![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
+<!--[![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
 [![AGPL License](https://img.shields.io/badge/license-AGPL-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
 ![Bitbucket open issues ](https://img.shields.io/bitbucket/issues/AdilVK007/Scrapnetv1)
 ![GitHub commits since latest release](https://img.shields.io/github/commits-since/AdilVK007/Scrapnetv1/latest)
-![GitHub Watchers](https://img.shields.io/github/watchers/AdilVK007/Scrapnetv1)
+![GitHub Watchers](https://img.shields.io/github/watchers/AdilVK007/Scrapnetv1)-->
 ![Python](https://img.shields.io/badge/Python-3776AB?logo=Python&logoColor=white)
 ![GitHub commit merge status](https://img.shields.io/github/commit-status/AdilVK007/Scrapnetv1/main/Myapp)
-![YouTube Channel Subscribers](https://img.shields.io/youtube/channel/subscribers/UCnLxjDIxr3tyZ9axvrJOITw?logo=youtube)
+<!--![YouTube Channel Subscribers](https://img.shields.io/youtube/channel/subscribers/UCnLxjDIxr3tyZ9axvrJOITw?logo=youtube)-->
 
 
 ## Used versions and Softwares
-- python Version = 3.6
+- python Version = 3.6 
+- Framework = Django
 - pycharm
 - SQLyog
 
