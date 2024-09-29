@@ -90,11 +90,12 @@ Eg:
 Contributions are always welcome!
 
 Please adhere to this project's `code of conduct`.
-We welcome contributions from the community! To contribute to Scrapnet:
+We welcome contributions from the community!
+To contribute to Scrapnet:
 
 ```Fork the repository.
 Create a new branch (git checkout -b feature-branch).
 Commit your changes (git commit -m 'Add new feature').
 Push the branch (git push origin feature-branch).
-Open a pull request.```
+Open a pull request.
 
