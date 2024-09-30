@@ -40,9 +40,10 @@ cd scrapnet.
 
 
 ## Usage
-`Changes mades on the models which can be affecting the database`
+Changes mades on the models which can be affecting the database
 
-```After updating models you can use this to update data
+After updating models you can use this to update data
+```
 python3 manage.py makemigrations
 ```
 ```
@@ -54,13 +55,14 @@ python3 manage.py makemigrations
 
 `make config variables with ganache (Blockchain)`
 
-```Ganache config
+Ganache config
+```
 truffle migarations
 ```
 ```
 truffle compile
 ```
-`After compilation create a work spece in ganache and do bc process as blocks every process as blocks , blocks are memory spaces for every process`
+After compilation create a work spece in ganache and do bc process as blocks every process as blocks , blocks are memory spaces for every process
 
 ## __Documentation__
 html table responsive
