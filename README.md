@@ -53,7 +53,7 @@ python3 manage.py makemigrations
 {location python currently used version} manage.py migrate
 ```
 
-`make config variables with ganache (Blockchain)`
+Make config variables with ganache (Blockchain)
 
 Ganache config
 ```
