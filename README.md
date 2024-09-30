@@ -1,5 +1,5 @@
 
-# SCRAPNET [WEB PROJECT]
+# SCRAPNET [WEB PROJECT] 🚗
 
 The car scrapping process in India lacks organization compared to the sale of used cars. Transactions involving vehicles, primarily buying and selling, pose challenges in terms of tracking. Existing solutions using centralized systems face issues with transparency, trust, and access control. Deceptive practices by scrap dealers, such as fixing unfair prices, further complicate the process.
 
