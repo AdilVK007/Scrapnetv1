@@ -109,9 +109,18 @@ We welcome contributions from the community!
 
 To contribute to Scrapnet:
 
-```Fork the repository.
-Create a new branch (git checkout -b feature-branch).
-Commit your changes (git commit -m 'Add new feature').
-Push the branch (git push origin feature-branch).
+Fork the repository.
+Create a new branch
+```
+git checkout -b feature-branch
+```
+Commit your changes 
+```
+git commit -m 'Add new feature'
+```
+Push the branch 
+```
+git push origin feature-branch
+```
 Open a pull request.
 
