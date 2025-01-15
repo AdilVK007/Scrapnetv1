@@ -42,7 +42,9 @@ Author URL: http://w3layouts.com
 *,
 *::before,
 *::after {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  padding:0;
+  margin: 0; }
 
 html {
   font-family: sans-serif;
@@ -54,6 +56,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block; }
 
 body {
+  width: 100%;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 1rem;
@@ -1178,6 +1181,7 @@ pre {
 
 .table {
   width: 100%;
+  max-width: 100%;
   margin-bottom: 1rem;
   color: #212529; }
   .table th,
@@ -1189,7 +1193,7 @@ pre {
     vertical-align: bottom;
     border-bottom: 2px solid #dee2e6; }
   .table tbody + tbody {
-    border-top: 2px solid #dee2e6; }
+    border-top: 2px solid #dee2e6;  }
 
 .table-sm th,
 .table-sm td {
@@ -7223,6 +7227,8 @@ a.text-dark:hover, a.text-dark:focus {
   .badge {
     border: 1px solid #000; }
   .table {
+    width: 100%;
+    max-width: 100%;
     border-collapse: collapse !important; }
     .table td,
     .table th {
@@ -9595,8 +9601,11 @@ html {
 
 body,
 html {
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
   background: var(--bg-color);
   color: var(--font-color);
   font-family: 'Cabin', sans-serif; }
@@ -9848,11 +9857,19 @@ a.link-style:hover:before {
   border: 2px solid;
   border-bottom: 2px solid transparent; }
 
+.gg-moon, .table th, gg-moon:after{
+  color: var(--red);
+}
+
+.gg-moon, .table td, gg-moon:after{
+  color: var(--gray);
+}
+
 .gg-moon,
 .gg-moon:after {
   display: block;
   box-sizing: border-box;
-  border-radius: 50%; }
+  border-radius: 50%;  }
 
 .gg-moon:after {
   content: "";
