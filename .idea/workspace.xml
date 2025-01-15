@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f1ee3945-6c18-4034-aa66-416397883984" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Myapp/static/home/assets/css/style-starter.css" afterPath="$PROJECT_DIR$/Myapp/static/home/assets/css/style-starter.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Admin/editrto.html" afterPath="$PROJECT_DIR$/templates/Admin/editrto.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Admin/policestationmanagement.html" afterPath="$PROJECT_DIR$/templates/Admin/policestationmanagement.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Admin/rtomanagement.html" afterPath="$PROJECT_DIR$/templates/Admin/rtomanagement.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/indexlogin.html" afterPath="$PROJECT_DIR$/templates/indexlogin.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -943,7 +938,14 @@
       <option name="project" value="LOCAL" />
       <updated>1727463150791</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="last update">
+      <created>1736968833691</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1736968833691</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1359,6 +1361,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="735">
           <caret line="35" column="37" lean-forward="false" selection-start-line="35" selection-start-column="37" selection-end-line="35" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>
