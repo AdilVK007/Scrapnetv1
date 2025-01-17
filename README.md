@@ -1,35 +1,49 @@
+<img src="https://i.imgur.com/UJh4QKS.png">
 
-# SCRAPNET [WEB PROJECT]
+# SCRAPNET [WEB PROJECT] 🚗
 
 The car scrapping process in India lacks organization compared to the sale of used cars. Transactions involving vehicles, primarily buying and selling, pose challenges in terms of tracking. Existing solutions using centralized systems face issues with transparency, trust, and access control. Deceptive practices by scrap dealers, such as fixing unfair prices, further complicate the process.
 
 
 
-[![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
+<!--[![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
 [![AGPL License](https://img.shields.io/badge/license-AGPL-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
 ![Bitbucket open issues ](https://img.shields.io/bitbucket/issues/AdilVK007/Scrapnetv1)
 ![GitHub commits since latest release](https://img.shields.io/github/commits-since/AdilVK007/Scrapnetv1/latest)
-![GitHub Watchers](https://img.shields.io/github/watchers/AdilVK007/Scrapnetv1)
+![GitHub Watchers](https://img.shields.io/github/watchers/AdilVK007/Scrapnetv1)-->
 ![Python](https://img.shields.io/badge/Python-3776AB?logo=Python&logoColor=white)
-![GitHub commit merge status](https://img.shields.io/github/commit-status/AdilVK007/Scrapnetv1/main/Myapp)
-![YouTube Channel Subscribers](https://img.shields.io/youtube/channel/subscribers/UCnLxjDIxr3tyZ9axvrJOITw?logo=youtube)
+<!--![GitHub commit merge status](https://img.shields.io/github/commit-status/AdilVK007/Scrapnetv1/main/Myapp)
+![YouTube Channel Subscribers](https://img.shields.io/youtube/channel/subscribers/UCnLxjDIxr3tyZ9axvrJOITw?logo=youtube)-->
 
 
 ## Used versions and Softwares
-- python Version = 3.6
+- python Version = 3.6 
+- Framework = Django
 - pycharm
 - SQLyog
 
 
-## 🔗 Links
+<!---## 🔗 Links
 [![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://lgrp.com/)
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/muhammed-adil-7671a3231/)
-[![twitter](https://img.shields.io/badge/twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/a4techmalayalam/)
+[![twitter](https://img.shields.io/badge/twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/a4techmalayalam/)-->
+
+## Installation
+To install Scrapnet, you can use the following steps:
+
+```Copy code
+# Clone the repository
+git clone https://github.com/AdilVK007/Scrapnetv1.git
+# Navigate into the project directory
+cd scrapnet.
+```
+
 
 ## Usage
-`Changes mades on the models which can be affecting the database`
+Changes mades on the models which can be affecting the database
 
-```After updating models you can use this to update data
+After updating models you can use this to update data
+```
 python3 manage.py makemigrations
 ```
 ```
@@ -39,15 +53,16 @@ python3 manage.py makemigrations
 {location python currently used version} manage.py migrate
 ```
 
-`make config variables with ganache (Blockchain)`
+Make config variables with ganache (Blockchain)
 
-```Ganache config
+Ganache config
+```
 truffle migarations
 ```
 ```
 truffle compile
 ```
-`After compilation create a work spece in ganache and do bc process as blocks every process as blocks , blocks are memory spaces for every process`
+After compilation create a work spece in ganache and do bc process as blocks every process as blocks , blocks are memory spaces for every process
 
 ## __Documentation__
 html table responsive
@@ -88,8 +103,24 @@ Eg:
 
 Contributions are always welcome!
 
-See `contributing.md` for ways to get started.
-
 Please adhere to this project's `code of conduct`.
-push oyur requests..
+
+We welcome contributions from the community!
+
+To contribute to Scrapnet:
+
+Fork the repository.
+Create a new branch
+```
+git checkout -b feature-branch
+```
+Commit your changes 
+```
+git commit -m 'Add new feature'
+```
+Push the branch 
+```
+git push origin feature-branch
+```
+Open a pull request.
 
