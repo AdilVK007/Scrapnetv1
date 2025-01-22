@@ -746,7 +746,14 @@
       <option name="project" value="LOCAL" />
       <updated>1737346211249</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="added requirement file">
+      <created>1737509438262</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1737509438262</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TodoView">
@@ -870,7 +877,8 @@
     <MESSAGE value="frontend fixes" />
     <MESSAGE value="added vercel.joson" />
     <MESSAGE value="added vercel.json" />
-    <option name="LAST_COMMIT_MESSAGE" value="added vercel.json" />
+    <MESSAGE value="added requirement file" />
+    <option name="LAST_COMMIT_MESSAGE" value="added requirement file" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
