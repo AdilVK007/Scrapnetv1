@@ -64,7 +64,7 @@ truffle compile
 ```
 After compilation create a work spece in ganache and do bc process as blocks every process as blocks , blocks are memory spaces for every process
 
-## __Documentation__
+<!--## __Documentation__
 html table responsive
 
 
@@ -84,7 +84,7 @@ Eg:
     <input type="password" class="form-control" id="password" required>
 </div>
 ```
-
+-->
 
 ## Features
 
