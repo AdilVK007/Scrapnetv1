@@ -1,5 +1,21 @@
+//{
+//  "rewrites": [
+//    { "source": "/(.*)", "destination": "/" }
+//  ]
+//}
+
 {
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/" }
-  ]
+    "version": 2,
+    "builds": [
+        {
+            "src": "./manage.py",
+            "use": "@vercel/python"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "/"
+        }
+    ]
 }
