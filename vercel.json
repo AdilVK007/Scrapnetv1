@@ -8,7 +8,7 @@
     "version": 2,
     "builds": [
         {
-            "src": "./manage.py",
+            "src": "./views.py",
             "use": "@vercel/python"
         }
     ],
