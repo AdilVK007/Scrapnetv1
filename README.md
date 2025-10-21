@@ -141,10 +141,12 @@ git push origin feature-branch
 Open a pull request.
 
 > [!NOTE]
-> Keep this in mind.
+> Always welcomiong pull requests and issues.
 
-> [!TIP]
-> Please suggest your ideas and implenatations.
+<!--- > [!TIP]
+> Please suggest your ideas and implenatations.-->
 
+# Planned features
 
-
+- RTO submitting the details and auto genarate a certificate to the User.
+- Changes on UI/UX 
