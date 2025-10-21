@@ -141,7 +141,7 @@ git push origin feature-branch
 Open a pull request.
 
 > [!NOTE]
-> Always welcomiong pull requests and issues.
+> Always welcoming pull requests and issues.
 
 <!--- > [!TIP]
 > Please suggest your ideas and implenatations.-->
