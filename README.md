@@ -21,6 +21,7 @@ The car scrapping process in India lacks organization compared to the sale of us
 - Framework = Django
 - pycharm
 - SQLyog
+- [Ganache](https://archive.trufflesuite.com/docs/) (For blockchain)
 
 
 <!---## 🔗 Links
