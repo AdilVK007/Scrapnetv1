@@ -17,7 +17,7 @@ The car scrapping process in India lacks organization compared to the sale of us
 
 
 ## Used versions and Softwares
-- python Version = 3.6+ ![Python build](https://img.shields.io/badge/python-3.6-3.10-green)
+- python Version = 3.6+ 
 - Framework = Django
 - pycharm
 - SQLyog
@@ -104,7 +104,6 @@ Eg:
 ## Legal notice
 
 
-[License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 ```
 MIT License
 
