@@ -17,7 +17,7 @@ The car scrapping process in India lacks organization compared to the sale of us
 
 
 ## Used versions and Softwares
-- python Version = 3.6 
+- python Version = 3.6+ ![Python build](https://img.shields.io/badge/python-3.6-3.10-green)
 - Framework = Django
 - pycharm
 - SQLyog
@@ -114,6 +114,7 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ```
+[License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 
 ## Contributing
 
