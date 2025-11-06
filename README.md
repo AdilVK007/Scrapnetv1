@@ -31,14 +31,20 @@ The car scrapping process in India lacks organization compared to the sale of us
 
 ## Installation
 To install Scrapnet, you can use the following steps:
-
-```Copy code
-# Clone the repository
+**Clone the repository**
+```css
 git clone https://github.com/AdilVK007/Scrapnetv1.git
-# Navigate into the project directory
-cd scrapnet.
 ```
-
+**Navigate into the project directory**
+```bash
+cd scrapnet
+```
+**Create and activate a virtual environment**
+```bash
+python -m venv venv
+venv\Scripts\activate  # On Windows
+source venv/bin/activate  # On macOS/Linux
+```
 
 ## Usage
 Changes mades on the models which can be affecting the database
@@ -56,7 +62,7 @@ python3 manage.py makemigrations
 
 Make config variables with ganache (Blockchain)
 
-Ganache config
+**Ganache Config**
 ```
 truffle migarations
 ```
