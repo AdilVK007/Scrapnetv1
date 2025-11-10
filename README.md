@@ -110,7 +110,7 @@ Eg:
 ```
 -->
 
-## Folder Structure
+# Folder Structure
 
 ```
 Scrapnetv1/
