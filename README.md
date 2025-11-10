@@ -2,6 +2,23 @@
 
 # SCRAPNET [WEB PROJECT] 🚗
 
+<p align="left">
+
+<!-- BUILD STATUS -->
+<img src="https://img.shields.io/badge/build-passing-brightgreen?style=for-the-badge" />
+
+<!-- LICENSE -->
+<img src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge" />
+
+<!-- LANGUAGES -->
+<img src="https://img.shields.io/badge/Python-3.6+-yellow?style=for-the-badge&logo=python&logoColor=white" />
+<!--<img src="https://img.shields.io/badge/FastAPI-backend-009688?style=for-the-badge&logo=fastapi&logoColor=white" />
+<img src="https://img.shields.io/badge/XGBoost-ML-orange?style=for-the-badge" />
+<img src="https://img.shields.io/badge/Solidity-Contracts-363636?style=for-the-badge&logo=solidity&logoColor=white" />
+<img src="https://img.shields.io/badge/React-Frontend-61DAFB?style=for-the-badge&logo=react&logoColor=black" /> -->
+
+</p>
+
 The car scrapping process in India lacks organization compared to the sale of used cars. Transactions involving vehicles, primarily buying and selling, pose challenges in terms of tracking. Existing solutions using centralized systems face issues with transparency, trust, and access control. Deceptive practices by scrap dealers, such as fixing unfair prices, further complicate the process.
 
 
@@ -11,7 +28,7 @@ The car scrapping process in India lacks organization compared to the sale of us
 ![Bitbucket open issues ](https://img.shields.io/bitbucket/issues/AdilVK007/Scrapnetv1)
 ![GitHub commits since latest release](https://img.shields.io/github/commits-since/AdilVK007/Scrapnetv1/latest)
 ![GitHub Watchers](https://img.shields.io/github/watchers/AdilVK007/Scrapnetv1)-->
-![Python](https://img.shields.io/badge/Python-3776AB?logo=Python&logoColor=white)
+<!--![Python](https://img.shields.io/badge/Python-3776AB?logo=Python&logoColor=white) -->
 <!--![GitHub commit merge status](https://img.shields.io/github/commit-status/AdilVK007/Scrapnetv1/main/Myapp)
 ![YouTube Channel Subscribers](https://img.shields.io/youtube/channel/subscribers/UCnLxjDIxr3tyZ9axvrJOITw?logo=youtube)-->
 
