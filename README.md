@@ -110,6 +110,33 @@ Eg:
 ```
 -->
 
+# Folder Structure
+
+Scrapnetv1/
+├─ Myapp/                 ← main django app (routes, views, models)
+│  ├─ migrations/         ← DB schema history files
+│  ├─ static/             ← CSS, JS, Images for Myapp UI
+│  └─ templates/          ← HTML pages for Myapp
+│
+├─ scrap/                 ← scrap logic (ML + Database models)
+│  ├─ migrations/         ← DB schema history for scrap app
+│  ├─ static/             ← CSS, JS, Images for scrap UI
+│  └─ templates/          ← HTML pages for scrap module
+│
+├─ media/                 ← user uploaded images (car damage images etc)
+│
+├─ templates/             ← global shared HTML templates
+│
+├─ .idea/                 ← IDE config (JetBrains/Pycharm)
+│
+├─ manage.py              ← main entry file for Django Project
+├─ requirements.txt       ← python dependencies list
+├─ contributing.md        ← contribution guidelines
+├─ README.md              ← project documentation
+├─ .gitignore
+└─ vercel.json
+
+
 ## Features
 
 - Damage Detection and Price Prediction:
