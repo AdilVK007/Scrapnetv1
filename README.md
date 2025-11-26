@@ -1,6 +1,6 @@
 <!--<img src="https://i.imgur.com/UJh4QKS.png">-->
 
-# SCRAPNET [WEB PROJECT] 🚗
+# Scrapnet: A Blockchain and Machine Learning based System to Facilitate Scrapping of Cars 🚗
 
 <p align="left">
 
